@@ -40,11 +40,28 @@ def load_and_prepare_data():
     vacsi['week_iso_num'] = vacsi['date'].dt.isocalendar().week
     vac_df = vacsi[["year_iso", "week_iso_num", "couv_complet"]].copy()
 
-    mob = mobility[(mobility.get('geo_level') == 'FR') & (mobility.get('geo_code') == 'FR') & (mobility.get('indicator') == 'workplaces')]
-    mob['date'] = pd.to_datetime(mob.get('date', mob.get('date_monday')))
-    mob['year_iso'] = mob['date'].dt.isocalendar().year
-    mob['week_iso_num'] = mob['date'].dt.isocalendar().week
-    work_df = mob[["year_iso", "week_iso_num", "value"]].rename(columns={"value": "work"}).copy()
+    # --- Google Mobility enrichie ---
+    mobility = pd.read_csv(f"{data_dir}/GOOGLE/google_mobility_fr_weekly.csv")
+    mobility = mobility[(mobility['geo_level'] == 'FR') & (mobility['geo_code'] == 'FR')]
+    mobility['date'] = pd.to_datetime(mobility.get('date', mobility.get('date_monday')))
+    mobility['year_iso'] = mobility['date'].dt.isocalendar().year
+    mobility['week_iso_num'] = mobility['date'].dt.isocalendar().week
+
+    # On pivot toutes les catégories disponibles
+    mob_wide = mobility.pivot_table(
+        index=['year_iso', 'week_iso_num'],
+        columns='indicator', values='value', aggfunc='mean'
+    ).reset_index()
+
+    # Si certaines colonnes manquent, on les crée à 0
+    for col in ["workplaces", "residential", "retail_and_recreation",
+                "grocery_and_pharmacy", "parks", "transit_stations"]:
+        if col not in mob_wide.columns:
+            mob_wide[col] = 0
+
+    # Le champ “work” reste ton indicateur principal
+    mob_wide["work"] = mob_wide["workplaces"]
+
 
     mask_vars = ["port_du_masque", "lavage_des_mains", "aeration_du_logement", "saluer_sans_serrer_la_main"]
     coviprev["date"] = pd.to_datetime(coviprev.get("date", coviprev.get("date_monday")))
@@ -63,7 +80,7 @@ def load_and_prepare_data():
 
     # Fusion de toutes les sources
     df = rsv_df.merge(vac_df, on=["year_iso", "week_iso_num"], how="left")
-    df = df.merge(work_df, on=["year_iso", "week_iso_num"], how="left")
+    df = df.merge(mob_wide, on=["year_iso", "week_iso_num"], how="left")
     df = df.merge(cov_nat, on=["year_iso", "week_iso_num"], how="left")
     df = df.merge(meteo_df, on=["year_iso", "week_iso_num"], how="left")
     df["couv_complet"] = df["couv_complet"].fillna(0)
@@ -107,8 +124,11 @@ rsv_series = df["RSV"]
 fitted_series = model.fittedvalues
 
 # Onglets
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Aperçu des données", "Modélisation", "Scénarios", "Diagnostics", "Synthèse finale",
-                                        "ERVISS RSV — Modélisation & Scénarios"
+tab1,tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["📊 Aperçu et exploration des données RSV", 
+                                                               "Modélisation", "Scénarios", "Diagnostics", "Synthèse finale",
+                                        "ERVISS RSV — Modélisation & Scénarios",
+                                        "MNP — Détails", "Mobilité — Détails", 
+                                                               "Régions & Départements",
                                         ])
 with tab1:
     st.header("📊 Aperçu et exploration des données RSV")
@@ -243,6 +263,120 @@ Les visualisations ci-dessous permettent de contextualiser les ruptures liées �
     - `cov12_lag`, `MNP_lag`, `work_lag` = valeurs décalées (lags) utilisées dans les modèles.
     - Données hebdomadaires (lundi ISO) normalisées et harmonisées pour tous les flux (ODiSSEE, VAC-SI, CoviPrev, Google, Météo-France).
     """)
+
+with tab7:
+    st.header("🧼 Gestes barrières : détail par indicateur")
+    mnp_vars = ["port_du_masque","lavage_des_mains","aeration_du_logement","saluer_sans_serrer_la_main"]
+    # Si indisponibles, on les reconstruit depuis le calcul initial (à adapter si besoin)
+    mnp_avail = [v for v in mnp_vars if v in df.columns]
+    if not mnp_avail:
+        st.info("Indicateurs MNP unitaires absents dans df — fournir `coviprev_reg_weekly` agrégé FR pour les afficher.")
+    else:
+        # Courbes individuelles
+        fig = go.Figure()
+        for v in mnp_avail:
+            fig.add_trace(go.Scatter(x=df.index, y=df[v], mode="lines", name=v))
+        fig.update_layout(template="plotly_white", title="CoviPrev — Indicateurs unitaires (FR)")
+        st.plotly_chart(fig, use_container_width=True)
+
+        # Contribution au score (z-normalisé)
+        zcols = []
+        for v in mnp_avail:
+            z = (df[v] - df[v].mean()) / (df[v].std(ddof=0) if df[v].std(ddof=0)!=0 else 1)
+            df[f"{v}_z"] = z; zcols.append(f"{v}_z")
+        df["work_inv_z"] = ( -df["work"] - (-df["work"]).mean() ) / ((-df["work"]).std(ddof=0) if (-df["work"]).std(ddof=0)!=0 else 1)
+        contrib = df[zcols + ["work_inv_z"]].mean().sort_values(ascending=False)
+        fig2 = go.Figure()
+        fig2.add_trace(go.Bar(x=contrib.index, y=contrib.values, text=np.round(contrib.values,2), textposition="outside"))
+        fig2.update_layout(template="plotly_white", title="Contribution moyenne (z-score) au MNP_score")
+        st.plotly_chart(fig2, use_container_width=True)
+
+        # Heatmap année×semaine (score)
+        df["_year"] = df.index.year; df["_week"] = df.index.isocalendar().week.astype(int)
+        heat = df.pivot_table(index="_year", columns="_week", values="MNP_score", aggfunc="mean")
+        fig3 = go.Figure(data=go.Heatmap(z=heat.values, x=heat.columns, y=heat.index, colorscale="RdBu"))
+        fig3.update_layout(template="plotly_white", title="MNP_score — Heatmap (année × semaine)")
+        st.plotly_chart(fig3, use_container_width=True)
+
+        # Corrélation RSV vs sous-indicateurs
+        corr = df[["RSV"] + mnp_avail].corr().round(2)
+        fig4 = go.Figure(data=go.Heatmap(z=corr.values, x=corr.columns, y=corr.index, zmin=-1, zmax=1, colorscale="RdBu"))
+        fig4.update_layout(template="plotly_white", title="Corrélations RSV ↔ gestes barrières")
+        st.plotly_chart(fig4, use_container_width=True)
+
+with tab8:
+    st.header("🚶 Google Mobility : exploration complète")
+    mobility_vars = ["workplaces","residential","retail_and_recreation","grocery_and_pharmacy","parks","transit_stations"]
+    mob_avail = [v for v in mobility_vars if v in df.columns]
+    if not mob_avail:
+        st.info("Catégories Google Mobility manquantes dans df — charger `google_mobility_fr_weekly` enrichi.")
+    else:
+        # Courbes normalisées
+        fig = go.Figure()
+        for v in mob_avail:
+            s = df[v]; s_norm = (s - s.min()) / (s.max() - s.min() + 1e-9)
+            fig.add_trace(go.Scatter(x=df.index, y=s_norm, mode="lines", name=v))
+        fig.update_layout(template="plotly_white", title="Séries mobilité (0–1 normalisées)")
+        st.plotly_chart(fig, use_container_width=True)
+
+        # Heatmap par catégorie
+        year = st.selectbox("Année", sorted(df.index.year.unique()))
+        sub = df[df.index.year == year].copy()
+        heat = sub[mob_avail].T
+        fig2 = go.Figure(data=go.Heatmap(z=heat.values, x=sub.index, y=heat.index, colorscale="Viridis"))
+        fig2.update_layout(template="plotly_white", title=f"Mobilité — Heatmap hebdo ({year})")
+        st.plotly_chart(fig2, use_container_width=True)
+
+        # Corrélations partielles (RSV vs une catégorie)
+        cat = st.selectbox("Catégorie à corréler au RSV", mob_avail, index=mob_avail.index("workplaces") if "workplaces" in mob_avail else 0)
+        fig3 = go.Figure()
+        fig3.add_trace(go.Scatter(x=df[cat], y=df["RSV"], mode="markers", name=f"{cat} vs RSV"))
+        fig3.update_layout(template="plotly_white", xaxis_title=cat, yaxis_title="RSV", title=f"RSV vs {cat}")
+        st.plotly_chart(fig3, use_container_width=True)
+
+with tab9:
+    st.header("🗺️ Pics saisonniers par région/département")
+    from pathlib import Path
+    DATA = Path("./data_clean/ODISSEE")
+    reg = pd.read_csv(DATA/"common_REG_long.csv")
+    dep = pd.read_csv(DATA/"common_DEP_long.csv")
+
+    def prep(df, level_col):
+        df = df.copy()
+        df["date_monday"] = pd.to_datetime(df["date_monday"])
+        df = df[(df["topic"]=="RSV")]
+        # Choix d’un indicateur (adapté si `taux_passages_urgences` n’existe pas partout)
+        y = "taux_passages_urgences" if "taux_passages_urgences" in df.columns else "taux_sos"
+        df = df.rename(columns={y:"RSV"}).dropna(subset=["RSV"])
+        df["season"] = df["date_monday"].dt.year.where(df["date_monday"].dt.month<9, df["date_monday"].dt.year+1)
+        df["week"] = df["date_monday"].dt.isocalendar().week.astype(int)
+        return df, level_col
+
+    reg_prep, lvl_reg = prep(reg, "geo_code")
+    dep_prep, lvl_dep = prep(dep, "geo_code")
+
+    level = st.radio("Niveau", ["Région (REG)","Département (DEP)"], horizontal=True)
+    if level == "Région (REG)":
+        dfL = reg_prep; code_col = lvl_reg; label = "Région"
+    else:
+        dfL = dep_prep; code_col = lvl_dep; label = "Département"
+
+    season = st.selectbox("Saison (année de fin)", sorted(dfL["season"].unique()))
+    dfS = dfL[dfL["season"]==season]
+
+    # Semaine du pic par zone
+    peak = dfS.sort_values(["RSV"]).groupby(code_col).tail(1)[[code_col,"week","RSV"]].rename(columns={"week":"peak_week","RSV":"peak_value"})
+    top_early = peak.sort_values("peak_week").head(15)
+    top_late  = peak.sort_values("peak_week", ascending=False).head(15)
+
+    col1,col2 = st.columns(2)
+    with col1:
+        st.subheader("⏱️ Pics les plus précoces")
+        st.dataframe(top_early.rename(columns={code_col:label}), use_container_width=True)
+    with col2:
+        st.subheader("🐢 Pics les plus tardifs")
+        st.dataframe(top_late.rename(columns={code_col:label}), use_container_width=True)
+
 
 with tab2:
     st.header("Modélisation multi-stratégies")
