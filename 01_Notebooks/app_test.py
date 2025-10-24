@@ -14,7 +14,7 @@ st.title("Analyse du Virus RSV - Tableau de Bord Interactif")
 # Chargement et préparation des données (mise en cache)
 @st.cache
 def load_and_prepare_data():
-    data_dir = "../data_clean"
+    data_dir = "./data_clean"
     common   = pd.read_csv(f"{data_dir}/ODISSEE/common_FR_long.csv")
     vacsi    = pd.read_csv(f"{data_dir}/VACSI/vacsi_fr_extended.csv")
     mobility = pd.read_csv(f"{data_dir}/GOOGLE/google_mobility_fr_weekly.csv")
