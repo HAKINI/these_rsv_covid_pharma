@@ -218,7 +218,13 @@ Les visualisations ci-dessous permettent de contextualiser les ruptures liées �
     # === 6️⃣ Tableau interactif filtrable ===
     st.subheader("📋 Aperçu tabulaire des données fusionnées")
     st.markdown("Filtrez ou explorez la base complète utilisée pour les modèles :")
-    years = st.multiselect("Filtrer par année :", sorted(df.index.year.unique()), default=[2019, 2020, 2021, 2022, 2023])
+    available_years = sorted(df.index.year.unique())
+    default_years = [y for y in [2019, 2020, 2021, 2022, 2023] if y in available_years]
+    years = st.multiselect(
+    "Filtrer par année :",
+    available_years,
+    default=default_years if default_years else available_years[-3:]
+)
     df_filtered = df[df.index.year.isin(years)].copy()
     st.dataframe(df_filtered.head(20), use_container_width=True)
 
@@ -1183,4 +1189,5 @@ with tab6:
     - SARIMAX v2 applique une **différenciation saisonnière (D=1, s=52)** pour stabiliser la saisonnalité.
     - Les scénarios "illogiques" (ex. vaccine sans COVID, MNP=real sans COVID) peuvent être filtrés.
     """)
+
 
