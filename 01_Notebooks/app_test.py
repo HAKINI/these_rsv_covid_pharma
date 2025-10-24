@@ -4,122 +4,633 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
+import warnings
+from pathlib import Path
+from statsmodels.tools.sm_exceptions import ConvergenceWarning
 from statsmodels.tsa.stattools import acf
 import plotly.graph_objects as go
+
+MODEL_DIR = Path(__file__).resolve().parents[1] / "outputs" / "models"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data_clean"
+
+MODEL_FILE_MAP = {
+    "ols_base": "ols.pkl",
+    "ols_opt": "ols_opt.pkl",
+    "its_base": "its.pkl",
+    "its_opt": "its_v2.pkl",
+    "sarimax_best": "sarimax_best.pkl",
+}
+
+MODEL_AUX_FILES = {
+    "its_design": "its_long.pkl",
+}
+
+
+def load_saved_result(path: Path):
+    """Charge un objet statsmodels picklé, gestion des erreurs."""
+    try:
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", category=UserWarning)
+            return sm.load(str(path))
+    except Exception as exc:
+        st.warning(f"Impossible de charger le modèle sauvegardé `{path.name}` ({exc}). Recalcul en cours.")
+        return None
+
+
+def load_saved_frame(path: Path):
+    """Charge un DataFrame picklé."""
+    try:
+        return pd.read_pickle(path)
+    except Exception as exc:
+        st.warning(f"Impossible de charger les données auxiliaires `{path.name}` ({exc}).")
+        return None
+
+
+def keyify(df: pd.DataFrame, date_col: str = "date_monday") -> pd.DataFrame:
+    """S'assure que les colonnes ISO (année, semaine) existent."""
+    df = df.copy()
+    if date_col not in df.columns:
+        return df
+    iso = pd.to_datetime(df[date_col]).dt.isocalendar()
+    if "year_iso" not in df.columns:
+        df["year_iso"] = iso["year"].astype(int)
+    if "week_iso_num" not in df.columns:
+        df["week_iso_num"] = iso["week"].astype(int)
+    return df
+
+
+def zscore(series: pd.Series) -> pd.Series:
+    """Calcule un z-score stable (std=0 -> 0)."""
+    std = series.std(ddof=0)
+    if std is None or np.isclose(std, 0):
+        return pd.Series(0, index=series.index)
+    return (series - series.mean()) / std
+
+
+def build_time_features(df: pd.DataFrame, period: int = 52) -> pd.DataFrame:
+    """Ajoute les composantes temporelles t, sin(t), cos(t)."""
+    df = df.copy()
+    df["t"] = np.arange(len(df))
+    df["sin52"] = np.sin(2 * np.pi * df["t"] / period)
+    df["cos52"] = np.cos(2 * np.pi * df["t"] / period)
+    return df
+
+
+def compute_mnp_components(df: pd.DataFrame, mask_vars: list[str]) -> pd.DataFrame:
+    """Construit les composantes MNP (work inversé + gestes barrières)."""
+    df = df.copy()
+    features = pd.DataFrame(index=df.index)
+    features["work_red"] = -df["work"]
+    features["work_red_z"] = zscore(features["work_red"])
+    for var in mask_vars:
+        features[f"{var}_z"] = zscore(df[var])
+    z_cols = [f"{var}_z" for var in mask_vars] + ["work_red_z"]
+    features["MNP_score"] = features[z_cols].mean(axis=1)
+    return features
+
+
+def create_lagged_features(df: pd.DataFrame, lags: tuple[int, int, int]) -> pd.DataFrame:
+    """Crée les colonnes décalées (vaccin, MNP, travail) + harmonique saisonnière."""
+    lag_vac, lag_mnp, lag_work = lags
+    features = pd.DataFrame(index=df.index)
+    features["cov12_lag"] = df["couv_complet"].shift(lag_vac)
+    features["MNP_lag"] = df["MNP_score"].shift(lag_mnp)
+    features["work_lag"] = df["work"].shift(lag_work)
+    features = build_time_features(features)
+    return features
+
+
+def search_best_lags(
+    rsv_series: pd.Series,
+    base_df: pd.DataFrame,
+    lag_ranges: tuple[range, range, range],
+) -> tuple[tuple[int, int, int], float]:
+    """Recherche brute des meilleurs lags via R² ajusté."""
+    best_lags = (4, 8, 9)
+    best_r2 = -np.inf
+    for lv in lag_ranges[0]:
+        for lm in lag_ranges[1]:
+            for lw in lag_ranges[2]:
+                try:
+                    X_tmp = create_lagged_features(base_df, (lv, lm, lw))
+                    tmp = rsv_series.to_frame("RSV").join(X_tmp, how="left").dropna()
+                    if len(tmp) < 30:
+                        continue
+                    X = tmp[["cov12_lag", "MNP_lag", "work_lag", "sin52", "cos52"]]
+                    mod = sm.OLS(tmp["RSV"], sm.add_constant(X, has_constant="add")).fit()
+                    if mod.rsquared_adj > best_r2:
+                        best_r2 = mod.rsquared_adj
+                        best_lags = (lv, lm, lw)
+                except Exception:
+                    continue
+    return best_lags, best_r2
+
+
+def add_fourier_terms(df: pd.DataFrame, period: int = 52, K: int = 1) -> pd.DataFrame:
+    """Ajoute des harmoniques sin/cos supplémentaires (ITS)."""
+    df = df.copy()
+    t = np.arange(len(df))
+    for k in range(1, K + 1):
+        df[f"sin{k}"] = np.sin(2 * np.pi * k * t / period)
+        df[f"cos{k}"] = np.cos(2 * np.pi * k * t / period)
+    return df
+
+
+def make_its_design(
+    df: pd.DataFrame,
+    covid_date: pd.Timestamp,
+    vacc_date: pd.Timestamp,
+    fourier_K: int = 1,
+    add_exog: bool = True,
+) -> tuple[sm.regression.linear_model.RegressionResultsWrapper, pd.DataFrame, list[str], int]:
+    """Construit et ajuste le modèle ITS avec HAC."""
+    df_design = df.reset_index().rename(columns={"date_monday": "date"}).sort_values("date")
+    df_design["date"] = pd.to_datetime(df_design["date"])
+    df_design["t"] = np.arange(len(df_design))
+    df_design["post_covid"] = (df_design["date"] >= covid_date).astype(int)
+    df_design["post_vacc"] = (df_design["date"] >= vacc_date).astype(int)
+    df_design["t_post_covid"] = df_design["t"] * df_design["post_covid"]
+    df_design["t_post_vacc"] = df_design["t"] * df_design["post_vacc"]
+    df_design = add_fourier_terms(df_design, K=fourier_K)
+
+    y = df_design["RSV"].astype(float)
+    base_cols = ["t", "post_covid", "t_post_covid", "post_vacc", "t_post_vacc"]
+    fourier_cols = []
+    for k in range(1, fourier_K + 1):
+        fourier_cols.extend([f"sin{k}", f"cos{k}"])
+    Xcols = base_cols + fourier_cols
+    if add_exog:
+        for col in ["cov12_lag", "MNP_lag", "work_lag"]:
+            if col in df_design.columns and col not in Xcols:
+                Xcols.append(col)
+
+    X = df_design[Xcols].copy()
+    hac_lags = int(np.clip(np.sqrt(len(df_design)), 8, 24))
+    fit = sm.OLS(y, sm.add_constant(X, has_constant="add"), missing="drop").fit(
+        cov_type="HAC", cov_kwds={"maxlags": hac_lags}
+    )
+    df_design["date_monday"] = df_design["date"]
+    df_design = df_design.set_index("date_monday")
+    return fit, df_design, Xcols, hac_lags
+
+
+def fit_its_model(
+    df_base: pd.DataFrame, covid_start: pd.Timestamp, vacc_start: pd.Timestamp
+) -> dict:
+    """Lance la grille de recherche ITS et renvoie le meilleur modèle."""
+    steps = [pd.to_timedelta(0, unit="D")]
+    best = {"aic": np.inf}
+    for K in [2]:
+        for delta_c in steps:
+            for delta_v in steps:
+                covid_date = covid_start + delta_c
+                vacc_date = vacc_start + delta_v
+                if vacc_date <= covid_date:
+                    continue
+                try:
+                    fit, design, cols, hac = make_its_design(
+                        df_base[["RSV", "cov12_lag", "MNP_lag", "work_lag"]],
+                        covid_date=covid_date,
+                        vacc_date=vacc_date,
+                        fourier_K=K,
+                        add_exog=True,
+                    )
+                except Exception:
+                    continue
+                if fit.aic < best["aic"]:
+                    best = {
+                        "aic": fit.aic,
+                        "model": fit,
+                        "design": design,
+                        "cols": cols,
+                        "K": K,
+                        "covid_date": covid_date,
+                        "vacc_date": vacc_date,
+                        "hac_lags": hac,
+                    }
+    return best
+
+
+def fit_sarimax_model(
+    df_opt: pd.DataFrame, covid_start: pd.Timestamp, vacc_start: pd.Timestamp
+) -> dict:
+    """Recherche du meilleur SARIMAX (ordre restreint) avec exogènes."""
+    from statsmodels.tsa.statespace.sarimax import SARIMAX
+
+    df_sx = df_opt.copy().sort_index()
+    df_sx.index = pd.to_datetime(df_sx.index)
+    try:
+        df_sx = df_sx.asfreq("W-MON")
+    except ValueError:
+        df_sx = df_sx.resample("W-MON").interpolate(method="linear")
+    df_sx["post_covid"] = (df_sx.index >= covid_start).astype(int)
+    df_sx["post_vacc"] = (df_sx.index >= vacc_start).astype(int)
+    df_sx["t"] = np.arange(len(df_sx))
+    df_sx["t_post_covid"] = df_sx["t"] * df_sx["post_covid"]
+
+    exog_cols = [
+        "cov12_lag",
+        "MNP_lag",
+        "work_lag",
+        "tmean_z",
+        "vacc_x_mnp",
+        "post_covid",
+        "post_vacc",
+        "t_post_covid",
+        "t",
+    ]
+    exog = df_sx[exog_cols].astype(float).replace([np.inf, -np.inf], np.nan)
+    y = df_sx["RSV"].astype(float)
+    mask = (~y.isna()) & (~exog.isna().any(axis=1))
+    y = y.loc[mask]
+    exog = exog.loc[mask]
+
+    candidate_pdq = [(1, 0, 0), (1, 0, 1), (2, 0, 0)]
+    candidate_PDQ = [(1, 0, 1, 52), (1, 1, 0, 52)]
+    best = {"aic": np.inf}
+    for order in candidate_pdq:
+        for seasonal_order in candidate_PDQ:
+            try:
+                with warnings.catch_warnings():
+                    warnings.filterwarnings("ignore", category=UserWarning)
+                    warnings.filterwarnings("ignore", category=ConvergenceWarning)
+                    mod = SARIMAX(
+                        y,
+                        exog=exog,
+                        order=order,
+                        seasonal_order=seasonal_order,
+                        enforce_stationarity=False,
+                        enforce_invertibility=False,
+                    ).fit(disp=False, maxiter=200)
+                if not getattr(mod, "mle_retvals", {}).get("converged", True):
+                    mod = mod.model.fit(disp=False, method="powell", maxiter=150)
+            except Exception:
+                continue
+            if mod.aic < best["aic"]:
+                best = {
+                    "aic": mod.aic,
+                    "model": mod,
+                    "order": order,
+                    "seasonal_order": seasonal_order,
+                }
+
+    if best.get("model") is None:
+        return best
+
+    y_fit = best["model"].fittedvalues.reindex(y.index)
+    ss_res = float(((y - y_fit) ** 2).sum())
+    ss_tot = float(((y - y.mean()) ** 2).sum())
+    pseudo_r2 = 1 - ss_res / ss_tot if ss_tot else np.nan
+    best.update(
+        {
+            "frame": df_sx.loc[mask],
+            "exog_cols": exog_cols,
+            "pseudo_r2": pseudo_r2,
+        }
+    )
+    return best
 
 # Configuration de la page Streamlit
 st.set_page_config(page_title="RSV Analysis Dashboard", layout="wide")
 st.title("Analyse du Virus RSV - Tableau de Bord Interactif")
 
 # Chargement et préparation des données (mise en cache)
-@st.cache
+@st.cache_resource(show_spinner=False)
 def load_and_prepare_data():
-    data_dir = "./data_clean"
-    common   = pd.read_csv(f"{data_dir}/ODISSEE/common_FR_long.csv")
-    vacsi    = pd.read_csv(f"{data_dir}/VACSI/vacsi_fr_extended.csv")
-    mobility = pd.read_csv(f"{data_dir}/GOOGLE/google_mobility_fr_weekly.csv")
-    coviprev = pd.read_csv(f"{data_dir}/COVIPREV/coviprev_reg_weekly.csv")
-    meteo    = pd.read_csv(f"{data_dir}/METEO/meteo_fr_weekly.csv")
+    data_dir = DATA_DIR
+    COVID_START = pd.Timestamp("2020-03-01")
+    VACC_START = pd.Timestamp("2021-01-01")
 
-    common["date_monday"] = pd.to_datetime(common["date_monday"])
+    # === 1) Chargement des sources brutes ===
+    common = keyify(pd.read_csv(data_dir / "ODISSEE/common_FR_long.csv", engine="python"))
+    vacsi = pd.read_csv(data_dir / "VACSI/vacsi_fr_extended.csv", engine="python")
+    mobility = pd.read_csv(data_dir / "GOOGLE/google_mobility_fr_weekly.csv", engine="python")
+    coviprev = pd.read_csv(data_dir / "COVIPREV/coviprev_reg_weekly.csv", engine="python")
+    meteo = pd.read_csv(data_dir / "METEO/meteo_fr_weekly.csv", engine="python")
+
+    # === 2) Signal RSV national ===
     mask = (common["topic"] == "RSV") & (common["geo_level"] == "FR")
-    for age in ["00-04 ans", "0-1 an", "Tous âges"]:
-        if ((mask) & (common["classe_d_age"] == age)).any():
-            mask = mask & (common["classe_d_age"] == age)
-            break
+    age_preference = ["00-04 ans", "0-1 an", "Tous âges"]
+    age_used = next(
+        (age for age in age_preference if ((mask) & (common["classe_d_age"] == age)).any()),
+        "Tous âges",
+    )
+    mask &= common["classe_d_age"] == age_used
     y_col = "taux_passages_urgences" if "taux_passages_urgences" in common.columns else "taux_sos"
-    rsv_df = common.loc[mask, ["date_monday", y_col]].rename(columns={y_col: "RSV"}).copy()
-    rsv_df = rsv_df.sort_values("date_monday").reset_index(drop=True)
-    rsv_df["year_iso"] = rsv_df["date_monday"].dt.isocalendar().year
-    rsv_df["week_iso_num"] = rsv_df["date_monday"].dt.isocalendar().week
+    rsv = (
+        common.loc[mask, ["date_monday", "year_iso", "week_iso_num", y_col]]
+        .rename(columns={y_col: "RSV"})
+        .copy()
+    )
+    rsv["date_monday"] = pd.to_datetime(rsv["date_monday"])
+    rsv = rsv.sort_values("date_monday")
+    rsv_series = rsv.set_index("date_monday")[["RSV"]]
 
-    # Préparation des autres sources : vacsi, mobilité, gestes barrières, météo
-    vacsi = vacsi[(vacsi.get('geo_level') == 'FR') & (vacsi.get('geo_code') == 'FR')]
-    vacsi['date'] = pd.to_datetime(vacsi.get('date', vacsi.get('date_monday')))
-    vacsi['year_iso'] = vacsi['date'].dt.isocalendar().year
-    vacsi['week_iso_num'] = vacsi['date'].dt.isocalendar().week
-    vac_df = vacsi[["year_iso", "week_iso_num", "couv_complet"]].copy()
+    # === 3) Vaccination ===
+    vacsi["date_monday"] = pd.to_datetime(vacsi.get("date", vacsi.get("date_monday")))
+    vacsi = keyify(vacsi)
+    vac = vacsi.query("geo_level=='FR' & geo_code=='FR'")[["year_iso", "week_iso_num", "couv_complet"]]
 
-    # --- Google Mobility enrichie ---
-    mobility = pd.read_csv(f"{data_dir}/GOOGLE/google_mobility_fr_weekly.csv")
-    mobility = mobility[(mobility['geo_level'] == 'FR') & (mobility['geo_code'] == 'FR')]
-    mobility['date'] = pd.to_datetime(mobility.get('date', mobility.get('date_monday')))
-    mobility['year_iso'] = mobility['date'].dt.isocalendar().year
-    mobility['week_iso_num'] = mobility['date'].dt.isocalendar().week
-
-    # On pivot toutes les catégories disponibles
-    mob_wide = mobility.pivot_table(
-        index=['year_iso', 'week_iso_num'],
-        columns='indicator', values='value', aggfunc='mean'
-    ).reset_index()
-
-    # Si certaines colonnes manquent, on les crée à 0
-    for col in ["workplaces", "residential", "retail_and_recreation",
-                "grocery_and_pharmacy", "parks", "transit_stations"]:
+    # === 4) Mobilité Google ===
+    mobility["date_monday"] = pd.to_datetime(mobility.get("date", mobility.get("date_monday")))
+    mobility = keyify(mobility)
+    mobility_fr = mobility.query("geo_level=='FR' & geo_code=='FR'")
+    mob_wide = (
+        mobility_fr.pivot_table(
+            index=["year_iso", "week_iso_num"],
+            columns="indicator",
+            values="value",
+            aggfunc="mean",
+        )
+        .reset_index()
+        .rename_axis(None, axis=1)
+    )
+    mobility_cols = [
+        "workplaces",
+        "residential",
+        "retail_and_recreation",
+        "grocery_and_pharmacy",
+        "parks",
+        "transit_stations",
+    ]
+    for col in mobility_cols:
         if col not in mob_wide.columns:
             mob_wide[col] = 0
-
-    # Le champ “work” reste ton indicateur principal
     mob_wide["work"] = mob_wide["workplaces"]
 
+    # === 5) CoviPrev (gestes barrières) ===
+    mask_vars = [
+        "port_du_masque",
+        "lavage_des_mains",
+        "aeration_du_logement",
+        "saluer_sans_serrer_la_main",
+    ]
+    coviprev["date_monday"] = pd.to_datetime(coviprev.get("date", coviprev.get("date_monday")))
+    coviprev = keyify(coviprev)
+    cov_nat = (
+        coviprev[coviprev["indicator"].isin(mask_vars)]
+        .groupby(["year_iso", "week_iso_num", "indicator"])["value"]
+        .mean()
+        .unstack()
+        .reset_index()
+    )
+    for var in mask_vars:
+        if var not in cov_nat.columns:
+            cov_nat[var] = 0
 
-    mask_vars = ["port_du_masque", "lavage_des_mains", "aeration_du_logement", "saluer_sans_serrer_la_main"]
-    coviprev["date"] = pd.to_datetime(coviprev.get("date", coviprev.get("date_monday")))
-    coviprev['year_iso'] = coviprev['date'].dt.isocalendar().year
-    coviprev['week_iso_num'] = coviprev['date'].dt.isocalendar().week
-    cov_nat = coviprev[coviprev["indicator"].isin(mask_vars)].copy()
-    cov_nat = cov_nat.groupby(["year_iso", "week_iso_num", "indicator"])["value"].mean().unstack().reset_index()
-    for v in mask_vars:
-        if v not in cov_nat.columns:
-            cov_nat[v] = 0
-
-    meteo['date'] = pd.to_datetime(meteo.get('date', meteo.get('date_monday')))
-    meteo['year_iso'] = meteo['date'].dt.isocalendar().year
-    meteo['week_iso_num'] = meteo['date'].dt.isocalendar().week
+    # === 6) Météo ===
+    meteo["date_monday"] = pd.to_datetime(meteo.get("date", meteo.get("date_monday")))
+    meteo = keyify(meteo)
     meteo_df = meteo[["year_iso", "week_iso_num", "tmean"]]
 
-    # Fusion de toutes les sources
-    df = rsv_df.merge(vac_df, on=["year_iso", "week_iso_num"], how="left")
-    df = df.merge(mob_wide, on=["year_iso", "week_iso_num"], how="left")
-    df = df.merge(cov_nat, on=["year_iso", "week_iso_num"], how="left")
-    df = df.merge(meteo_df, on=["year_iso", "week_iso_num"], how="left")
-    df["couv_complet"] = df["couv_complet"].fillna(0)
-    df["work"] = df["work"].fillna(0)
-    for v in mask_vars:
-        df[v] = df[v].fillna(0)
-    df["tmean"] = df["tmean"].fillna(method='ffill').fillna(method='bfill')
+    # === 7) Fusion multi-sources ===
+    df_merge = (
+        rsv.merge(vac, on=["year_iso", "week_iso_num"], how="left")
+        .merge(mob_wide, on=["year_iso", "week_iso_num"], how="left")
+        .merge(cov_nat, on=["year_iso", "week_iso_num"], how="left")
+        .merge(meteo_df, on=["year_iso", "week_iso_num"], how="left")
+        .sort_values("date_monday")
+    )
+    df_merge["couv_complet"] = df_merge["couv_complet"].fillna(0)
+    for col in mobility_cols + ["work"]:
+        df_merge[col] = df_merge.get(col, 0).fillna(0)
+    for var in mask_vars:
+        df_merge[var] = df_merge.get(var, 0).fillna(0)
+    df_merge["tmean"] = df_merge["tmean"].ffill().bfill()
+    df_merge["date_monday"] = pd.to_datetime(df_merge["date_monday"])
+    df_merge = df_merge.set_index("date_monday")
 
-    df["work_red"] = -df["work"]
-    for v in mask_vars:
-        df[v + "_z"] = (df[v] - df[v].mean()) / df[v].std(ddof=0) if df[v].std(ddof=0) != 0 else 0
-    df["work_red_z"] = (df["work_red"] - df["work_red"].mean()) / df["work_red"].std(ddof=0) if df["work_red"].std(ddof=0) != 0 else 0
-    df["MNP_score"] = df[[v + "_z" for v in mask_vars] + ["work_red_z"]].mean(axis=1)
-    df["cov12_lag"] = df["couv_complet"].shift(4)
-    df["MNP_lag"] = df["MNP_score"].shift(8)
-    df["work_lag"] = df["work"].shift(9)
-    df["t"] = np.arange(len(df))
-    df["sin52"] = np.sin(2 * np.pi * df["t"] / 52)
-    df["cos52"] = np.cos(2 * np.pi * df["t"] / 52)
-    df = df.dropna(subset=["cov12_lag", "MNP_lag", "work_lag"]).reset_index(drop=True)
-    df["date_monday"] = pd.to_datetime(df["date_monday"])
-    df = df.set_index("date_monday")
+    # === 8) Score MNP ===
+    mnp_components = compute_mnp_components(df_merge[["work"] + mask_vars], mask_vars)
+    df_merge = df_merge.join(mnp_components, how="left")
 
-    COVID_START = pd.to_datetime("2020-03-01")
-    VACC_START = pd.to_datetime("2021-01-01")
-    df["post_covid"] = (df.index >= COVID_START).astype(int)
-    df["post_vacc"] = (df.index >= VACC_START).astype(int)
-    df["t_postcovid"] = df["t"] * df["post_covid"]
-    df["t_postvacc"] = df["t"] * df["post_vacc"]
-    df["tmean_z"] = (df["tmean"] - df["tmean"].mean()) / df["tmean"].std(ddof=0)
+    # Base pour la recherche de lags
+    lag_input = df_merge[["couv_complet", "MNP_score", "work"]].copy()
 
-    X_cols = ["t", "post_covid", "t_postcovid", "post_vacc", "t_postvacc", "cov12_lag", "MNP_lag", "work_lag", "tmean_z", "sin52", "cos52"]
-    X = df[X_cols]
-    Y = df["RSV"].astype(float)
-    model = sm.OLS(Y, sm.add_constant(X)).fit()
-    return df, model, X_cols
+    # === 9) Base (lags par défaut) ===
+    default_lags = (4, 8, 9)
+    X_base_default = create_lagged_features(lag_input, default_lags)
+    df_base = (
+        rsv_series.join(X_base_default, how="left")
+        .join(df_merge.drop(columns=["RSV"]), how="left")
+        .dropna(subset=["cov12_lag", "MNP_lag", "work_lag"])
+        .sort_index()
+    )
+    df_base["t"] = np.arange(len(df_base))
+    df_base["sin52"] = np.sin(2 * np.pi * df_base["t"] / 52)
+    df_base["cos52"] = np.cos(2 * np.pi * df_base["t"] / 52)
+    df_base["post_covid"] = (df_base.index >= COVID_START).astype(int)
+    df_base["post_vacc"] = (df_base.index >= VACC_START).astype(int)
+    df_base["t_postcovid"] = df_base["t"] * df_base["post_covid"]
+    df_base["t_postvacc"] = df_base["t"] * df_base["post_vacc"]
+
+    # === 10) Recherche des meilleurs lags ===
+    lag_search_ranges = (
+        range(default_lags[0], default_lags[0] + 1),
+        range(default_lags[1], default_lags[1] + 1),
+        range(default_lags[2], default_lags[2] + 1),
+    )
+    best_lags, best_r2 = search_best_lags(
+        rsv_series["RSV"],
+        lag_input,
+        lag_search_ranges,
+    )
+    X_best = create_lagged_features(lag_input, best_lags)
+    df_opt = (
+        rsv_series.join(X_best, how="left")
+        .join(df_merge.drop(columns=["RSV"]), how="left")
+        .dropna(subset=["cov12_lag", "MNP_lag", "work_lag"])
+        .sort_index()
+    )
+    df_opt["t"] = np.arange(len(df_opt))
+    df_opt["sin52"] = np.sin(2 * np.pi * df_opt["t"] / 52)
+    df_opt["cos52"] = np.cos(2 * np.pi * df_opt["t"] / 52)
+    df_opt["post_covid"] = (df_opt.index >= COVID_START).astype(int)
+    df_opt["post_vacc"] = (df_opt.index >= VACC_START).astype(int)
+    df_opt["t_postcovid"] = df_opt["t"] * df_opt["post_covid"]
+    df_opt["t_postvacc"] = df_opt["t"] * df_opt["post_vacc"]
+    df_opt["tmean_z"] = zscore(df_opt["tmean"])
+    df_opt["vacc_x_mnp"] = df_opt["cov12_lag"] * df_opt["MNP_lag"]
+    df_opt["RSV_lag1"] = df_opt["RSV"].shift(1)
+    df_opt["RSV_lag2"] = df_opt["RSV"].shift(2)
+    df_opt = df_opt.dropna(subset=["RSV_lag2"])
+    df_opt["year_iso"] = df_opt.index.isocalendar().year
+    df_opt["week_iso_num"] = df_opt.index.isocalendar().week
+
+    # === 11) Ajustement des modèles ===
+    base_features = ["cov12_lag", "MNP_lag", "work_lag", "sin52", "cos52"]
+    ols_features = [
+        "cov12_lag",
+        "MNP_lag",
+        "work_lag",
+        "tmean_z",
+        "vacc_x_mnp",
+        "RSV_lag1",
+        "RSV_lag2",
+        "sin52",
+        "cos52",
+    ]
+    ols_base = sm.OLS(
+        df_base["RSV"],
+        sm.add_constant(df_base[base_features], has_constant="add"),
+        missing="drop",
+    ).fit(cov_type="HC3")
+    ols_opt = sm.OLS(
+        df_opt["RSV"],
+        sm.add_constant(df_opt[ols_features], has_constant="add"),
+        missing="drop",
+    ).fit(cov_type="HC3")
+
+    models = {
+        "ols_base": ols_base,
+        "ols_opt": ols_opt,
+        "its_best": None,
+        "sarimax_best": None,
+    }
+
+    saved_models = {}
+    saved_aux = {}
+    if MODEL_DIR.exists():
+        for key, filename in MODEL_FILE_MAP.items():
+            path = MODEL_DIR / filename
+            if path.exists():
+                saved_models[key] = load_saved_result(path)
+        for key, filename in MODEL_AUX_FILES.items():
+            path = MODEL_DIR / filename
+            if path.exists():
+                saved_aux[key] = load_saved_frame(path)
+
+    saved_models = {k: v for k, v in saved_models.items() if v is not None}
+    saved_aux = {k: v for k, v in saved_aux.items() if v is not None}
+
+    if saved_models.get("ols_base") is not None:
+        models["ols_base"] = saved_models["ols_base"]
+    if saved_models.get("ols_opt") is not None:
+        models["ols_opt"] = saved_models["ols_opt"]
+    if saved_models.get("its_opt") is not None:
+        models["its_best"] = saved_models["its_opt"]
+    elif saved_models.get("its_base") is not None:
+        models["its_best"] = saved_models["its_base"]
+    if saved_models.get("sarimax_best") is not None:
+        models["sarimax_best"] = saved_models["sarimax_best"]
+
+    meta = {
+        "df_base": df_base,
+        "df_opt": df_opt,
+        "mask_vars": mask_vars,
+        "ols_features": ols_features,
+        "ols_base_features": base_features,
+        "best_lags": best_lags,
+        "best_lag_r2": best_r2,
+        "covid_start": COVID_START,
+        "vacc_start": VACC_START,
+        "age_used": age_used,
+        "tmean_stats": {
+            "mean": float(df_opt["tmean"].mean()),
+            "std": float(df_opt["tmean"].std(ddof=0)),
+        },
+        "sarimax_exog_cols": [
+            "cov12_lag",
+            "MNP_lag",
+            "work_lag",
+            "tmean_z",
+            "vacc_x_mnp",
+            "post_covid",
+            "post_vacc",
+            "t_post_covid",
+            "t",
+        ],
+        "saved_models": saved_models,
+        "saved_aux": saved_aux,
+    }
+
+    return df_opt, models, meta
 
 # Chargement des données
-df, model, X_cols = load_and_prepare_data()
+with st.spinner("Chargement des données et initialisation des modèles..."):
+    df_cached, models_bundle, meta_bundle = load_and_prepare_data()
+
+df = df_cached.copy()
+model = models_bundle["ols_opt"]
+X_cols = meta_bundle["ols_features"]
+df_base = meta_bundle["df_base"].copy()
+
+
+def ensure_its_model(meta: dict):
+    """Retourne le modèle ITS optimisé en le recalculant si nécessaire."""
+    key = "its_cached_results"
+    if key in st.session_state:
+        return st.session_state[key]
+
+    saved = meta.get("saved_models", {})
+    aux = meta.get("saved_aux", {})
+    saved_model = saved.get("its_opt") or saved.get("its_base")
+    if saved_model is not None:
+        design = aux.get("its_design")
+        if design is None:
+            design = meta["df_base"].copy()
+        cols = [c for c in saved_model.model.exog_names if c != "const"]
+        st.session_state[key] = {
+            "model": saved_model,
+            "design": design,
+            "cols": cols,
+            "hac_lags": None,
+        }
+        return st.session_state[key]
+
+    st.session_state[key] = fit_its_model(
+        meta["df_base"].copy(),
+        meta["covid_start"],
+        meta["vacc_start"],
+    )
+    return st.session_state[key]
+
+
+def ensure_sarimax_model(meta: dict):
+    """Retourne le modèle SARIMAX optimisé en le recalculant si nécessaire."""
+    key = "sarimax_cached_results"
+    if key in st.session_state:
+        return st.session_state[key]
+
+    saved = meta.get("saved_models", {})
+    saved_model = saved.get("sarimax_best")
+    if saved_model is not None:
+        frame = meta["df_opt"].copy()
+        exog_cols = meta.get("sarimax_exog_cols", [])
+        y = frame["RSV"].astype(float)
+        y_fit = saved_model.fittedvalues.reindex(frame.index)
+        ss_res = float(((y - y_fit) ** 2).sum())
+        ss_tot = float(((y - y.mean()) ** 2).sum())
+        pseudo_r2 = 1 - ss_res / ss_tot if ss_tot else np.nan
+        st.session_state[key] = {
+            "model": saved_model,
+            "frame": frame,
+            "exog_cols": exog_cols,
+            "pseudo_r2": pseudo_r2,
+            "order": getattr(getattr(saved_model, "model", None), "order", None),
+            "seasonal_order": getattr(getattr(saved_model, "model", None), "seasonal_order", None),
+        }
+        return st.session_state[key]
+
+    st.session_state[key] = fit_sarimax_model(
+        meta["df_opt"].copy(),
+        meta["covid_start"],
+        meta["vacc_start"],
+    )
+    return st.session_state[key]
+
+
+def clear_cached_models():
+    """Permet de purger les modèles recalculés (utile pour le debug)."""
+    for key in ["its_cached_results", "sarimax_cached_results"]:
+        if key in st.session_state:
+            del st.session_state[key]
+
+
+if st.button("♻️ Recalculer les modèles ITS / SARIMAX"):
+    clear_cached_models()
+    st.success("Modèles invalidés — ils seront recalculés à la prochaine utilisation.")
+
 rsv_series = df["RSV"]
 fitted_series = model.fittedvalues
 
@@ -128,7 +639,7 @@ tab1,tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["📊 Aperçu et 
                                                                "Modélisation", "Scénarios", "Diagnostics", "Synthèse finale",
                                         "ERVISS RSV — Modélisation & Scénarios",
                                         "MNP — Détails", "Mobilité — Détails", 
-                                                               "Régions & Départements",
+                                        "Régions & Départements",
                                         ])
 with tab1:
     st.header("📊 Aperçu et exploration des données RSV")
@@ -336,10 +847,8 @@ with tab8:
 
 with tab9:
     st.header("🗺️ Pics saisonniers par région/département")
-    from pathlib import Path
-    DATA = Path("./data_clean/ODISSEE")
-    reg = pd.read_csv(DATA/"common_REG_long.csv")
-    dep = pd.read_csv(DATA/"common_DEP_long.csv")
+    reg = pd.read_csv(DATA_DIR/"ODISSEE/common_REG_long.csv", engine="python")
+    dep = pd.read_csv(DATA_DIR/"ODISSEE/common_DEP_long.csv", engine="python")
 
     def prep(df, level_col):
         df = df.copy()
@@ -400,59 +909,77 @@ Choisissez un modèle dans la liste pour explorer ses performances.
     ])
 
     if model_choice == "OLS de base":
-        cols = ["t", "sin52", "cos52"]
-        Y = df["RSV"]
-        X = sm.add_constant(df[cols])
-        ols_base = sm.OLS(Y, X).fit()
-        pred = ols_base.fittedvalues
-        r2 = ols_base.rsquared_adj
-        aic, bic = ols_base.aic, ols_base.bic
-        model_desc = "Modèle linéaire simple avec tendance et saisonnalité (sin/cos)."
+        base_model = models_bundle.get("ols_base")
+        if base_model is None:
+            st.warning("Modèle OLS de base indisponible (échec du fit).")
+            pred = pd.Series(np.nan, index=df.index)
+            r2 = aic = bic = np.nan
+        else:
+            pred = base_model.fittedvalues.reindex(df.index)
+            r2 = base_model.rsquared_adj
+            aic, bic = base_model.aic, base_model.bic
+        model_desc = "Modèle linéaire avec lags par défaut et harmonique saisonnière."
 
     elif model_choice == "OLS optimisé":
-        pred = model.fittedvalues
+        pred = model.fittedvalues.reindex(df.index)
         r2 = model.rsquared_adj
         aic, bic = model.aic, model.bic
-        model_desc = "Modèle OLS incluant exogènes, ruptures, température et lags optimisés."
+        model_desc = "Modèle OLS incluant exogènes, ruptures, température et lags optimisés (issus du notebook)."
 
     elif model_choice == "ITS simple":
         cols = ["t", "post_covid", "t_postcovid"]
-        Y = df["RSV"]
-        X = sm.add_constant(df[cols])
-        its_base = sm.OLS(Y, X).fit()
-        pred = its_base.fittedvalues
+        its_base = sm.OLS(
+            df_base["RSV"],
+            sm.add_constant(df_base[cols], has_constant="add"),
+            missing="drop",
+        ).fit()
+        pred = its_base.fittedvalues.reindex(df.index)
         r2 = its_base.rsquared_adj
         aic, bic = its_base.aic, its_base.bic
-        model_desc = "Modèle de série interrompue : rupture simple post-COVID."
+        model_desc = "Modèle de série interrompue simple (rupture post-COVID)."
 
     elif model_choice == "ITS optimisé (v2)":
-        cols = X_cols  # déjà optimisé avec ruptures, covariables, harmoniques
-        Y = df["RSV"]
-        X = sm.add_constant(df[cols])
-        its_v2 = sm.OLS(Y, X).fit()
-        pred = its_v2.fittedvalues
-        r2 = its_v2.rsquared_adj
-        aic, bic = its_v2.aic, its_v2.bic
-        model_desc = "ITS v2 : modèle de rupture + exogènes + saisonnalité optimisée."
+        its_results = ensure_its_model(meta_bundle)
+        its_model = its_results.get("model")
+        if its_model is None:
+            st.warning("Modèle ITS optimisé indisponible (échec du fit).")
+            pred = pd.Series(np.nan, index=df.index)
+            r2 = aic = bic = np.nan
+        else:
+            design = its_results.get("design")
+            pred = its_model.fittedvalues.reindex(design.index).reindex(df.index)
+            r2 = getattr(its_model, "rsquared_adj", np.nan)
+            aic, bic = its_model.aic, its_model.bic
+        model_desc = (
+            "ITS optimisé avec recherche des dates de rupture, harmoniques Fourier et lags (reproduit depuis le notebook)."
+        )
 
     elif model_choice == "SARIMAX baseline":
         from statsmodels.tsa.statespace.sarimax import SARIMAX
-        Y = df["RSV"]
-        sarima1 = SARIMAX(Y, order=(1, 0, 1), seasonal_order=(1, 0, 1, 52)).fit(disp=False)
-        pred = sarima1.fittedvalues
-        r2 = 1 - np.sum((Y - pred)**2) / np.sum((Y - Y.mean())**2)
+
+        sarima1 = SARIMAX(df["RSV"], order=(1, 0, 1), seasonal_order=(1, 0, 1, 52)).fit(disp=False)
+        pred = sarima1.fittedvalues.reindex(df.index)
+        r2 = 1 - np.sum((df["RSV"] - pred) ** 2) / np.sum((df["RSV"] - df["RSV"].mean()) ** 2)
         aic, bic = sarima1.aic, sarima1.bic
-        model_desc = "SARIMA simple sans exogènes (ARIMA avec saisonnalité annuelle)."
+        model_desc = "SARIMA simple sans exogènes (ARIMA saisonnier 52 semaines)."
 
     elif model_choice == "SARIMAX optimisé":
-        from statsmodels.tsa.statespace.sarimax import SARIMAX
-        exog_cols = ["cov12_lag", "MNP_lag", "work_lag", "tmean_z"]
-        sarima2 = SARIMAX(df["RSV"], exog=df[exog_cols],
-                          order=(1,0,0), seasonal_order=(1,0,1,52)).fit(disp=False)
-        pred = sarima2.fittedvalues
-        r2 = 1 - np.sum((df["RSV"] - pred)**2) / np.sum((df["RSV"] - df["RSV"].mean())**2)
-        aic, bic = sarima2.aic, sarima2.bic
-        model_desc = "SARIMAX optimisé avec variables exogènes (vaccination, gestes, météo)."
+        sarimax_results = ensure_sarimax_model(meta_bundle)
+        sarimax_model = sarimax_results.get("model")
+        if sarimax_model is None:
+            st.warning("Modèle SARIMAX optimisé indisponible (échec du fit).")
+            pred = pd.Series(np.nan, index=df.index)
+            r2 = aic = bic = np.nan
+        else:
+            pred = sarimax_model.fittedvalues.reindex(df.index)
+            r2 = sarimax_results.get("pseudo_r2", np.nan)
+            aic, bic = sarimax_model.aic, sarimax_model.bic
+        order = sarimax_results.get("order")
+        seasonal = sarimax_results.get("seasonal_order")
+        model_desc = (
+            f"SARIMAX optimisé (ordre={order}, saisonnier={seasonal}) "
+            "avec exogènes (vaccination, gestes, météo) issu du notebook."
+        )
 
     # Affichage courbe Observé vs Prédit
     fig_mod = go.Figure()
@@ -496,34 +1023,65 @@ Cette section permet de **simuler la trajectoire du RSV** selon différents cont
         ]
     )
 
-    # Base de travail
-    df_scen = df.copy()
+    # Base de travail selon le modèle sélectionné
+    if model_type == "OLS optimisé":
+        base_df = df.copy()
+        feature_cols = [c for c in model.model.exog_names if c != "const"]
+        fitted_model = model
+    elif model_type == "ITS optimisé (v2)":
+        its_results = ensure_its_model(meta_bundle)
+        base_df = its_results.get("design")
+        feature_cols = its_results.get("cols", [])
+        fitted_model = its_results.get("model")
+        if base_df is None or fitted_model is None:
+            st.warning("Le modèle ITS optimisé n'est pas disponible. Veuillez régénérer le notebook.")
+            st.stop()
+        base_df = base_df.copy()
+    elif model_type == "SARIMAX optimisé":
+        sarimax_results = ensure_sarimax_model(meta_bundle)
+        base_df = sarimax_results.get("frame")
+        feature_cols = sarimax_results.get("exog_cols", [])
+        fitted_model = sarimax_results.get("model")
+        if base_df is None or fitted_model is None:
+            st.warning("Le modèle SARIMAX optimisé n'est pas disponible. Veuillez régénérer le notebook.")
+            st.stop()
+        base_df = base_df.copy()
+    else:
+        st.warning("Modèle inconnu pour la simulation.")
+        st.stop()
+
+    df_scen = base_df.copy()
 
     # =============================
     # 🔹 SCÉNARIOS PRÉDÉFINIS
     # =============================
     if scenario_choice == "Scénario observé (réel)":
-        df_scen = df.copy()
+        df_scen = base_df.copy()
 
     elif scenario_choice == "No COVID":
-        df_scen["post_covid"] = 0
-        df_scen["t_postcovid"] = 0
-        df_scen["post_vacc"] = 0
-        df_scen["t_postvacc"] = 0
-        df_scen["cov12_lag"] = 0
-        df_scen["MNP_lag"] = 0
-        df_scen["work_lag"] = 0
+        for col in ["post_covid", "post_vacc"]:
+            if col in df_scen.columns:
+                df_scen[col] = 0
+        for col in ["t_postcovid", "t_postvacc"]:
+            if col in df_scen.columns:
+                df_scen[col] = 0
+        for col in ["cov12_lag", "MNP_lag", "work_lag"]:
+            if col in df_scen.columns:
+                df_scen[col] = 0
 
     elif scenario_choice == "No Vaccine":
-        df_scen["cov12_lag"] = 0
-        df_scen["post_vacc"] = 0
-        df_scen["t_postvacc"] = 0
+        if "cov12_lag" in df_scen.columns:
+            df_scen["cov12_lag"] = 0
+        for col in ["post_vacc", "t_postvacc"]:
+            if col in df_scen.columns:
+                df_scen[col] = 0
 
     elif scenario_choice == "Keep MNP (gestes maintenus)":
-        mnp_mean = df["MNP_lag"].mean()
-        df_scen["MNP_lag"] = mnp_mean
-        df_scen["post_covid"] = 1
-        df_scen["post_vacc"] = 1
+        if "MNP_lag" in df_scen.columns:
+            df_scen["MNP_lag"] = df_scen["MNP_lag"].median()
+        for col in ["post_covid", "post_vacc"]:
+            if col in df_scen.columns:
+                df_scen[col] = 1
 
     # =============================
     # 🔹 SCÉNARIO PERSONNALISÉ
@@ -540,25 +1098,38 @@ Cette section permet de **simuler la trajectoire du RSV** selon différents cont
         with col3:
             no_covid = st.checkbox("Pas de pandémie COVID ?", False)
 
-        df_scen = df.copy()
+        df_scen = base_df.copy()
 
         if no_covid:
-            df_scen["post_covid"] = 0
-            df_scen["t_postcovid"] = 0
-            df_scen["post_vacc"] = 0
-            df_scen["t_postvacc"] = 0
-            df_scen["cov12_lag"] = 0
-        else:
-            df_scen["post_covid"] = df["post_covid"]
-            df_scen["post_vacc"] = df["post_vacc"]
+            for col in ["post_covid", "post_vacc"]:
+                if col in df_scen.columns:
+                    df_scen[col] = 0
+            for col in ["t_postcovid", "t_postvacc"]:
+                if col in df_scen.columns:
+                    df_scen[col] = 0
+            if "cov12_lag" in df_scen.columns:
+                df_scen["cov12_lag"] = 0
 
         # Application des curseurs
-        df_scen["cov12_lag"] = df["cov12_lag"] * (vacc_slider / 100.0)
-        df_scen["MNP_lag"] = df["MNP_lag"] * (mnp_slider / 100.0)
-        df_scen["work_lag"] = df["work_lag"] * (work_slider / 100.0)
-        df_scen["tmean_adj"] = df["tmean"] + temp_slider
-        mu, sigma = df["tmean"].mean(), df["tmean"].std(ddof=0)
-        df_scen["tmean_z"] = (df_scen["tmean_adj"] - mu) / (sigma if sigma != 0 else 1)
+        if "cov12_lag" in df_scen.columns:
+            df_scen["cov12_lag"] = df_scen["cov12_lag"] * (vacc_slider / 100.0)
+        if "MNP_lag" in df_scen.columns:
+            df_scen["MNP_lag"] = df_scen["MNP_lag"] * (mnp_slider / 100.0)
+        if "work_lag" in df_scen.columns:
+            df_scen["work_lag"] = df_scen["work_lag"] * (work_slider / 100.0)
+
+        tmean_stats = meta_bundle.get("tmean_stats", {})
+        mu, sigma = tmean_stats.get("mean"), tmean_stats.get("std")
+        if "tmean" in df_scen.columns:
+            df_scen["tmean_adj"] = df_scen["tmean"] + temp_slider
+            denom = sigma if sigma not in (None, 0) else 1
+            df_scen["tmean_z"] = (df_scen["tmean_adj"] - (mu if mu is not None else df_scen["tmean_adj"].mean())) / denom
+        elif "tmean_z" in df_scen.columns and sigma not in (None, 0):
+            df_scen["tmean_z"] = df_scen["tmean_z"] + temp_slider / sigma
+
+    # Recalcule les variables dérivées nécessaires
+    if {"cov12_lag", "MNP_lag"}.issubset(df_scen.columns):
+        df_scen["vacc_x_mnp"] = df_scen["cov12_lag"] * df_scen["MNP_lag"]
 
     # =============================
     # 🔸 PRÉDICTION SELON LE MODÈLE
@@ -566,29 +1137,34 @@ Cette section permet de **simuler la trajectoire du RSV** selon différents cont
     st.markdown("### Simulation en cours...")
 
     if model_type == "OLS optimisé":
-        X_scen = sm.add_constant(df_scen[X_cols], has_constant="add")
-        X_scen = X_scen[model.params.index]
-        y_pred = X_scen.dot(model.params)
+        exog_names = [c for c in fitted_model.model.exog_names if c != "const"]
+        X_scen = sm.add_constant(df_scen[exog_names], has_constant="add")
+        # aligne les colonnes sur l'ordre du modèle
+        X_scen = X_scen.reindex(columns=fitted_model.params.index, fill_value=0)
+        y_pred = fitted_model.predict(X_scen)
 
     elif model_type == "ITS optimisé (v2)":
-        cols = X_cols
-        its_model = sm.OLS(df["RSV"], sm.add_constant(df[cols], has_constant="add")).fit()
-        X_scen = sm.add_constant(df_scen[cols], has_constant="add")
-        y_pred = its_model.predict(X_scen)
+        exog_names = [c for c in fitted_model.model.exog_names if c != "const"]
+        X_scen = sm.add_constant(df_scen[exog_names], has_constant="add")
+        X_scen = X_scen.reindex(columns=fitted_model.params.index, fill_value=0)
+        y_pred = fitted_model.predict(X_scen)
 
     elif model_type == "SARIMAX optimisé":
-        from statsmodels.tsa.statespace.sarimax import SARIMAX
-        exog_cols = ["cov12_lag", "MNP_lag", "work_lag", "tmean_z"]
-        sarima_model = SARIMAX(df["RSV"], exog=df[exog_cols],
-                               order=(1, 0, 0), seasonal_order=(1, 0, 1, 52)).fit(disp=False)
-        y_pred = sarima_model.predict(start=0, end=len(df_scen)-1, exog=df_scen[exog_cols])
+        exog_cols = feature_cols or sarimax_results.get("exog_cols", [])
+        y_pred = fitted_model.predict(start=0, end=len(df_scen) - 1, exog=df_scen[exog_cols])
+    else:
+        y_pred = pd.Series(np.nan, index=df.index)
+
+    y_pred = pd.Series(y_pred, index=df_scen.index)
+    pred_full = y_pred.reindex(df.index)
+    observed_full = df["RSV"]
 
     # =============================
     # 🔸 VISUALISATION DU SCÉNARIO
     # =============================
     fig_scen = go.Figure()
-    fig_scen.add_trace(go.Scatter(x=df.index, y=df["RSV"], mode='lines', name='RSV Observé', line=dict(color='black')))
-    fig_scen.add_trace(go.Scatter(x=df.index, y=y_pred, mode='lines', name='RSV Simulé', line=dict(color='firebrick', dash='dot')))
+    fig_scen.add_trace(go.Scatter(x=df.index, y=observed_full, mode='lines', name='RSV Observé', line=dict(color='black')))
+    fig_scen.add_trace(go.Scatter(x=df.index, y=pred_full, mode='lines', name='RSV Simulé', line=dict(color='firebrick', dash='dot')))
     fig_scen.add_vline(x=pd.Timestamp("2020-03-01"), line=dict(color="red", dash="dash"))
     fig_scen.add_vline(x=pd.Timestamp("2021-01-01"), line=dict(color="green", dash="dash"))
     fig_scen.update_layout(
@@ -605,20 +1181,19 @@ Cette section permet de **simuler la trajectoire du RSV** selon différents cont
 **Observation :** la courbe rouge représente la trajectoire simulée du RSV selon vos conditions.  
 Vous pouvez comparer visuellement l'effet de chaque hypothèse par rapport à la courbe noire observée.
 """)
+
     # =============================
     # 🔸 COMPARAISON & DELTA SCÉNARIO
     # =============================
     st.markdown("### 📊 Analyse comparative du scénario simulé")
 
-    # Calcul du delta scénario vs observé
-    delta_series = y_pred - df["RSV"]
+    delta_series = (pred_full - observed_full).dropna()
     delta_cum = float(delta_series.sum())
-    delta_pct = 100 * delta_cum / df["RSV"].sum()
+    delta_pct = 100 * delta_cum / observed_full.sum()
 
-    # Graphe du delta dans le temps
     fig_delta = go.Figure()
     fig_delta.add_trace(go.Scatter(
-        x=df.index, y=delta_series,
+        x=delta_series.index, y=delta_series,
         mode="lines", name="Δ (Scénario - Observé)",
         line=dict(color="darkorange", width=2)
     ))
@@ -632,7 +1207,6 @@ Vous pouvez comparer visuellement l'effet de chaque hypothèse par rapport à la
     )
     st.plotly_chart(fig_delta, use_container_width=True)
 
-    # Résumé numérique
     st.markdown(f"""
 **Bilan cumulé du scénario**  
 - Δ cumulé total : **{delta_cum:.1f}** unités RSV  
@@ -645,76 +1219,67 @@ _(valeur positive = RSV plus fort dans le scénario que dans la réalité)_
     # =============================
     st.markdown("### ⚙️ Comparaison de performance entre modèles")
 
-    # Évalue les trois modèles sur la base courante
-    from statsmodels.tsa.statespace.sarimax import SARIMAX
-
-    def pseudo_r2(y, y_fit):
-        ss_res = np.sum((y - y_fit)**2)
-        ss_tot = np.sum((y - y.mean())**2)
-        return 1 - ss_res / ss_tot if ss_tot != 0 else np.nan
-
     results_summary = []
+    if models_bundle.get("ols_opt"):
+        results_summary.append({
+            "Modèle": "OLS optimisé",
+            "AIC": model.aic,
+            "BIC": model.bic,
+            "R2/Pseudo-R2": model.rsquared_adj
+        })
+    its_cache = st.session_state.get("its_cached_results")
+    if its_cache and its_cache.get("model") is not None:
+        results_summary.append({
+            "Modèle": "ITS optimisé (v2)",
+            "AIC": its_cache["model"].aic,
+            "BIC": its_cache["model"].bic,
+            "R2/Pseudo-R2": getattr(its_cache["model"], "rsquared_adj", np.nan)
+        })
+    sarimax_cache = st.session_state.get("sarimax_cached_results")
+    if sarimax_cache and sarimax_cache.get("model") is not None:
+        results_summary.append({
+            "Modèle": "SARIMAX optimisé",
+            "AIC": sarimax_cache["model"].aic,
+            "BIC": sarimax_cache["model"].bic,
+            "R2/Pseudo-R2": sarimax_cache.get("pseudo_r2", np.nan)
+        })
 
-    # 1️⃣ OLS
-    X_ols = sm.add_constant(df[X_cols], has_constant="add")
-    ols_mod = sm.OLS(df["RSV"], X_ols).fit()
-    results_summary.append({
-        "Modèle": "OLS optimisé",
-        "AIC": ols_mod.aic,
-        "BIC": ols_mod.bic,
-        "R2/Pseudo-R2": ols_mod.rsquared_adj
-    })
+    if results_summary:
+        df_perf = pd.DataFrame(results_summary)
+        fig_perf = go.Figure()
+        fig_perf.add_trace(go.Bar(
+            x=df_perf["Modèle"],
+            y=df_perf["R2/Pseudo-R2"],
+            name="R² / Pseudo-R²",
+            text=df_perf["R2/Pseudo-R2"].round(3),
+            textposition="outside"
+        ))
+        fig_perf.add_trace(go.Bar(
+            x=df_perf["Modèle"],
+            y=-df_perf["AIC"],
+            name="-AIC (plus haut = mieux)",
+            opacity=0.6
+        ))
+        fig_perf.add_trace(go.Bar(
+            x=df_perf["Modèle"],
+            y=-df_perf["BIC"],
+            name="-BIC (plus haut = mieux)",
+            opacity=0.6
+        ))
+        fig_perf.update_layout(
+            barmode="group",
+            title="Comparaison de performance entre modèles (R², AIC, BIC)",
+            xaxis_title="Modèle",
+            yaxis_title="Score (échelle normalisée)",
+            template="plotly_white",
+            height=500
+        )
+        st.plotly_chart(fig_perf, use_container_width=True)
 
-    # 2️⃣ ITS
-    its_mod = sm.OLS(df["RSV"], sm.add_constant(df[X_cols], has_constant="add")).fit()
-    results_summary.append({
-        "Modèle": "ITS optimisé (v2)",
-        "AIC": its_mod.aic,
-        "BIC": its_mod.bic,
-        "R2/Pseudo-R2": its_mod.rsquared_adj
-    })
-
-    # 3️⃣ SARIMAX
-    sarima_mod = SARIMAX(df["RSV"], exog=df[["cov12_lag","MNP_lag","work_lag","tmean_z"]],
-                         order=(1,0,0), seasonal_order=(1,0,1,52)).fit(disp=False)
-    y_fit = sarima_mod.fittedvalues
-    results_summary.append({
-        "Modèle": "SARIMAX optimisé",
-        "AIC": sarima_mod.aic,
-        "BIC": sarima_mod.bic,
-        "R2/Pseudo-R2": pseudo_r2(df["RSV"], y_fit)
-    })
-
-    df_perf = pd.DataFrame(results_summary)
-
-    # --- Visualisation Plotly
-    fig_perf = go.Figure()
-    fig_perf.add_trace(go.Bar(
-        x=df_perf["Modèle"], y=df_perf["R2/Pseudo-R2"],
-        name="R² / Pseudo-R²", text=df_perf["R2/Pseudo-R2"].round(3),
-        textposition="outside"
-    ))
-    fig_perf.add_trace(go.Bar(
-        x=df_perf["Modèle"], y=-df_perf["AIC"],
-        name="-AIC (plus haut = mieux)", opacity=0.6
-    ))
-    fig_perf.add_trace(go.Bar(
-        x=df_perf["Modèle"], y=-df_perf["BIC"],
-        name="-BIC (plus haut = mieux)", opacity=0.6
-    ))
-    fig_perf.update_layout(
-        barmode="group",
-        title="Comparaison de performance entre modèles (R², AIC, BIC)",
-        xaxis_title="Modèle",
-        yaxis_title="Score (échelle normalisée)",
-        template="plotly_white",
-        height=500
-    )
-    st.plotly_chart(fig_perf, use_container_width=True)
-
-    # --- Conclusion automatique
-    best_model = df_perf.loc[df_perf["R2/Pseudo-R2"].idxmax(), "Modèle"]
-    st.success(f"🏆 Le modèle présentant la meilleure performance globale est : **{best_model}**")
+        best_model_row = df_perf.loc[df_perf["R2/Pseudo-R2"].idxmax()]
+        st.success(f"🏆 Le modèle présentant la meilleure performance globale est : **{best_model_row['Modèle']}**")
+    else:
+        st.info("Aucun modèle n'a pu être comparé (résultats manquants).")
 with tab4:
     st.header("Diagnostics et validation des modèles")
     st.markdown("""
@@ -764,28 +1329,33 @@ Les tests et graphiques permettent de s’assurer que :
 
     # --- Génération selon modèle choisi
     if diag_model == "OLS optimisé":
-        X = sm.add_constant(df[X_cols], has_constant="add")
-        mod = sm.OLS(df["RSV"], X).fit()
-        y_fit = mod.fittedvalues
-        resid, fig_resid = plot_residuals(df["RSV"], y_fit, "Résidus du modèle OLS optimisé")
+        y_true = df["RSV"]
+        y_fit = model.fittedvalues.reindex(df.index)
+        resid, fig_resid = plot_residuals(y_true, y_fit, "Résidus du modèle OLS optimisé")
         fig_acf_resid = plot_acf(resid, "ACF des résidus — OLS")
 
     elif diag_model == "ITS optimisé (v2)":
-        cols = X_cols
-        mod = sm.OLS(df["RSV"], sm.add_constant(df[cols], has_constant="add")).fit(
-            cov_type="HAC", cov_kwds={"maxlags": 12}
-        )
-        y_fit = mod.fittedvalues
-        resid, fig_resid = plot_residuals(df["RSV"], y_fit, "Résidus du modèle ITS optimisé (v2)")
+        its_results = st.session_state.get("its_cached_results") or ensure_its_model(meta_bundle)
+        its_model = its_results.get("model")
+        if its_model is None:
+            st.warning("Le modèle ITS optimisé n'est pas disponible.")
+            st.stop()
+        design = its_results.get("design")
+        y_true = design["RSV"]
+        y_fit = its_model.fittedvalues.reindex(design.index)
+        resid, fig_resid = plot_residuals(y_true, y_fit, "Résidus du modèle ITS optimisé (v2)")
         fig_acf_resid = plot_acf(resid, "ACF des résidus — ITS")
 
     elif diag_model == "SARIMAX optimisé":
-        from statsmodels.tsa.statespace.sarimax import SARIMAX
-        exog_cols = ["cov12_lag", "MNP_lag", "work_lag", "tmean_z"]
-        mod = SARIMAX(df["RSV"], exog=df[exog_cols],
-                      order=(1,0,0), seasonal_order=(1,0,1,52)).fit(disp=False)
-        y_fit = mod.fittedvalues
-        resid, fig_resid = plot_residuals(df["RSV"], y_fit, "Résidus du modèle SARIMAX optimisé")
+        sarimax_results = st.session_state.get("sarimax_cached_results") or ensure_sarimax_model(meta_bundle)
+        sarimax_model = sarimax_results.get("model")
+        if sarimax_model is None:
+            st.warning("Le modèle SARIMAX optimisé n'est pas disponible.")
+            st.stop()
+        frame = sarimax_results.get("frame")
+        y_true = frame["RSV"]
+        y_fit = sarimax_model.fittedvalues.reindex(frame.index)
+        resid, fig_resid = plot_residuals(y_true, y_fit, "Résidus du modèle SARIMAX optimisé")
         fig_acf_resid = plot_acf(resid, "ACF des résidus — SARIMAX")
 
     # --- Calcul des métriques de diagnostic
@@ -829,11 +1399,27 @@ Ce dernier onglet résume l’ensemble des analyses réalisées :
     # 🔹 COMPARAISON DES MODÈLES
     # =============================
     st.subheader("⚙️ Comparaison de performance entre modèles")
-    perf_df = pd.DataFrame([
-        ["OLS optimisé", ols_mod.aic, ols_mod.bic, ols_mod.rsquared_adj],
-        ["ITS optimisé (v2)", its_mod.aic, its_mod.bic, its_mod.rsquared_adj],
-        ["SARIMAX optimisé", sarima_mod.aic, sarima_mod.bic, pseudo_r2(df["RSV"], y_fit)]
-    ], columns=["Modèle", "AIC", "BIC", "R2/Pseudo-R2"])
+    perf_rows = [
+        ["OLS optimisé", model.aic, model.bic, model.rsquared_adj]
+    ]
+    its_cache = st.session_state.get("its_cached_results")
+    if its_cache and its_cache.get("model") is not None:
+        perf_rows.append([
+            "ITS optimisé (v2)",
+            its_cache["model"].aic,
+            its_cache["model"].bic,
+            getattr(its_cache["model"], "rsquared_adj", np.nan)
+        ])
+    sarimax_cache = st.session_state.get("sarimax_cached_results")
+    if sarimax_cache and sarimax_cache.get("model") is not None:
+        perf_rows.append([
+            "SARIMAX optimisé",
+            sarimax_cache["model"].aic,
+            sarimax_cache["model"].bic,
+            sarimax_cache.get("pseudo_r2", np.nan)
+        ])
+
+    perf_df = pd.DataFrame(perf_rows, columns=["Modèle", "AIC", "BIC", "R2/Pseudo-R2"])
 
     fig_perf_summary = go.Figure()
     fig_perf_summary.add_trace(go.Bar(
@@ -863,7 +1449,7 @@ Ce dernier onglet résume l’ensemble des analyses réalisées :
     # =============================
     st.subheader("📊 Effets cumulés par scénario (ITS v2)")
     try:
-        delta_summary = pd.read_csv("../outputs/RSV_results/summary_scenarios_delta.csv")
+        delta_summary = pd.read_csv("../outputs/RSV_results/summary_scenarios_delta.csv", engine="python")
         fig_delta_summary = go.Figure()
         fig_delta_summary.add_trace(go.Bar(
             x=delta_summary["Scenario"],
@@ -942,27 +1528,16 @@ with tab6:
     # =============================
     # 1) Chargement & préparation
     # =============================
-    from pathlib import Path
-    DATA = Path("../data_clean")
     FILES = {
-        "erviss_fr_weekly": DATA / "ERVISS/erviss_fr_weekly.csv",
-        "vacsi_fr_extended": DATA / "VACSI/vacsi_fr_extended.csv",
-        "google_mobility_fr_weekly": DATA / "GOOGLE/google_mobility_fr_weekly.csv",
-        "coviprev_reg_weekly": DATA / "COVIPREV/coviprev_reg_weekly.csv",
+        "erviss_fr_weekly": DATA_DIR / "ERVISS/erviss_fr_weekly.csv",
+        "vacsi_fr_extended": DATA_DIR / "VACSI/vacsi_fr_extended.csv",
+        "google_mobility_fr_weekly": DATA_DIR / "GOOGLE/google_mobility_fr_weekly.csv",
+        "coviprev_reg_weekly": DATA_DIR / "COVIPREV/coviprev_reg_weekly.csv",
     }
     for k, p in FILES.items():
         if not p.exists():
             st.error(f"Fichier manquant: {k} → {p}")
             st.stop()
-
-    def keyify(df: pd.DataFrame) -> pd.DataFrame:
-        df = df.copy()
-        if "year_iso" not in df.columns or "week_iso_num" not in df.columns:
-            d = pd.to_datetime(df["date_monday"])
-            iso = d.dt.isocalendar()
-            df["year_iso"] = iso["year"].astype(int)
-            df["week_iso_num"] = iso["week"].astype(int)
-        return df
 
     def safe_zscore(s: pd.Series) -> pd.Series:
         m, sd = s.mean(), s.std(ddof=0)
@@ -971,7 +1546,7 @@ with tab6:
         return (s - m) / sd
 
     # --- ERVISS: RSV detections (FR)
-    erv = pd.read_csv(FILES["erviss_fr_weekly"])
+    erv = pd.read_csv(FILES["erviss_fr_weekly"], engine="python")
     mask_fr = (erv.get("geo_level", "FR") == "FR") & (erv.get("geo_code", "FR") == "FR")
     mask_rsv = (erv.get("pathogen", "").astype(str).str.upper() == "RSV") | (
         erv.get("pathogentype", "").astype(str).str.upper().str.contains("RSV", na=False)
@@ -988,15 +1563,15 @@ with tab6:
     y_erv = y_erv.sort_values(["year_iso","week_iso_num"])
 
     # --- Exogènes: VACSI (couv_complet), Google Mobility (workplaces), CoviPrev (masking, washing, aeration)
-    vacsi = keyify(pd.read_csv(FILES["vacsi_fr_extended"]))
+    vacsi = keyify(pd.read_csv(FILES["vacsi_fr_extended"], engine="python"))
     vac = vacsi.query("geo_level=='FR' & geo_code=='FR'")[["year_iso","week_iso_num","couv_complet"]]
 
-    gm = keyify(pd.read_csv(FILES["google_mobility_fr_weekly"]))
+    gm = keyify(pd.read_csv(FILES["google_mobility_fr_weekly"], engine="python"))
     work = (gm.query("geo_level=='FR' & geo_code=='FR' & indicator=='workplaces'")
               [["year_iso","week_iso_num","value"]]
               .rename(columns={"value":"work"}))
 
-    cov = keyify(pd.read_csv(FILES["coviprev_reg_weekly"]))
+    cov = keyify(pd.read_csv(FILES["coviprev_reg_weekly"], engine="python"))
     mask_vars = ["port_du_masque","lavage_des_mains","aeration_du_logement"]
     cov_nat = (cov[cov["indicator"].isin(mask_vars)]
                 .groupby(["year_iso","week_iso_num","indicator"])["value"]
@@ -1323,5 +1898,3 @@ with tab6:
     - SARIMAX v2 applique une **différenciation saisonnière (D=1, s=52)** pour stabiliser la saisonnalité.
     - Les scénarios "illogiques" (ex. vaccine sans COVID, MNP=real sans COVID) peuvent être filtrés.
     """)
-
-
