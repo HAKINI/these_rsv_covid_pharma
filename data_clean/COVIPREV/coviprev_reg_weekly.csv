@@ -1,0 +1,1297 @@
+date_monday,year_iso,week_iso_num,geo_level,geo_code,geo_name,indicator,value
+2020-11-03,2020,45,REG,11,Île-de-France,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,11,Île-de-France,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,11,Île-de-France,adhesion_vaccinale_adultes,45.744627479465635
+2021-01-12,2021,2,REG,11,Île-de-France,adhesion_vaccinale_adultes,60.46852979502434
+2021-02-09,2021,6,REG,11,Île-de-France,adhesion_vaccinale_adultes,65.96795428116016
+2021-03-09,2021,10,REG,11,Île-de-France,adhesion_vaccinale_adultes,65.36626381749154
+2021-04-20,2021,16,REG,11,Île-de-France,adhesion_vaccinale_adultes,72.92511011210637
+2021-05-11,2021,19,REG,11,Île-de-France,adhesion_vaccinale_adultes,79.11513792531915
+2021-06-15,2021,24,REG,11,Île-de-France,adhesion_vaccinale_adultes,82.91663147161171
+2021-07-13,2021,28,REG,11,Île-de-France,adhesion_vaccinale_adultes,84.78183828211098
+2021-08-24,2021,34,REG,11,Île-de-France,adhesion_vaccinale_adultes,90.55875
+2021-09-28,2021,39,REG,11,Île-de-France,adhesion_vaccinale_adultes,91.29516970006038
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,41.07057841676237
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,54.301730236393134
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,59.39997849545613
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,60.99742633169842
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,64.34558052685307
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,79.21830550300243
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,78.34780742146253
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,83.78741720940762
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,84.29544
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,adhesion_vaccinale_adultes,88.18275014668465
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,40.76763869367965
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,55.61199262527724
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,59.57704969488917
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,57.328949046097186
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,64.24196333560374
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,74.77861107035571
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,71.95244924846965
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,85.15346585365138
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,82.39961
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_adultes,87.59457796844282
+2020-11-03,2020,45,REG,28,Normandie,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,28,Normandie,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,28,Normandie,adhesion_vaccinale_adultes,44.42510943999492
+2021-01-12,2021,2,REG,28,Normandie,adhesion_vaccinale_adultes,51.76717226587818
+2021-02-09,2021,6,REG,28,Normandie,adhesion_vaccinale_adultes,46.435970748531666
+2021-03-09,2021,10,REG,28,Normandie,adhesion_vaccinale_adultes,59.46953040617808
+2021-04-20,2021,16,REG,28,Normandie,adhesion_vaccinale_adultes,73.67788972943248
+2021-05-11,2021,19,REG,28,Normandie,adhesion_vaccinale_adultes,70.99071134297128
+2021-06-15,2021,24,REG,28,Normandie,adhesion_vaccinale_adultes,78.41329109606102
+2021-07-13,2021,28,REG,28,Normandie,adhesion_vaccinale_adultes,83.03776903109028
+2021-08-24,2021,34,REG,28,Normandie,adhesion_vaccinale_adultes,87.85846000000001
+2021-09-28,2021,39,REG,28,Normandie,adhesion_vaccinale_adultes,88.07705341800917
+2020-11-03,2020,45,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,32.15734095423577
+2021-01-12,2021,2,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,47.526048498702814
+2021-02-09,2021,6,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,53.49281557010508
+2021-03-09,2021,10,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,57.76847560964943
+2021-04-20,2021,16,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,72.56197483453477
+2021-05-11,2021,19,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,77.22847299753573
+2021-06-15,2021,24,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,76.19110208382399
+2021-07-13,2021,28,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,83.19216677321339
+2021-08-24,2021,34,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,90.45815
+2021-09-28,2021,39,REG,32,Hauts-de-France,adhesion_vaccinale_adultes,89.9247948839477
+2020-11-03,2020,45,REG,44,Grand Est,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,44,Grand Est,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,44,Grand Est,adhesion_vaccinale_adultes,43.41608056473059
+2021-01-12,2021,2,REG,44,Grand Est,adhesion_vaccinale_adultes,49.94264917629688
+2021-02-09,2021,6,REG,44,Grand Est,adhesion_vaccinale_adultes,56.63350355104605
+2021-03-09,2021,10,REG,44,Grand Est,adhesion_vaccinale_adultes,52.57907493592702
+2021-04-20,2021,16,REG,44,Grand Est,adhesion_vaccinale_adultes,67.44007041844603
+2021-05-11,2021,19,REG,44,Grand Est,adhesion_vaccinale_adultes,76.83075218169537
+2021-06-15,2021,24,REG,44,Grand Est,adhesion_vaccinale_adultes,78.48999184564904
+2021-07-13,2021,28,REG,44,Grand Est,adhesion_vaccinale_adultes,79.10001119154309
+2021-08-24,2021,34,REG,44,Grand Est,adhesion_vaccinale_adultes,86.20061
+2021-09-28,2021,39,REG,44,Grand Est,adhesion_vaccinale_adultes,84.91550582444025
+2020-11-03,2020,45,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,42.61693479261834
+2021-01-12,2021,2,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,52.03753797333187
+2021-02-09,2021,6,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,53.93394199783419
+2021-03-09,2021,10,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,64.42537552054942
+2021-04-20,2021,16,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,72.2066359912348
+2021-05-11,2021,19,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,76.66264842341079
+2021-06-15,2021,24,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,85.20089216874455
+2021-07-13,2021,28,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,84.97583046800011
+2021-08-24,2021,34,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,84.84846999999999
+2021-09-28,2021,39,REG,52,Pays de la Loire,adhesion_vaccinale_adultes,92.05119142479164
+2020-11-03,2020,45,REG,53,Bretagne,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,53,Bretagne,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,53,Bretagne,adhesion_vaccinale_adultes,49.49468665656346
+2021-01-12,2021,2,REG,53,Bretagne,adhesion_vaccinale_adultes,57.21304915445972
+2021-02-09,2021,6,REG,53,Bretagne,adhesion_vaccinale_adultes,71.53498555329755
+2021-03-09,2021,10,REG,53,Bretagne,adhesion_vaccinale_adultes,68.88935988345428
+2021-04-20,2021,16,REG,53,Bretagne,adhesion_vaccinale_adultes,72.22191838068227
+2021-05-11,2021,19,REG,53,Bretagne,adhesion_vaccinale_adultes,74.69952096498088
+2021-06-15,2021,24,REG,53,Bretagne,adhesion_vaccinale_adultes,81.42045343990083
+2021-07-13,2021,28,REG,53,Bretagne,adhesion_vaccinale_adultes,87.94417946018332
+2021-08-24,2021,34,REG,53,Bretagne,adhesion_vaccinale_adultes,91.38591
+2021-09-28,2021,39,REG,53,Bretagne,adhesion_vaccinale_adultes,86.0409347632336
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,40.404335949902304
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,54.83407192788847
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,62.42021360999831
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,62.49715280993521
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,69.48517998610541
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,76.91005084794105
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,76.78281675626558
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,80.9998764099525
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,88.76745
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_adultes,84.50794363993427
+2020-11-03,2020,45,REG,76,Occitanie,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,76,Occitanie,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,76,Occitanie,adhesion_vaccinale_adultes,31.46881995179621
+2021-01-12,2021,2,REG,76,Occitanie,adhesion_vaccinale_adultes,49.97780462826276
+2021-02-09,2021,6,REG,76,Occitanie,adhesion_vaccinale_adultes,55.68294815680714
+2021-03-09,2021,10,REG,76,Occitanie,adhesion_vaccinale_adultes,63.15518530798128
+2021-04-20,2021,16,REG,76,Occitanie,adhesion_vaccinale_adultes,69.72547154427875
+2021-05-11,2021,19,REG,76,Occitanie,adhesion_vaccinale_adultes,65.81353616311306
+2021-06-15,2021,24,REG,76,Occitanie,adhesion_vaccinale_adultes,72.61031093996696
+2021-07-13,2021,28,REG,76,Occitanie,adhesion_vaccinale_adultes,82.25130137986028
+2021-08-24,2021,34,REG,76,Occitanie,adhesion_vaccinale_adultes,82.29369
+2021-09-28,2021,39,REG,76,Occitanie,adhesion_vaccinale_adultes,84.52218867481285
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,35.837822732909004
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,58.02943993733171
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,60.53009419284429
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,55.64317351187064
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,62.194942624776985
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,73.1157507356397
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,74.08941308798461
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,87.19304898436451
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,84.17856
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_adultes,87.65470729161686
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,39.552016769318485
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,53.55454367991233
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,51.544798998393745
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,57.684525025600365
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,62.30883431297774
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,79.05497835184481
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,67.8493767740129
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,83.09248512747206
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,84.8506
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_adultes,78.79654086717261
+2020-11-03,2020,45,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,11,Île-de-France,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,11,Île-de-France,adhesion_vaccinale_enfants,71.69612437211748
+2021-07-13,2021,28,REG,11,Île-de-France,adhesion_vaccinale_enfants,69.46691448284999
+2021-08-24,2021,34,REG,11,Île-de-France,adhesion_vaccinale_enfants,76.92236
+2021-09-28,2021,39,REG,11,Île-de-France,adhesion_vaccinale_enfants,71.67132727561734
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,60.22466142339826
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,80.17073858532346
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,78.36675
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,adhesion_vaccinale_enfants,71.53291248287476
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,57.605858820872015
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,86.9818733854585
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,83.76912
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,adhesion_vaccinale_enfants,75.20644239460972
+2020-11-03,2020,45,REG,28,Normandie,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,28,Normandie,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,28,Normandie,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,28,Normandie,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,28,Normandie,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,28,Normandie,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,28,Normandie,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,28,Normandie,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,28,Normandie,adhesion_vaccinale_enfants,62.5096957761225
+2021-07-13,2021,28,REG,28,Normandie,adhesion_vaccinale_enfants,77.4697828551115
+2021-08-24,2021,34,REG,28,Normandie,adhesion_vaccinale_enfants,74.53178
+2021-09-28,2021,39,REG,28,Normandie,adhesion_vaccinale_enfants,79.63301575222911
+2020-11-03,2020,45,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,63.612131127262195
+2021-07-13,2021,28,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,71.30902490605764
+2021-08-24,2021,34,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,74.18332
+2021-09-28,2021,39,REG,32,Hauts-de-France,adhesion_vaccinale_enfants,65.6867469433421
+2020-11-03,2020,45,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,44,Grand Est,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,44,Grand Est,adhesion_vaccinale_enfants,63.55281934639084
+2021-07-13,2021,28,REG,44,Grand Est,adhesion_vaccinale_enfants,71.59299327800758
+2021-08-24,2021,34,REG,44,Grand Est,adhesion_vaccinale_enfants,76.23521
+2021-09-28,2021,39,REG,44,Grand Est,adhesion_vaccinale_enfants,64.94002761740653
+2020-11-03,2020,45,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,74.74313715098054
+2021-07-13,2021,28,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,80.5914597255441
+2021-08-24,2021,34,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,71.98163
+2021-09-28,2021,39,REG,52,Pays de la Loire,adhesion_vaccinale_enfants,81.17294137991564
+2020-11-03,2020,45,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,53,Bretagne,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,53,Bretagne,adhesion_vaccinale_enfants,62.99364987673163
+2021-07-13,2021,28,REG,53,Bretagne,adhesion_vaccinale_enfants,78.45274483510558
+2021-08-24,2021,34,REG,53,Bretagne,adhesion_vaccinale_enfants,88.71951
+2021-09-28,2021,39,REG,53,Bretagne,adhesion_vaccinale_enfants,73.93394133498951
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,62.28136674575314
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,72.55509665318307
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,81.87454
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,adhesion_vaccinale_enfants,68.57024601388572
+2020-11-03,2020,45,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,76,Occitanie,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,76,Occitanie,adhesion_vaccinale_enfants,55.928255705834
+2021-07-13,2021,28,REG,76,Occitanie,adhesion_vaccinale_enfants,67.50594833583826
+2021-08-24,2021,34,REG,76,Occitanie,adhesion_vaccinale_enfants,74.33444
+2021-09-28,2021,39,REG,76,Occitanie,adhesion_vaccinale_enfants,63.284457951571405
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,57.110779047608304
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,77.63687484090752
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,73.22824
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,adhesion_vaccinale_enfants,69.05151177977214
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,56.61322695863718
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,69.55217996420276
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,74.46949000000001
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,adhesion_vaccinale_enfants,57.606347005289194
+2020-11-03,2020,45,REG,11,Île-de-France,aeration_du_logement,
+2020-11-17,2020,47,REG,11,Île-de-France,aeration_du_logement,
+2020-12-08,2020,50,REG,11,Île-de-France,aeration_du_logement,
+2021-01-12,2021,2,REG,11,Île-de-France,aeration_du_logement,
+2021-02-09,2021,6,REG,11,Île-de-France,aeration_du_logement,34.232242503625514
+2021-03-09,2021,10,REG,11,Île-de-France,aeration_du_logement,38.46876734443036
+2021-04-20,2021,16,REG,11,Île-de-France,aeration_du_logement,47.0872946163931
+2021-05-11,2021,19,REG,11,Île-de-France,aeration_du_logement,43.96877772027319
+2021-06-15,2021,24,REG,11,Île-de-France,aeration_du_logement,
+2021-07-13,2021,28,REG,11,Île-de-France,aeration_du_logement,
+2021-08-24,2021,34,REG,11,Île-de-France,aeration_du_logement,45.68929
+2021-09-28,2021,39,REG,11,Île-de-France,aeration_du_logement,46.09576632797576
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,aeration_du_logement,
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,aeration_du_logement,
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,aeration_du_logement,
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,aeration_du_logement,
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,aeration_du_logement,28.84229342398345
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,aeration_du_logement,26.3703859577004
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,aeration_du_logement,45.93031705537426
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,aeration_du_logement,35.69824476771384
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,aeration_du_logement,
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,aeration_du_logement,
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,aeration_du_logement,39.36522
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,aeration_du_logement,34.2888007316449
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,27.86651689121352
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,31.506105373989943
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,38.289301998515626
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,25.358942975854333
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,46.31533
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,aeration_du_logement,39.28237037433601
+2020-11-03,2020,45,REG,28,Normandie,aeration_du_logement,
+2020-11-17,2020,47,REG,28,Normandie,aeration_du_logement,
+2020-12-08,2020,50,REG,28,Normandie,aeration_du_logement,
+2021-01-12,2021,2,REG,28,Normandie,aeration_du_logement,
+2021-02-09,2021,6,REG,28,Normandie,aeration_du_logement,26.823732930003935
+2021-03-09,2021,10,REG,28,Normandie,aeration_du_logement,26.88752168272716
+2021-04-20,2021,16,REG,28,Normandie,aeration_du_logement,38.64510250874144
+2021-05-11,2021,19,REG,28,Normandie,aeration_du_logement,39.3892823133666
+2021-06-15,2021,24,REG,28,Normandie,aeration_du_logement,
+2021-07-13,2021,28,REG,28,Normandie,aeration_du_logement,
+2021-08-24,2021,34,REG,28,Normandie,aeration_du_logement,42.22414
+2021-09-28,2021,39,REG,28,Normandie,aeration_du_logement,44.161556171138024
+2020-11-03,2020,45,REG,32,Hauts-de-France,aeration_du_logement,
+2020-11-17,2020,47,REG,32,Hauts-de-France,aeration_du_logement,
+2020-12-08,2020,50,REG,32,Hauts-de-France,aeration_du_logement,
+2021-01-12,2021,2,REG,32,Hauts-de-France,aeration_du_logement,
+2021-02-09,2021,6,REG,32,Hauts-de-France,aeration_du_logement,30.082456122521467
+2021-03-09,2021,10,REG,32,Hauts-de-France,aeration_du_logement,36.59238628685942
+2021-04-20,2021,16,REG,32,Hauts-de-France,aeration_du_logement,43.84000412071962
+2021-05-11,2021,19,REG,32,Hauts-de-France,aeration_du_logement,40.05112974777324
+2021-06-15,2021,24,REG,32,Hauts-de-France,aeration_du_logement,
+2021-07-13,2021,28,REG,32,Hauts-de-France,aeration_du_logement,
+2021-08-24,2021,34,REG,32,Hauts-de-France,aeration_du_logement,40.56876
+2021-09-28,2021,39,REG,32,Hauts-de-France,aeration_du_logement,40.63148022422048
+2020-11-03,2020,45,REG,44,Grand Est,aeration_du_logement,
+2020-11-17,2020,47,REG,44,Grand Est,aeration_du_logement,
+2020-12-08,2020,50,REG,44,Grand Est,aeration_du_logement,
+2021-01-12,2021,2,REG,44,Grand Est,aeration_du_logement,
+2021-02-09,2021,6,REG,44,Grand Est,aeration_du_logement,35.72293220608786
+2021-03-09,2021,10,REG,44,Grand Est,aeration_du_logement,30.33015864924142
+2021-04-20,2021,16,REG,44,Grand Est,aeration_du_logement,33.837184867145034
+2021-05-11,2021,19,REG,44,Grand Est,aeration_du_logement,39.16832505817062
+2021-06-15,2021,24,REG,44,Grand Est,aeration_du_logement,
+2021-07-13,2021,28,REG,44,Grand Est,aeration_du_logement,
+2021-08-24,2021,34,REG,44,Grand Est,aeration_du_logement,41.907250000000005
+2021-09-28,2021,39,REG,44,Grand Est,aeration_du_logement,39.321939381984194
+2020-11-03,2020,45,REG,52,Pays de la Loire,aeration_du_logement,
+2020-11-17,2020,47,REG,52,Pays de la Loire,aeration_du_logement,
+2020-12-08,2020,50,REG,52,Pays de la Loire,aeration_du_logement,
+2021-01-12,2021,2,REG,52,Pays de la Loire,aeration_du_logement,
+2021-02-09,2021,6,REG,52,Pays de la Loire,aeration_du_logement,35.09819443798425
+2021-03-09,2021,10,REG,52,Pays de la Loire,aeration_du_logement,29.138600218783157
+2021-04-20,2021,16,REG,52,Pays de la Loire,aeration_du_logement,35.810663255793145
+2021-05-11,2021,19,REG,52,Pays de la Loire,aeration_du_logement,38.31644658210109
+2021-06-15,2021,24,REG,52,Pays de la Loire,aeration_du_logement,
+2021-07-13,2021,28,REG,52,Pays de la Loire,aeration_du_logement,
+2021-08-24,2021,34,REG,52,Pays de la Loire,aeration_du_logement,48.34955
+2021-09-28,2021,39,REG,52,Pays de la Loire,aeration_du_logement,40.925403009176584
+2020-11-03,2020,45,REG,53,Bretagne,aeration_du_logement,
+2020-11-17,2020,47,REG,53,Bretagne,aeration_du_logement,
+2020-12-08,2020,50,REG,53,Bretagne,aeration_du_logement,
+2021-01-12,2021,2,REG,53,Bretagne,aeration_du_logement,
+2021-02-09,2021,6,REG,53,Bretagne,aeration_du_logement,28.55786810881104
+2021-03-09,2021,10,REG,53,Bretagne,aeration_du_logement,36.73732949655899
+2021-04-20,2021,16,REG,53,Bretagne,aeration_du_logement,36.54025254291337
+2021-05-11,2021,19,REG,53,Bretagne,aeration_du_logement,39.48732209389576
+2021-06-15,2021,24,REG,53,Bretagne,aeration_du_logement,
+2021-07-13,2021,28,REG,53,Bretagne,aeration_du_logement,
+2021-08-24,2021,34,REG,53,Bretagne,aeration_du_logement,50.13641
+2021-09-28,2021,39,REG,53,Bretagne,aeration_du_logement,46.74692136814893
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,aeration_du_logement,
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,aeration_du_logement,
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,aeration_du_logement,
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,aeration_du_logement,
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,aeration_du_logement,32.22443253449283
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,aeration_du_logement,36.48864630955994
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,aeration_du_logement,35.83245558955147
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,aeration_du_logement,29.72437580623196
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,aeration_du_logement,
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,aeration_du_logement,
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,aeration_du_logement,44.04959
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,aeration_du_logement,46.9311202917982
+2020-11-03,2020,45,REG,76,Occitanie,aeration_du_logement,
+2020-11-17,2020,47,REG,76,Occitanie,aeration_du_logement,
+2020-12-08,2020,50,REG,76,Occitanie,aeration_du_logement,
+2021-01-12,2021,2,REG,76,Occitanie,aeration_du_logement,
+2021-02-09,2021,6,REG,76,Occitanie,aeration_du_logement,32.37390348628803
+2021-03-09,2021,10,REG,76,Occitanie,aeration_du_logement,38.01283827100575
+2021-04-20,2021,16,REG,76,Occitanie,aeration_du_logement,38.21391070965816
+2021-05-11,2021,19,REG,76,Occitanie,aeration_du_logement,41.15328454868742
+2021-06-15,2021,24,REG,76,Occitanie,aeration_du_logement,
+2021-07-13,2021,28,REG,76,Occitanie,aeration_du_logement,
+2021-08-24,2021,34,REG,76,Occitanie,aeration_du_logement,49.46011
+2021-09-28,2021,39,REG,76,Occitanie,aeration_du_logement,54.749656953884475
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,32.265827765201344
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,35.2313883669032
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,38.63805290170786
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,41.53608622623579
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,43.78567
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,aeration_du_logement,46.56535823840456
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,39.62569420118574
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,35.51030048517194
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,37.833087154609366
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,44.71970908567763
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,56.2338
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,aeration_du_logement,53.39036799682264
+2020-11-03,2020,45,REG,11,Île-de-France,eviter_les_regrupements,58.94860474015344
+2020-11-17,2020,47,REG,11,Île-de-France,eviter_les_regrupements,66.30550657735401
+2020-12-08,2020,50,REG,11,Île-de-France,eviter_les_regrupements,51.89116531092854
+2021-01-12,2021,2,REG,11,Île-de-France,eviter_les_regrupements,45.83899851476955
+2021-02-09,2021,6,REG,11,Île-de-France,eviter_les_regrupements,46.371730029756506
+2021-03-09,2021,10,REG,11,Île-de-France,eviter_les_regrupements,47.50160511230565
+2021-04-20,2021,16,REG,11,Île-de-France,eviter_les_regrupements,52.75594127945025
+2021-05-11,2021,19,REG,11,Île-de-France,eviter_les_regrupements,48.544340055203
+2021-06-15,2021,24,REG,11,Île-de-France,eviter_les_regrupements,41.02951314375353
+2021-07-13,2021,28,REG,11,Île-de-France,eviter_les_regrupements,33.014606756979
+2021-08-24,2021,34,REG,11,Île-de-France,eviter_les_regrupements,34.3431
+2021-09-28,2021,39,REG,11,Île-de-France,eviter_les_regrupements,28.365064500195153
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,eviter_les_regrupements,66.28955691214448
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,eviter_les_regrupements,59.37067151595134
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,eviter_les_regrupements,59.45923362299514
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,eviter_les_regrupements,55.78824727236146
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,eviter_les_regrupements,49.31708071202789
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,eviter_les_regrupements,33.31142005028781
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,eviter_les_regrupements,48.26577492341833
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,eviter_les_regrupements,39.43811105885956
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,eviter_les_regrupements,34.081855975269384
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,eviter_les_regrupements,30.68118553611644
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,eviter_les_regrupements,23.15291
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,eviter_les_regrupements,32.27090779701494
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,58.83431279951028
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,66.33870022951677
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,57.704268320537246
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,43.352621562972935
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,49.036000631122675
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,45.98617618422698
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,53.79689474971383
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,38.15295017524431
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,35.774174876705565
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,34.90905335096518
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,39.618199999999995
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,eviter_les_regrupements,32.2258795341015
+2020-11-03,2020,45,REG,28,Normandie,eviter_les_regrupements,59.37137445100681
+2020-11-17,2020,47,REG,28,Normandie,eviter_les_regrupements,65.17259937178275
+2020-12-08,2020,50,REG,28,Normandie,eviter_les_regrupements,52.55629096476678
+2021-01-12,2021,2,REG,28,Normandie,eviter_les_regrupements,44.21745482336213
+2021-02-09,2021,6,REG,28,Normandie,eviter_les_regrupements,45.49046936527576
+2021-03-09,2021,10,REG,28,Normandie,eviter_les_regrupements,58.30929802590976
+2021-04-20,2021,16,REG,28,Normandie,eviter_les_regrupements,46.23763746388698
+2021-05-11,2021,19,REG,28,Normandie,eviter_les_regrupements,43.14565575630069
+2021-06-15,2021,24,REG,28,Normandie,eviter_les_regrupements,37.61251495073487
+2021-07-13,2021,28,REG,28,Normandie,eviter_les_regrupements,29.46602337878194
+2021-08-24,2021,34,REG,28,Normandie,eviter_les_regrupements,32.88047
+2021-09-28,2021,39,REG,28,Normandie,eviter_les_regrupements,30.8965350002764
+2020-11-03,2020,45,REG,32,Hauts-de-France,eviter_les_regrupements,60.96674306535924
+2020-11-17,2020,47,REG,32,Hauts-de-France,eviter_les_regrupements,61.92283987846494
+2020-12-08,2020,50,REG,32,Hauts-de-France,eviter_les_regrupements,55.52211334188776
+2021-01-12,2021,2,REG,32,Hauts-de-France,eviter_les_regrupements,53.642304338780455
+2021-02-09,2021,6,REG,32,Hauts-de-France,eviter_les_regrupements,45.06293411244292
+2021-03-09,2021,10,REG,32,Hauts-de-France,eviter_les_regrupements,46.21595283683777
+2021-04-20,2021,16,REG,32,Hauts-de-France,eviter_les_regrupements,57.50040271394858
+2021-05-11,2021,19,REG,32,Hauts-de-France,eviter_les_regrupements,46.751328351616685
+2021-06-15,2021,24,REG,32,Hauts-de-France,eviter_les_regrupements,39.1466416282363
+2021-07-13,2021,28,REG,32,Hauts-de-France,eviter_les_regrupements,36.56029796278574
+2021-08-24,2021,34,REG,32,Hauts-de-France,eviter_les_regrupements,34.587360000000004
+2021-09-28,2021,39,REG,32,Hauts-de-France,eviter_les_regrupements,33.33656483729973
+2020-11-03,2020,45,REG,44,Grand Est,eviter_les_regrupements,69.06542495630666
+2020-11-17,2020,47,REG,44,Grand Est,eviter_les_regrupements,59.03350221548914
+2020-12-08,2020,50,REG,44,Grand Est,eviter_les_regrupements,54.772138240674536
+2021-01-12,2021,2,REG,44,Grand Est,eviter_les_regrupements,51.16383417713961
+2021-02-09,2021,6,REG,44,Grand Est,eviter_les_regrupements,49.03656855653475
+2021-03-09,2021,10,REG,44,Grand Est,eviter_les_regrupements,38.006359124461845
+2021-04-20,2021,16,REG,44,Grand Est,eviter_les_regrupements,55.569583740228914
+2021-05-11,2021,19,REG,44,Grand Est,eviter_les_regrupements,47.20727766898207
+2021-06-15,2021,24,REG,44,Grand Est,eviter_les_regrupements,40.352192619789655
+2021-07-13,2021,28,REG,44,Grand Est,eviter_les_regrupements,29.987305745398533
+2021-08-24,2021,34,REG,44,Grand Est,eviter_les_regrupements,28.582220000000003
+2021-09-28,2021,39,REG,44,Grand Est,eviter_les_regrupements,28.076901534021747
+2020-11-03,2020,45,REG,52,Pays de la Loire,eviter_les_regrupements,68.30108099570855
+2020-11-17,2020,47,REG,52,Pays de la Loire,eviter_les_regrupements,66.81829047339987
+2020-12-08,2020,50,REG,52,Pays de la Loire,eviter_les_regrupements,49.280264270532015
+2021-01-12,2021,2,REG,52,Pays de la Loire,eviter_les_regrupements,37.8618978076711
+2021-02-09,2021,6,REG,52,Pays de la Loire,eviter_les_regrupements,40.56729555261235
+2021-03-09,2021,10,REG,52,Pays de la Loire,eviter_les_regrupements,33.434822595132545
+2021-04-20,2021,16,REG,52,Pays de la Loire,eviter_les_regrupements,41.9199464427428
+2021-05-11,2021,19,REG,52,Pays de la Loire,eviter_les_regrupements,40.03699763737658
+2021-06-15,2021,24,REG,52,Pays de la Loire,eviter_les_regrupements,31.17097032058102
+2021-07-13,2021,28,REG,52,Pays de la Loire,eviter_les_regrupements,30.64270590640492
+2021-08-24,2021,34,REG,52,Pays de la Loire,eviter_les_regrupements,24.82459
+2021-09-28,2021,39,REG,52,Pays de la Loire,eviter_les_regrupements,24.330664987129794
+2020-11-03,2020,45,REG,53,Bretagne,eviter_les_regrupements,65.98616042223028
+2020-11-17,2020,47,REG,53,Bretagne,eviter_les_regrupements,70.36421697186438
+2020-12-08,2020,50,REG,53,Bretagne,eviter_les_regrupements,48.39830712191311
+2021-01-12,2021,2,REG,53,Bretagne,eviter_les_regrupements,49.25269686011069
+2021-02-09,2021,6,REG,53,Bretagne,eviter_les_regrupements,45.355611346492985
+2021-03-09,2021,10,REG,53,Bretagne,eviter_les_regrupements,44.26976752152465
+2021-04-20,2021,16,REG,53,Bretagne,eviter_les_regrupements,43.904615279239
+2021-05-11,2021,19,REG,53,Bretagne,eviter_les_regrupements,38.033482978302
+2021-06-15,2021,24,REG,53,Bretagne,eviter_les_regrupements,32.15040573512493
+2021-07-13,2021,28,REG,53,Bretagne,eviter_les_regrupements,40.66137800241375
+2021-08-24,2021,34,REG,53,Bretagne,eviter_les_regrupements,28.08235
+2021-09-28,2021,39,REG,53,Bretagne,eviter_les_regrupements,20.443745142053395
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,64.49575890567496
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,57.61706417598893
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,54.77781165956021
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,42.235226651259275
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,48.37258076762053
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,43.04343365624997
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,49.90132063069691
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,37.83674330965636
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,30.637587156490913
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,27.693533108929625
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,34.936479999999996
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,eviter_les_regrupements,30.583056110951865
+2020-11-03,2020,45,REG,76,Occitanie,eviter_les_regrupements,59.49160762586233
+2020-11-17,2020,47,REG,76,Occitanie,eviter_les_regrupements,54.01265424535043
+2020-12-08,2020,50,REG,76,Occitanie,eviter_les_regrupements,51.27257296512986
+2021-01-12,2021,2,REG,76,Occitanie,eviter_les_regrupements,49.60328998117578
+2021-02-09,2021,6,REG,76,Occitanie,eviter_les_regrupements,48.732990096327754
+2021-03-09,2021,10,REG,76,Occitanie,eviter_les_regrupements,37.30688866860464
+2021-04-20,2021,16,REG,76,Occitanie,eviter_les_regrupements,49.60710484807273
+2021-05-11,2021,19,REG,76,Occitanie,eviter_les_regrupements,37.63659115621581
+2021-06-15,2021,24,REG,76,Occitanie,eviter_les_regrupements,37.22637707316786
+2021-07-13,2021,28,REG,76,Occitanie,eviter_les_regrupements,34.63784415135321
+2021-08-24,2021,34,REG,76,Occitanie,eviter_les_regrupements,35.249770000000005
+2021-09-28,2021,39,REG,76,Occitanie,eviter_les_regrupements,34.58999807380347
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,67.90694218440142
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,67.91576768534313
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,52.35292123234463
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,46.97864720042925
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,46.00672853078216
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,40.27994816293051
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,54.039521588699856
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,47.610935196680096
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,34.856083200276245
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,31.614140359310458
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,31.928
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,eviter_les_regrupements,34.61466811850694
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,64.32930104237819
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,64.26401775207542
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,50.330462031797566
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,49.84779594557506
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,44.90788032335372
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,46.12187411697643
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,40.97808167828174
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,40.139696409010675
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,37.23090229817837
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,29.070547872972273
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,34.18731
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,eviter_les_regrupements,31.495528953680267
+2020-11-03,2020,45,REG,11,Île-de-France,lavage_des_mains,68.15595221089414
+2020-11-17,2020,47,REG,11,Île-de-France,lavage_des_mains,69.41921684060975
+2020-12-08,2020,50,REG,11,Île-de-France,lavage_des_mains,66.94824728751723
+2021-01-12,2021,2,REG,11,Île-de-France,lavage_des_mains,66.27885684133365
+2021-02-09,2021,6,REG,11,Île-de-France,lavage_des_mains,66.25355730016481
+2021-03-09,2021,10,REG,11,Île-de-France,lavage_des_mains,65.16736496400239
+2021-04-20,2021,16,REG,11,Île-de-France,lavage_des_mains,68.60276961913131
+2021-05-11,2021,19,REG,11,Île-de-France,lavage_des_mains,65.62451827192044
+2021-06-15,2021,24,REG,11,Île-de-France,lavage_des_mains,67.53868724711188
+2021-07-13,2021,28,REG,11,Île-de-France,lavage_des_mains,60.85634769745552
+2021-08-24,2021,34,REG,11,Île-de-France,lavage_des_mains,54.61604
+2021-09-28,2021,39,REG,11,Île-de-France,lavage_des_mains,60.87081102972143
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,lavage_des_mains,65.54387213974425
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,lavage_des_mains,73.67122619859143
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,lavage_des_mains,65.94550909664677
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,lavage_des_mains,63.232125658959326
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,lavage_des_mains,74.91721525052422
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,lavage_des_mains,68.91368779521936
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,lavage_des_mains,67.37076846315288
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,lavage_des_mains,61.15225378305033
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,lavage_des_mains,55.189028650055945
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,lavage_des_mains,58.0801133553823
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,lavage_des_mains,59.70103
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,lavage_des_mains,54.34832184156758
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,67.41220338495253
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,74.37293324434809
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,69.99573376781157
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,69.16342476540977
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,71.44185058923244
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,68.06746250680663
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,64.36051577506615
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,58.34610761232483
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,51.48358494692356
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,56.331016181828886
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,64.20343
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,lavage_des_mains,62.57069683451319
+2020-11-03,2020,45,REG,28,Normandie,lavage_des_mains,62.5598728576588
+2020-11-17,2020,47,REG,28,Normandie,lavage_des_mains,71.53267007877989
+2020-12-08,2020,50,REG,28,Normandie,lavage_des_mains,62.98483219377496
+2021-01-12,2021,2,REG,28,Normandie,lavage_des_mains,64.03820588212122
+2021-02-09,2021,6,REG,28,Normandie,lavage_des_mains,71.21924347337604
+2021-03-09,2021,10,REG,28,Normandie,lavage_des_mains,72.43589159092143
+2021-04-20,2021,16,REG,28,Normandie,lavage_des_mains,59.67452546415439
+2021-05-11,2021,19,REG,28,Normandie,lavage_des_mains,51.43408737296545
+2021-06-15,2021,24,REG,28,Normandie,lavage_des_mains,64.90709792706483
+2021-07-13,2021,28,REG,28,Normandie,lavage_des_mains,62.60688813531387
+2021-08-24,2021,34,REG,28,Normandie,lavage_des_mains,61.20291
+2021-09-28,2021,39,REG,28,Normandie,lavage_des_mains,59.703412914360534
+2020-11-03,2020,45,REG,32,Hauts-de-France,lavage_des_mains,66.34678384548614
+2020-11-17,2020,47,REG,32,Hauts-de-France,lavage_des_mains,72.33265694722768
+2020-12-08,2020,50,REG,32,Hauts-de-France,lavage_des_mains,75.78163965384543
+2021-01-12,2021,2,REG,32,Hauts-de-France,lavage_des_mains,64.47086556909443
+2021-02-09,2021,6,REG,32,Hauts-de-France,lavage_des_mains,57.79256511623424
+2021-03-09,2021,10,REG,32,Hauts-de-France,lavage_des_mains,65.8480300102233
+2021-04-20,2021,16,REG,32,Hauts-de-France,lavage_des_mains,66.66852824246729
+2021-05-11,2021,19,REG,32,Hauts-de-France,lavage_des_mains,66.38388304766227
+2021-06-15,2021,24,REG,32,Hauts-de-France,lavage_des_mains,61.201001422667446
+2021-07-13,2021,28,REG,32,Hauts-de-France,lavage_des_mains,59.4469900956785
+2021-08-24,2021,34,REG,32,Hauts-de-France,lavage_des_mains,56.41088
+2021-09-28,2021,39,REG,32,Hauts-de-France,lavage_des_mains,58.586071728311474
+2020-11-03,2020,45,REG,44,Grand Est,lavage_des_mains,75.652932231719
+2020-11-17,2020,47,REG,44,Grand Est,lavage_des_mains,64.43286724747766
+2020-12-08,2020,50,REG,44,Grand Est,lavage_des_mains,68.87696987424539
+2021-01-12,2021,2,REG,44,Grand Est,lavage_des_mains,70.5914163763889
+2021-02-09,2021,6,REG,44,Grand Est,lavage_des_mains,61.79609007273489
+2021-03-09,2021,10,REG,44,Grand Est,lavage_des_mains,62.70770010036637
+2021-04-20,2021,16,REG,44,Grand Est,lavage_des_mains,67.83564484266884
+2021-05-11,2021,19,REG,44,Grand Est,lavage_des_mains,65.74298389681661
+2021-06-15,2021,24,REG,44,Grand Est,lavage_des_mains,61.69127863527256
+2021-07-13,2021,28,REG,44,Grand Est,lavage_des_mains,61.005913082804994
+2021-08-24,2021,34,REG,44,Grand Est,lavage_des_mains,57.92788
+2021-09-28,2021,39,REG,44,Grand Est,lavage_des_mains,51.244288768210446
+2020-11-03,2020,45,REG,52,Pays de la Loire,lavage_des_mains,74.28591412953892
+2020-11-17,2020,47,REG,52,Pays de la Loire,lavage_des_mains,66.98167332920075
+2020-12-08,2020,50,REG,52,Pays de la Loire,lavage_des_mains,64.36274441040285
+2021-01-12,2021,2,REG,52,Pays de la Loire,lavage_des_mains,67.11778872157498
+2021-02-09,2021,6,REG,52,Pays de la Loire,lavage_des_mains,67.19407932019499
+2021-03-09,2021,10,REG,52,Pays de la Loire,lavage_des_mains,60.38544521631517
+2021-04-20,2021,16,REG,52,Pays de la Loire,lavage_des_mains,61.02987204353393
+2021-05-11,2021,19,REG,52,Pays de la Loire,lavage_des_mains,56.57610699575319
+2021-06-15,2021,24,REG,52,Pays de la Loire,lavage_des_mains,49.543938958739794
+2021-07-13,2021,28,REG,52,Pays de la Loire,lavage_des_mains,60.07329422569727
+2021-08-24,2021,34,REG,52,Pays de la Loire,lavage_des_mains,58.07468
+2021-09-28,2021,39,REG,52,Pays de la Loire,lavage_des_mains,53.456626169125286
+2020-11-03,2020,45,REG,53,Bretagne,lavage_des_mains,66.38600181421101
+2020-11-17,2020,47,REG,53,Bretagne,lavage_des_mains,70.7292684710463
+2020-12-08,2020,50,REG,53,Bretagne,lavage_des_mains,69.93002594233293
+2021-01-12,2021,2,REG,53,Bretagne,lavage_des_mains,69.97478827074734
+2021-02-09,2021,6,REG,53,Bretagne,lavage_des_mains,66.12042262396136
+2021-03-09,2021,10,REG,53,Bretagne,lavage_des_mains,59.05835939602334
+2021-04-20,2021,16,REG,53,Bretagne,lavage_des_mains,58.42909190284066
+2021-05-11,2021,19,REG,53,Bretagne,lavage_des_mains,62.33051008646916
+2021-06-15,2021,24,REG,53,Bretagne,lavage_des_mains,56.684837606125626
+2021-07-13,2021,28,REG,53,Bretagne,lavage_des_mains,60.977246142027354
+2021-08-24,2021,34,REG,53,Bretagne,lavage_des_mains,55.395689999999995
+2021-09-28,2021,39,REG,53,Bretagne,lavage_des_mains,51.82129562374246
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,lavage_des_mains,68.16653306819373
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,lavage_des_mains,67.33855514892248
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,lavage_des_mains,69.87808132548953
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,lavage_des_mains,70.72183250157556
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,lavage_des_mains,59.79791647754155
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,lavage_des_mains,60.31826054070813
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,lavage_des_mains,62.365626051929254
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,lavage_des_mains,59.20213004509572
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,lavage_des_mains,60.63079031138625
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,lavage_des_mains,59.732780681007334
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,lavage_des_mains,56.80053
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,lavage_des_mains,60.96898515983094
+2020-11-03,2020,45,REG,76,Occitanie,lavage_des_mains,70.44435717628653
+2020-11-17,2020,47,REG,76,Occitanie,lavage_des_mains,63.8746611549485
+2020-12-08,2020,50,REG,76,Occitanie,lavage_des_mains,65.51245375185748
+2021-01-12,2021,2,REG,76,Occitanie,lavage_des_mains,67.5336194299427
+2021-02-09,2021,6,REG,76,Occitanie,lavage_des_mains,62.26637726345861
+2021-03-09,2021,10,REG,76,Occitanie,lavage_des_mains,71.12468552454033
+2021-04-20,2021,16,REG,76,Occitanie,lavage_des_mains,64.16603139702197
+2021-05-11,2021,19,REG,76,Occitanie,lavage_des_mains,67.30258531905531
+2021-06-15,2021,24,REG,76,Occitanie,lavage_des_mains,60.88710797531795
+2021-07-13,2021,28,REG,76,Occitanie,lavage_des_mains,64.08618118599283
+2021-08-24,2021,34,REG,76,Occitanie,lavage_des_mains,60.703410000000005
+2021-09-28,2021,39,REG,76,Occitanie,lavage_des_mains,64.83502253148895
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,68.53008058484284
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,73.10323149977371
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,65.01670644276214
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,65.0916301889792
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,61.06565169729697
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,64.26965983889878
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,69.67657266095064
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,63.00039444796086
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,59.08002479830873
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,53.96921149585151
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,57.22735
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,lavage_des_mains,61.66793083385957
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,74.27642649009394
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,78.28268166214085
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,67.89787581331646
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,72.67008041622942
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,67.0904065704915
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,60.28731705980634
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,59.52517609741028
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,64.22384823212612
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,59.41437996899028
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,64.00106058013331
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,62.38771
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,lavage_des_mains,56.07201313849944
+2020-11-03,2020,45,REG,11,Île-de-France,port_du_masque,89.17738197065255
+2020-11-17,2020,47,REG,11,Île-de-France,port_du_masque,88.62573592090673
+2020-12-08,2020,50,REG,11,Île-de-France,port_du_masque,86.68419952640504
+2021-01-12,2021,2,REG,11,Île-de-France,port_du_masque,85.32683635096346
+2021-02-09,2021,6,REG,11,Île-de-France,port_du_masque,85.05644451495566
+2021-03-09,2021,10,REG,11,Île-de-France,port_du_masque,88.19218918934912
+2021-04-20,2021,16,REG,11,Île-de-France,port_du_masque,84.77160728547021
+2021-05-11,2021,19,REG,11,Île-de-France,port_du_masque,82.55299529284143
+2021-06-15,2021,24,REG,11,Île-de-France,port_du_masque,72.68361385021016
+2021-07-13,2021,28,REG,11,Île-de-France,port_du_masque,70.70409935936985
+2021-08-24,2021,34,REG,11,Île-de-France,port_du_masque,62.26526
+2021-09-28,2021,39,REG,11,Île-de-France,port_du_masque,64.61101301911935
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,port_du_masque,89.82509339422717
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,port_du_masque,91.30039660855958
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,port_du_masque,87.99241945729787
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,port_du_masque,86.8884772681321
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,port_du_masque,85.99790902010992
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,port_du_masque,80.4386467480583
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,port_du_masque,84.55672221680334
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,port_du_masque,77.70410877379771
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,port_du_masque,68.86449254884008
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,port_du_masque,69.00086872841656
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,port_du_masque,68.22904
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,port_du_masque,66.60663835594964
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,port_du_masque,82.41647534958511
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,port_du_masque,90.52450143544652
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,port_du_masque,80.35478634858491
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,port_du_masque,87.37821977931618
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,port_du_masque,90.79301738056182
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,port_du_masque,90.98355528822307
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,port_du_masque,76.8379815027251
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,port_du_masque,80.51159120631648
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,port_du_masque,63.752348867323846
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,port_du_masque,71.14232477543325
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,port_du_masque,74.81057
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,port_du_masque,67.77026067191056
+2020-11-03,2020,45,REG,28,Normandie,port_du_masque,83.98222767300727
+2020-11-17,2020,47,REG,28,Normandie,port_du_masque,88.16639599326673
+2020-12-08,2020,50,REG,28,Normandie,port_du_masque,85.30476529775086
+2021-01-12,2021,2,REG,28,Normandie,port_du_masque,87.54239606288249
+2021-02-09,2021,6,REG,28,Normandie,port_du_masque,83.88179016328243
+2021-03-09,2021,10,REG,28,Normandie,port_du_masque,90.91500504981512
+2021-04-20,2021,16,REG,28,Normandie,port_du_masque,87.40124464745756
+2021-05-11,2021,19,REG,28,Normandie,port_du_masque,83.27587925086196
+2021-06-15,2021,24,REG,28,Normandie,port_du_masque,73.20802441680256
+2021-07-13,2021,28,REG,28,Normandie,port_du_masque,67.8634036265605
+2021-08-24,2021,34,REG,28,Normandie,port_du_masque,70.11577
+2021-09-28,2021,39,REG,28,Normandie,port_du_masque,60.78243826914138
+2020-11-03,2020,45,REG,32,Hauts-de-France,port_du_masque,83.5945202114564
+2020-11-17,2020,47,REG,32,Hauts-de-France,port_du_masque,82.20437566611001
+2020-12-08,2020,50,REG,32,Hauts-de-France,port_du_masque,87.60505280629395
+2021-01-12,2021,2,REG,32,Hauts-de-France,port_du_masque,81.40052368618008
+2021-02-09,2021,6,REG,32,Hauts-de-France,port_du_masque,79.22663767434898
+2021-03-09,2021,10,REG,32,Hauts-de-France,port_du_masque,84.19872471939254
+2021-04-20,2021,16,REG,32,Hauts-de-France,port_du_masque,85.68808961488081
+2021-05-11,2021,19,REG,32,Hauts-de-France,port_du_masque,86.07844016496203
+2021-06-15,2021,24,REG,32,Hauts-de-France,port_du_masque,73.84157064155158
+2021-07-13,2021,28,REG,32,Hauts-de-France,port_du_masque,70.41104433496061
+2021-08-24,2021,34,REG,32,Hauts-de-France,port_du_masque,67.8659
+2021-09-28,2021,39,REG,32,Hauts-de-France,port_du_masque,68.06881247638967
+2020-11-03,2020,45,REG,44,Grand Est,port_du_masque,81.89200247871497
+2020-11-17,2020,47,REG,44,Grand Est,port_du_masque,75.81891286009382
+2020-12-08,2020,50,REG,44,Grand Est,port_du_masque,82.0100363225966
+2021-01-12,2021,2,REG,44,Grand Est,port_du_masque,83.54030902138314
+2021-02-09,2021,6,REG,44,Grand Est,port_du_masque,84.15478515873491
+2021-03-09,2021,10,REG,44,Grand Est,port_du_masque,76.09223854009649
+2021-04-20,2021,16,REG,44,Grand Est,port_du_masque,82.85713901624952
+2021-05-11,2021,19,REG,44,Grand Est,port_du_masque,82.96355508300796
+2021-06-15,2021,24,REG,44,Grand Est,port_du_masque,75.90329912224048
+2021-07-13,2021,28,REG,44,Grand Est,port_du_masque,70.61466001458201
+2021-08-24,2021,34,REG,44,Grand Est,port_du_masque,69.42049999999999
+2021-09-28,2021,39,REG,44,Grand Est,port_du_masque,62.8498623444551
+2020-11-03,2020,45,REG,52,Pays de la Loire,port_du_masque,90.8801261089544
+2020-11-17,2020,47,REG,52,Pays de la Loire,port_du_masque,89.75279997231212
+2020-12-08,2020,50,REG,52,Pays de la Loire,port_du_masque,85.41539778897256
+2021-01-12,2021,2,REG,52,Pays de la Loire,port_du_masque,87.28107917192574
+2021-02-09,2021,6,REG,52,Pays de la Loire,port_du_masque,85.250909568005
+2021-03-09,2021,10,REG,52,Pays de la Loire,port_du_masque,87.74126051176417
+2021-04-20,2021,16,REG,52,Pays de la Loire,port_du_masque,86.07396143438125
+2021-05-11,2021,19,REG,52,Pays de la Loire,port_du_masque,84.50452899611776
+2021-06-15,2021,24,REG,52,Pays de la Loire,port_du_masque,73.40127732084713
+2021-07-13,2021,28,REG,52,Pays de la Loire,port_du_masque,71.53333989296597
+2021-08-24,2021,34,REG,52,Pays de la Loire,port_du_masque,68.96248
+2021-09-28,2021,39,REG,52,Pays de la Loire,port_du_masque,65.4176966301049
+2020-11-03,2020,45,REG,53,Bretagne,port_du_masque,81.04621859704699
+2020-11-17,2020,47,REG,53,Bretagne,port_du_masque,94.92338746852688
+2020-12-08,2020,50,REG,53,Bretagne,port_du_masque,85.6270370023122
+2021-01-12,2021,2,REG,53,Bretagne,port_du_masque,80.22557123229235
+2021-02-09,2021,6,REG,53,Bretagne,port_du_masque,85.37564759353323
+2021-03-09,2021,10,REG,53,Bretagne,port_du_masque,85.50288172859
+2021-04-20,2021,16,REG,53,Bretagne,port_du_masque,81.65436298169465
+2021-05-11,2021,19,REG,53,Bretagne,port_du_masque,81.04780630791024
+2021-06-15,2021,24,REG,53,Bretagne,port_du_masque,71.29556141240776
+2021-07-13,2021,28,REG,53,Bretagne,port_du_masque,69.45027851170079
+2021-08-24,2021,34,REG,53,Bretagne,port_du_masque,70.3244
+2021-09-28,2021,39,REG,53,Bretagne,port_du_masque,69.80957699442428
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,port_du_masque,83.44706681943153
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,port_du_masque,81.31773953563722
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,port_du_masque,84.9739514839722
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,port_du_masque,80.33884791061497
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,port_du_masque,81.53211001454805
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,port_du_masque,81.01350262634041
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,port_du_masque,80.29254514126137
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,port_du_masque,79.12738642763738
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,port_du_masque,66.9661931014329
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,port_du_masque,64.51687448603771
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,port_du_masque,70.17439
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,port_du_masque,67.42665730435571
+2020-11-03,2020,45,REG,76,Occitanie,port_du_masque,84.28906844919044
+2020-11-17,2020,47,REG,76,Occitanie,port_du_masque,84.67593990111477
+2020-12-08,2020,50,REG,76,Occitanie,port_du_masque,86.92862793332333
+2021-01-12,2021,2,REG,76,Occitanie,port_du_masque,85.84800102062191
+2021-02-09,2021,6,REG,76,Occitanie,port_du_masque,84.73802230668296
+2021-03-09,2021,10,REG,76,Occitanie,port_du_masque,82.38814966590333
+2021-04-20,2021,16,REG,76,Occitanie,port_du_masque,83.8579190596482
+2021-05-11,2021,19,REG,76,Occitanie,port_du_masque,83.58604204004226
+2021-06-15,2021,24,REG,76,Occitanie,port_du_masque,67.81913350777698
+2021-07-13,2021,28,REG,76,Occitanie,port_du_masque,63.63660916123912
+2021-08-24,2021,34,REG,76,Occitanie,port_du_masque,66.60386
+2021-09-28,2021,39,REG,76,Occitanie,port_du_masque,67.7923141256374
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,port_du_masque,85.49438924682326
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,port_du_masque,85.88830853416248
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,port_du_masque,82.93100965780528
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,port_du_masque,85.4745641653898
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,port_du_masque,82.40925953927812
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,port_du_masque,79.21571171204116
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,port_du_masque,81.9530031998609
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,port_du_masque,80.55849749115484
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,port_du_masque,65.91059824768912
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,port_du_masque,62.204386543273785
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,port_du_masque,67.82102
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,port_du_masque,67.06452896645497
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,83.20669405193325
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,84.60937574407951
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,84.22935862523643
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,88.89389391166215
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,82.15799868689207
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,80.46544874895093
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,75.47203781325278
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,75.22708896170855
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,68.22255688033874
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,69.85173350861177
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,65.97237
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,port_du_masque,59.62856089610753
+2020-11-03,2020,45,REG,11,Île-de-France,saluer_sans_serrer_la_main,84.27936057381851
+2020-11-17,2020,47,REG,11,Île-de-France,saluer_sans_serrer_la_main,82.01167162737053
+2020-12-08,2020,50,REG,11,Île-de-France,saluer_sans_serrer_la_main,78.55353340310393
+2021-01-12,2021,2,REG,11,Île-de-France,saluer_sans_serrer_la_main,79.74917837170263
+2021-02-09,2021,6,REG,11,Île-de-France,saluer_sans_serrer_la_main,79.43990090186438
+2021-03-09,2021,10,REG,11,Île-de-France,saluer_sans_serrer_la_main,78.28710045194914
+2021-04-20,2021,16,REG,11,Île-de-France,saluer_sans_serrer_la_main,79.70849409346994
+2021-05-11,2021,19,REG,11,Île-de-France,saluer_sans_serrer_la_main,71.72723051587579
+2021-06-15,2021,24,REG,11,Île-de-France,saluer_sans_serrer_la_main,71.61242658055205
+2021-07-13,2021,28,REG,11,Île-de-France,saluer_sans_serrer_la_main,61.70903865320469
+2021-08-24,2021,34,REG,11,Île-de-France,saluer_sans_serrer_la_main,56.11578
+2021-09-28,2021,39,REG,11,Île-de-France,saluer_sans_serrer_la_main,64.4185019778163
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,85.3816843877103
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,85.2878523941629
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,77.31024933766513
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,74.3163723186112
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,74.20361176654072
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,76.46526133897721
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,78.44064997318779
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,75.46705542685893
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,65.12151793318502
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,62.67037393280287
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,58.09546
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,saluer_sans_serrer_la_main,60.08051624528035
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,84.97556476794404
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,90.31966221889267
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,84.75270554341245
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,71.83777108120076
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,78.98022872224877
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,70.74335393949882
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,81.84696825046714
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,68.2528917392381
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,65.39018310140676
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,65.95203605170047
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,59.63024
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,saluer_sans_serrer_la_main,61.89465934172148
+2020-11-03,2020,45,REG,28,Normandie,saluer_sans_serrer_la_main,83.8842589756334
+2020-11-17,2020,47,REG,28,Normandie,saluer_sans_serrer_la_main,79.1195860590073
+2020-12-08,2020,50,REG,28,Normandie,saluer_sans_serrer_la_main,72.36210927424243
+2021-01-12,2021,2,REG,28,Normandie,saluer_sans_serrer_la_main,74.56669898734445
+2021-02-09,2021,6,REG,28,Normandie,saluer_sans_serrer_la_main,75.49950736284737
+2021-03-09,2021,10,REG,28,Normandie,saluer_sans_serrer_la_main,75.79285312764176
+2021-04-20,2021,16,REG,28,Normandie,saluer_sans_serrer_la_main,78.05919645927641
+2021-05-11,2021,19,REG,28,Normandie,saluer_sans_serrer_la_main,76.186088387292
+2021-06-15,2021,24,REG,28,Normandie,saluer_sans_serrer_la_main,62.44085024268913
+2021-07-13,2021,28,REG,28,Normandie,saluer_sans_serrer_la_main,60.696632985311496
+2021-08-24,2021,34,REG,28,Normandie,saluer_sans_serrer_la_main,54.35959
+2021-09-28,2021,39,REG,28,Normandie,saluer_sans_serrer_la_main,62.13383964678933
+2020-11-03,2020,45,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,79.55759328053368
+2020-11-17,2020,47,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,84.66189021656365
+2020-12-08,2020,50,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,79.7493972684249
+2021-01-12,2021,2,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,81.38590815048946
+2021-02-09,2021,6,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,79.26527350403691
+2021-03-09,2021,10,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,70.99822080670585
+2021-04-20,2021,16,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,78.70725922068715
+2021-05-11,2021,19,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,65.79671068259391
+2021-06-15,2021,24,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,68.44953160742939
+2021-07-13,2021,28,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,60.68796835806748
+2021-08-24,2021,34,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,56.42903
+2021-09-28,2021,39,REG,32,Hauts-de-France,saluer_sans_serrer_la_main,58.8321222024158
+2020-11-03,2020,45,REG,44,Grand Est,saluer_sans_serrer_la_main,86.01619734939062
+2020-11-17,2020,47,REG,44,Grand Est,saluer_sans_serrer_la_main,79.02200192340109
+2020-12-08,2020,50,REG,44,Grand Est,saluer_sans_serrer_la_main,81.62987941171608
+2021-01-12,2021,2,REG,44,Grand Est,saluer_sans_serrer_la_main,79.51545413342083
+2021-02-09,2021,6,REG,44,Grand Est,saluer_sans_serrer_la_main,80.74829960193244
+2021-03-09,2021,10,REG,44,Grand Est,saluer_sans_serrer_la_main,71.93510263525937
+2021-04-20,2021,16,REG,44,Grand Est,saluer_sans_serrer_la_main,82.5977245206632
+2021-05-11,2021,19,REG,44,Grand Est,saluer_sans_serrer_la_main,76.40588260296146
+2021-06-15,2021,24,REG,44,Grand Est,saluer_sans_serrer_la_main,67.06269115565442
+2021-07-13,2021,28,REG,44,Grand Est,saluer_sans_serrer_la_main,68.10769973338292
+2021-08-24,2021,34,REG,44,Grand Est,saluer_sans_serrer_la_main,64.5969
+2021-09-28,2021,39,REG,44,Grand Est,saluer_sans_serrer_la_main,56.92073338410443
+2020-11-03,2020,45,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,85.11433028329013
+2020-11-17,2020,47,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,82.0712767084947
+2020-12-08,2020,50,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,74.02384308881872
+2021-01-12,2021,2,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,73.18256041449888
+2021-02-09,2021,6,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,73.9095113106344
+2021-03-09,2021,10,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,70.3566810976244
+2021-04-20,2021,16,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,77.29508368811389
+2021-05-11,2021,19,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,70.59908028957203
+2021-06-15,2021,24,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,67.90912142052328
+2021-07-13,2021,28,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,67.67052868067347
+2021-08-24,2021,34,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,54.44349
+2021-09-28,2021,39,REG,52,Pays de la Loire,saluer_sans_serrer_la_main,51.3188067671318
+2020-11-03,2020,45,REG,53,Bretagne,saluer_sans_serrer_la_main,84.22712510075814
+2020-11-17,2020,47,REG,53,Bretagne,saluer_sans_serrer_la_main,90.27725491726537
+2020-12-08,2020,50,REG,53,Bretagne,saluer_sans_serrer_la_main,81.44499575068164
+2021-01-12,2021,2,REG,53,Bretagne,saluer_sans_serrer_la_main,80.51621278789256
+2021-02-09,2021,6,REG,53,Bretagne,saluer_sans_serrer_la_main,75.69900339837137
+2021-03-09,2021,10,REG,53,Bretagne,saluer_sans_serrer_la_main,83.180641044769
+2021-04-20,2021,16,REG,53,Bretagne,saluer_sans_serrer_la_main,73.87598730879196
+2021-05-11,2021,19,REG,53,Bretagne,saluer_sans_serrer_la_main,72.70715611539956
+2021-06-15,2021,24,REG,53,Bretagne,saluer_sans_serrer_la_main,63.1680296290553
+2021-07-13,2021,28,REG,53,Bretagne,saluer_sans_serrer_la_main,59.7066695981039
+2021-08-24,2021,34,REG,53,Bretagne,saluer_sans_serrer_la_main,60.04682
+2021-09-28,2021,39,REG,53,Bretagne,saluer_sans_serrer_la_main,45.73266078840032
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,81.64037044312246
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,78.59800021266172
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,78.74474871002865
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,79.63557324205557
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,76.45664453236756
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,73.88104587032278
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,78.42079652032056
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,69.11683964033662
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,67.86917224098568
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,62.384759691298555
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,58.75197
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,saluer_sans_serrer_la_main,56.142807200309534
+2020-11-03,2020,45,REG,76,Occitanie,saluer_sans_serrer_la_main,76.96624055815268
+2020-11-17,2020,47,REG,76,Occitanie,saluer_sans_serrer_la_main,75.53671113441524
+2020-12-08,2020,50,REG,76,Occitanie,saluer_sans_serrer_la_main,78.07203228390779
+2021-01-12,2021,2,REG,76,Occitanie,saluer_sans_serrer_la_main,76.6580941171493
+2021-02-09,2021,6,REG,76,Occitanie,saluer_sans_serrer_la_main,80.86755982920234
+2021-03-09,2021,10,REG,76,Occitanie,saluer_sans_serrer_la_main,73.87974501561582
+2021-04-20,2021,16,REG,76,Occitanie,saluer_sans_serrer_la_main,72.48187564362014
+2021-05-11,2021,19,REG,76,Occitanie,saluer_sans_serrer_la_main,74.31075380539336
+2021-06-15,2021,24,REG,76,Occitanie,saluer_sans_serrer_la_main,61.74693592205457
+2021-07-13,2021,28,REG,76,Occitanie,saluer_sans_serrer_la_main,66.15043243886807
+2021-08-24,2021,34,REG,76,Occitanie,saluer_sans_serrer_la_main,56.36126
+2021-09-28,2021,39,REG,76,Occitanie,saluer_sans_serrer_la_main,64.02230819276755
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,83.76057476778986
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,85.62898264378647
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,78.67636698116858
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,81.47149292244085
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,72.69507524481439
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,74.77088153923664
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,79.7412105629195
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,74.83471230055768
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,62.4671055997344
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,56.34895036701548
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,61.0063
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,saluer_sans_serrer_la_main,56.3007094359461
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,82.7919237524387
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,81.6341511707244
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,78.5648884226003
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,69.01480800365003
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,74.19533275063169
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,78.45727187992797
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,74.06242126537835
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,70.94408126438901
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,65.50073453067526
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,63.22535829894023
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,57.476609999999994
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,saluer_sans_serrer_la_main,56.362500711109384
+2020-11-03,2020,45,REG,11,Île-de-France,vaccines_adultes,
+2020-11-17,2020,47,REG,11,Île-de-France,vaccines_adultes,
+2020-12-08,2020,50,REG,11,Île-de-France,vaccines_adultes,
+2021-01-12,2021,2,REG,11,Île-de-France,vaccines_adultes,
+2021-02-09,2021,6,REG,11,Île-de-France,vaccines_adultes,3.849810547623141
+2021-03-09,2021,10,REG,11,Île-de-France,vaccines_adultes,14.013989775289796
+2021-04-20,2021,16,REG,11,Île-de-France,vaccines_adultes,33.24185485162809
+2021-05-11,2021,19,REG,11,Île-de-France,vaccines_adultes,53.76688943791941
+2021-06-15,2021,24,REG,11,Île-de-France,vaccines_adultes,70.36445587634852
+2021-07-13,2021,28,REG,11,Île-de-France,vaccines_adultes,75.06974907804587
+2021-08-24,2021,34,REG,11,Île-de-France,vaccines_adultes,85.44674
+2021-09-28,2021,39,REG,11,Île-de-France,vaccines_adultes,87.51342677819801
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,vaccines_adultes,
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,vaccines_adultes,
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,vaccines_adultes,
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,vaccines_adultes,
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,vaccines_adultes,3.461333797989899
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,vaccines_adultes,5.973423327374426
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,vaccines_adultes,24.52215553395273
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,vaccines_adultes,47.57800813219728
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,vaccines_adultes,68.92091319404706
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,vaccines_adultes,75.77910535705419
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,vaccines_adultes,77.85661
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,vaccines_adultes,85.9043830639485
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,5.773701852262445
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,6.822307396101214
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,22.9058623242544
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,40.55243655944976
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,53.164049265658576
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,74.2332087568344
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,82.39961
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,vaccines_adultes,86.29303919646064
+2020-11-03,2020,45,REG,28,Normandie,vaccines_adultes,
+2020-11-17,2020,47,REG,28,Normandie,vaccines_adultes,
+2020-12-08,2020,50,REG,28,Normandie,vaccines_adultes,
+2021-01-12,2021,2,REG,28,Normandie,vaccines_adultes,
+2021-02-09,2021,6,REG,28,Normandie,vaccines_adultes,1.7413878170947152
+2021-03-09,2021,10,REG,28,Normandie,vaccines_adultes,15.067040185816335
+2021-04-20,2021,16,REG,28,Normandie,vaccines_adultes,25.88227004692923
+2021-05-11,2021,19,REG,28,Normandie,vaccines_adultes,42.41275545208369
+2021-06-15,2021,24,REG,28,Normandie,vaccines_adultes,60.93389533784955
+2021-07-13,2021,28,REG,28,Normandie,vaccines_adultes,77.4241472456869
+2021-08-24,2021,34,REG,28,Normandie,vaccines_adultes,86.95613
+2021-09-28,2021,39,REG,28,Normandie,vaccines_adultes,85.90378818059851
+2020-11-03,2020,45,REG,32,Hauts-de-France,vaccines_adultes,
+2020-11-17,2020,47,REG,32,Hauts-de-France,vaccines_adultes,
+2020-12-08,2020,50,REG,32,Hauts-de-France,vaccines_adultes,
+2021-01-12,2021,2,REG,32,Hauts-de-France,vaccines_adultes,
+2021-02-09,2021,6,REG,32,Hauts-de-France,vaccines_adultes,4.3862464211963275
+2021-03-09,2021,10,REG,32,Hauts-de-France,vaccines_adultes,11.681667282994134
+2021-04-20,2021,16,REG,32,Hauts-de-France,vaccines_adultes,25.447658609332223
+2021-05-11,2021,19,REG,32,Hauts-de-France,vaccines_adultes,51.551406849741035
+2021-06-15,2021,24,REG,32,Hauts-de-France,vaccines_adultes,62.84583704575041
+2021-07-13,2021,28,REG,32,Hauts-de-France,vaccines_adultes,72.84088307489544
+2021-08-24,2021,34,REG,32,Hauts-de-France,vaccines_adultes,88.21263
+2021-09-28,2021,39,REG,32,Hauts-de-France,vaccines_adultes,87.70247333226543
+2020-11-03,2020,45,REG,44,Grand Est,vaccines_adultes,
+2020-11-17,2020,47,REG,44,Grand Est,vaccines_adultes,
+2020-12-08,2020,50,REG,44,Grand Est,vaccines_adultes,
+2021-01-12,2021,2,REG,44,Grand Est,vaccines_adultes,
+2021-02-09,2021,6,REG,44,Grand Est,vaccines_adultes,2.737198244783419
+2021-03-09,2021,10,REG,44,Grand Est,vaccines_adultes,11.334368912623956
+2021-04-20,2021,16,REG,44,Grand Est,vaccines_adultes,29.595743543301996
+2021-05-11,2021,19,REG,44,Grand Est,vaccines_adultes,45.66112890971067
+2021-06-15,2021,24,REG,44,Grand Est,vaccines_adultes,68.75808161131476
+2021-07-13,2021,28,REG,44,Grand Est,vaccines_adultes,71.09519544412082
+2021-08-24,2021,34,REG,44,Grand Est,vaccines_adultes,84.64723
+2021-09-28,2021,39,REG,44,Grand Est,vaccines_adultes,82.65433627113052
+2020-11-03,2020,45,REG,52,Pays de la Loire,vaccines_adultes,
+2020-11-17,2020,47,REG,52,Pays de la Loire,vaccines_adultes,
+2020-12-08,2020,50,REG,52,Pays de la Loire,vaccines_adultes,
+2021-01-12,2021,2,REG,52,Pays de la Loire,vaccines_adultes,
+2021-02-09,2021,6,REG,52,Pays de la Loire,vaccines_adultes,1.645768511452579
+2021-03-09,2021,10,REG,52,Pays de la Loire,vaccines_adultes,8.91781122752311
+2021-04-20,2021,16,REG,52,Pays de la Loire,vaccines_adultes,27.260589813087392
+2021-05-11,2021,19,REG,52,Pays de la Loire,vaccines_adultes,39.013589449898426
+2021-06-15,2021,24,REG,52,Pays de la Loire,vaccines_adultes,71.91132966371605
+2021-07-13,2021,28,REG,52,Pays de la Loire,vaccines_adultes,71.65037912916038
+2021-08-24,2021,34,REG,52,Pays de la Loire,vaccines_adultes,83.1724
+2021-09-28,2021,39,REG,52,Pays de la Loire,vaccines_adultes,87.84013919507596
+2020-11-03,2020,45,REG,53,Bretagne,vaccines_adultes,
+2020-11-17,2020,47,REG,53,Bretagne,vaccines_adultes,
+2020-12-08,2020,50,REG,53,Bretagne,vaccines_adultes,
+2021-01-12,2021,2,REG,53,Bretagne,vaccines_adultes,
+2021-02-09,2021,6,REG,53,Bretagne,vaccines_adultes,5.897110081277561
+2021-03-09,2021,10,REG,53,Bretagne,vaccines_adultes,14.077837605286891
+2021-04-20,2021,16,REG,53,Bretagne,vaccines_adultes,29.319853024639837
+2021-05-11,2021,19,REG,53,Bretagne,vaccines_adultes,30.80781641446564
+2021-06-15,2021,24,REG,53,Bretagne,vaccines_adultes,69.01656891670831
+2021-07-13,2021,28,REG,53,Bretagne,vaccines_adultes,77.45830700058825
+2021-08-24,2021,34,REG,53,Bretagne,vaccines_adultes,89.15409
+2021-09-28,2021,39,REG,53,Bretagne,vaccines_adultes,83.40809627905331
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,vaccines_adultes,
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,vaccines_adultes,
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,vaccines_adultes,
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,vaccines_adultes,
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,vaccines_adultes,2.8813639921615386
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,vaccines_adultes,8.281126985339371
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,vaccines_adultes,26.506899340530577
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,vaccines_adultes,49.26050275008701
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,vaccines_adultes,60.91036819188078
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,vaccines_adultes,69.1298018188104
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,vaccines_adultes,86.19283
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,vaccines_adultes,83.40141380752442
+2020-11-03,2020,45,REG,76,Occitanie,vaccines_adultes,
+2020-11-17,2020,47,REG,76,Occitanie,vaccines_adultes,
+2020-12-08,2020,50,REG,76,Occitanie,vaccines_adultes,
+2021-01-12,2021,2,REG,76,Occitanie,vaccines_adultes,
+2021-02-09,2021,6,REG,76,Occitanie,vaccines_adultes,5.790230752397449
+2021-03-09,2021,10,REG,76,Occitanie,vaccines_adultes,12.202204162701
+2021-04-20,2021,16,REG,76,Occitanie,vaccines_adultes,30.97497088033066
+2021-05-11,2021,19,REG,76,Occitanie,vaccines_adultes,44.85043890584014
+2021-06-15,2021,24,REG,76,Occitanie,vaccines_adultes,59.22005400006238
+2021-07-13,2021,28,REG,76,Occitanie,vaccines_adultes,68.7683445927822
+2021-08-24,2021,34,REG,76,Occitanie,vaccines_adultes,76.80358000000001
+2021-09-28,2021,39,REG,76,Occitanie,vaccines_adultes,79.48907427799399
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,3.5303567985597395
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,8.31877657090057
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,29.352219191202707
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,44.89355004235304
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,60.63335339416256
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,76.70992645824633
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,81.87906000000001
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,vaccines_adultes,85.43069782617981
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,2.300931413922605
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,9.78730331795869
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,33.932805359221504
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,49.19822203167082
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,55.01769823825931
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,67.0048062493844
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,80.27427
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,vaccines_adultes,74.68264391803797
+2020-11-03,2020,45,REG,11,Île-de-France,vaccines_enfants,
+2020-11-17,2020,47,REG,11,Île-de-France,vaccines_enfants,
+2020-12-08,2020,50,REG,11,Île-de-France,vaccines_enfants,
+2021-01-12,2021,2,REG,11,Île-de-France,vaccines_enfants,
+2021-02-09,2021,6,REG,11,Île-de-France,vaccines_enfants,
+2021-03-09,2021,10,REG,11,Île-de-France,vaccines_enfants,
+2021-04-20,2021,16,REG,11,Île-de-France,vaccines_enfants,
+2021-05-11,2021,19,REG,11,Île-de-France,vaccines_enfants,
+2021-06-15,2021,24,REG,11,Île-de-France,vaccines_enfants,
+2021-07-13,2021,28,REG,11,Île-de-France,vaccines_enfants,
+2021-08-24,2021,34,REG,11,Île-de-France,vaccines_enfants,25.943690000000004
+2021-09-28,2021,39,REG,11,Île-de-France,vaccines_enfants,23.073662756097583
+2020-11-03,2020,45,REG,24,Centre-Val de Loire,vaccines_enfants,
+2020-11-17,2020,47,REG,24,Centre-Val de Loire,vaccines_enfants,
+2020-12-08,2020,50,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-01-12,2021,2,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-02-09,2021,6,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-03-09,2021,10,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-04-20,2021,16,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-05-11,2021,19,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-06-15,2021,24,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-07-13,2021,28,REG,24,Centre-Val de Loire,vaccines_enfants,
+2021-08-24,2021,34,REG,24,Centre-Val de Loire,vaccines_enfants,35.313919999999996
+2021-09-28,2021,39,REG,24,Centre-Val de Loire,vaccines_enfants,38.42865973645313
+2020-11-03,2020,45,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2020-11-17,2020,47,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2020-12-08,2020,50,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-01-12,2021,2,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-02-09,2021,6,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-03-09,2021,10,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-04-20,2021,16,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-05-11,2021,19,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-06-15,2021,24,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-07-13,2021,28,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,
+2021-08-24,2021,34,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,29.16531
+2021-09-28,2021,39,REG,27,Bourgogne-Franche-Comté,vaccines_enfants,37.19786617620554
+2020-11-03,2020,45,REG,28,Normandie,vaccines_enfants,
+2020-11-17,2020,47,REG,28,Normandie,vaccines_enfants,
+2020-12-08,2020,50,REG,28,Normandie,vaccines_enfants,
+2021-01-12,2021,2,REG,28,Normandie,vaccines_enfants,
+2021-02-09,2021,6,REG,28,Normandie,vaccines_enfants,
+2021-03-09,2021,10,REG,28,Normandie,vaccines_enfants,
+2021-04-20,2021,16,REG,28,Normandie,vaccines_enfants,
+2021-05-11,2021,19,REG,28,Normandie,vaccines_enfants,
+2021-06-15,2021,24,REG,28,Normandie,vaccines_enfants,
+2021-07-13,2021,28,REG,28,Normandie,vaccines_enfants,
+2021-08-24,2021,34,REG,28,Normandie,vaccines_enfants,16.36827
+2021-09-28,2021,39,REG,28,Normandie,vaccines_enfants,24.35885994863989
+2020-11-03,2020,45,REG,32,Hauts-de-France,vaccines_enfants,
+2020-11-17,2020,47,REG,32,Hauts-de-France,vaccines_enfants,
+2020-12-08,2020,50,REG,32,Hauts-de-France,vaccines_enfants,
+2021-01-12,2021,2,REG,32,Hauts-de-France,vaccines_enfants,
+2021-02-09,2021,6,REG,32,Hauts-de-France,vaccines_enfants,
+2021-03-09,2021,10,REG,32,Hauts-de-France,vaccines_enfants,
+2021-04-20,2021,16,REG,32,Hauts-de-France,vaccines_enfants,
+2021-05-11,2021,19,REG,32,Hauts-de-France,vaccines_enfants,
+2021-06-15,2021,24,REG,32,Hauts-de-France,vaccines_enfants,
+2021-07-13,2021,28,REG,32,Hauts-de-France,vaccines_enfants,
+2021-08-24,2021,34,REG,32,Hauts-de-France,vaccines_enfants,24.64767
+2021-09-28,2021,39,REG,32,Hauts-de-France,vaccines_enfants,27.93651449858877
+2020-11-03,2020,45,REG,44,Grand Est,vaccines_enfants,
+2020-11-17,2020,47,REG,44,Grand Est,vaccines_enfants,
+2020-12-08,2020,50,REG,44,Grand Est,vaccines_enfants,
+2021-01-12,2021,2,REG,44,Grand Est,vaccines_enfants,
+2021-02-09,2021,6,REG,44,Grand Est,vaccines_enfants,
+2021-03-09,2021,10,REG,44,Grand Est,vaccines_enfants,
+2021-04-20,2021,16,REG,44,Grand Est,vaccines_enfants,
+2021-05-11,2021,19,REG,44,Grand Est,vaccines_enfants,
+2021-06-15,2021,24,REG,44,Grand Est,vaccines_enfants,
+2021-07-13,2021,28,REG,44,Grand Est,vaccines_enfants,
+2021-08-24,2021,34,REG,44,Grand Est,vaccines_enfants,22.37415
+2021-09-28,2021,39,REG,44,Grand Est,vaccines_enfants,28.453002271312837
+2020-11-03,2020,45,REG,52,Pays de la Loire,vaccines_enfants,
+2020-11-17,2020,47,REG,52,Pays de la Loire,vaccines_enfants,
+2020-12-08,2020,50,REG,52,Pays de la Loire,vaccines_enfants,
+2021-01-12,2021,2,REG,52,Pays de la Loire,vaccines_enfants,
+2021-02-09,2021,6,REG,52,Pays de la Loire,vaccines_enfants,
+2021-03-09,2021,10,REG,52,Pays de la Loire,vaccines_enfants,
+2021-04-20,2021,16,REG,52,Pays de la Loire,vaccines_enfants,
+2021-05-11,2021,19,REG,52,Pays de la Loire,vaccines_enfants,
+2021-06-15,2021,24,REG,52,Pays de la Loire,vaccines_enfants,
+2021-07-13,2021,28,REG,52,Pays de la Loire,vaccines_enfants,
+2021-08-24,2021,34,REG,52,Pays de la Loire,vaccines_enfants,35.6032
+2021-09-28,2021,39,REG,52,Pays de la Loire,vaccines_enfants,37.6031478364011
+2020-11-03,2020,45,REG,53,Bretagne,vaccines_enfants,
+2020-11-17,2020,47,REG,53,Bretagne,vaccines_enfants,
+2020-12-08,2020,50,REG,53,Bretagne,vaccines_enfants,
+2021-01-12,2021,2,REG,53,Bretagne,vaccines_enfants,
+2021-02-09,2021,6,REG,53,Bretagne,vaccines_enfants,
+2021-03-09,2021,10,REG,53,Bretagne,vaccines_enfants,
+2021-04-20,2021,16,REG,53,Bretagne,vaccines_enfants,
+2021-05-11,2021,19,REG,53,Bretagne,vaccines_enfants,
+2021-06-15,2021,24,REG,53,Bretagne,vaccines_enfants,
+2021-07-13,2021,28,REG,53,Bretagne,vaccines_enfants,
+2021-08-24,2021,34,REG,53,Bretagne,vaccines_enfants,36.52109
+2021-09-28,2021,39,REG,53,Bretagne,vaccines_enfants,36.7506554762806
+2020-11-03,2020,45,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2020-11-17,2020,47,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2020-12-08,2020,50,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-01-12,2021,2,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-02-09,2021,6,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-03-09,2021,10,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-04-20,2021,16,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-05-11,2021,19,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-06-15,2021,24,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-07-13,2021,28,REG,75,Nouvelle-Aquitaine,vaccines_enfants,
+2021-08-24,2021,34,REG,75,Nouvelle-Aquitaine,vaccines_enfants,30.92727
+2021-09-28,2021,39,REG,75,Nouvelle-Aquitaine,vaccines_enfants,33.81775785158177
+2020-11-03,2020,45,REG,76,Occitanie,vaccines_enfants,
+2020-11-17,2020,47,REG,76,Occitanie,vaccines_enfants,
+2020-12-08,2020,50,REG,76,Occitanie,vaccines_enfants,
+2021-01-12,2021,2,REG,76,Occitanie,vaccines_enfants,
+2021-02-09,2021,6,REG,76,Occitanie,vaccines_enfants,
+2021-03-09,2021,10,REG,76,Occitanie,vaccines_enfants,
+2021-04-20,2021,16,REG,76,Occitanie,vaccines_enfants,
+2021-05-11,2021,19,REG,76,Occitanie,vaccines_enfants,
+2021-06-15,2021,24,REG,76,Occitanie,vaccines_enfants,
+2021-07-13,2021,28,REG,76,Occitanie,vaccines_enfants,
+2021-08-24,2021,34,REG,76,Occitanie,vaccines_enfants,29.45564
+2021-09-28,2021,39,REG,76,Occitanie,vaccines_enfants,24.57587142049804
+2020-11-03,2020,45,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2020-11-17,2020,47,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2020-12-08,2020,50,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-01-12,2021,2,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-02-09,2021,6,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-03-09,2021,10,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-04-20,2021,16,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-05-11,2021,19,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-06-15,2021,24,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-07-13,2021,28,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,
+2021-08-24,2021,34,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,22.39382
+2021-09-28,2021,39,REG,84,Auvergne-Rhône-Alpes,vaccines_enfants,27.413285403125386
+2020-11-03,2020,45,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2020-11-17,2020,47,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2020-12-08,2020,50,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-01-12,2021,2,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-02-09,2021,6,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-03-09,2021,10,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-04-20,2021,16,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-05-11,2021,19,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-06-15,2021,24,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-07-13,2021,28,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,
+2021-08-24,2021,34,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,25.18672
+2021-09-28,2021,39,REG,93,Provence-Alpes-Côte d'Azur,vaccines_enfants,20.15218089333242
