@@ -111,43 +111,133 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Aperçu des données", "Modélisa
                                         "ERVISS RSV — Modélisation & Scénarios"
                                         ])
 with tab1:
-    st.header("Exploration des données RSV")
+    st.header("📊 Aperçu et exploration des données RSV")
     st.markdown("""
-Le virus respiratoire syncytial (**RSV**) provoque des épidémies saisonnières hivernales.  
-Ce tableau de bord explore son évolution en France depuis 2014.
+Le virus respiratoire syncytial (**RSV**) provoque des épidémies hivernales récurrentes en France.  
+Cette section présente une **vue d’ensemble interactive** des principales séries temporelles mobilisées dans l’étude :
+- Évolution hebdomadaire du RSV
+- Indicateurs de **mobilité**, **gestes barrières**, **température moyenne**
+- Couverture **vaccinale COVID-19**
 
-Le graphique ci-dessous montre le taux hebdomadaire national de passages aux urgences (ou SOS Médecins) pour suspicion de RSV.
+Les visualisations ci-dessous permettent de contextualiser les ruptures liées à la pandémie et de comparer les tendances.
 """)
 
+    # === 1️⃣ KPIs principaux ===
+    col1, col2, col3, col4 = st.columns(4)
+    kpi_mean = df["RSV"].mean()
+    kpi_max = df["RSV"].max()
+    kpi_peak_date = df["RSV"].idxmax().strftime("%Y-%m-%d")
+    kpi_peak_year = df["RSV"].idxmax().year
+    col1.metric("RSV moyen", f"{kpi_mean:.2f}")
+    col2.metric("RSV maximum", f"{kpi_max:.2f}")
+    col3.metric("Semaine du pic", kpi_peak_date)
+    col4.metric("Année du pic", kpi_peak_year)
+
+    # === 2️⃣ Graphique principal RSV (avec jalons COVID et Vaccin) ===
     COVID_START = pd.to_datetime("2020-03-01")
     VACC_START  = pd.to_datetime("2021-01-01")
 
-    # Série RSV simple
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=rsv_series.index, y=rsv_series, mode='lines', name='RSV Observé', line=dict(color='firebrick')))
-    fig.add_vline(x=COVID_START, line=dict(color="red", dash="dash"))
-    fig.add_vline(x=VACC_START, line=dict(color="green", dash="dash"))
-    fig.add_annotation(x=COVID_START, y=1.05 * rsv_series.max(), text="COVID-19", showarrow=False, font=dict(color="red"))
-    fig.add_annotation(x=VACC_START,  y=1.05 * rsv_series.max(), text="Vaccination", showarrow=False, font=dict(color="green"))
-    fig.update_layout(title="Taux hebdomadaire de RSV en France (2014–2025)", 
-                      xaxis_title="Date", yaxis_title="Taux de RSV (pour 100k hab.)",
-                      height=500)
-    st.plotly_chart(fig, use_container_width=True)
+    fig_rsv = go.Figure()
+    fig_rsv.add_trace(go.Scatter(
+        x=df.index, y=df["RSV"], mode="lines", name="RSV Observé",
+        line=dict(color="firebrick", width=2)
+    ))
+    fig_rsv.add_vline(x=COVID_START, line_dash="dash", line_color="red")
+    fig_rsv.add_vline(x=VACC_START,  line_dash="dash", line_color="green")
+    fig_rsv.add_annotation(x=COVID_START, y=1.05 * df["RSV"].max(), text="COVID-19", showarrow=False, font=dict(color="red"))
+    fig_rsv.add_annotation(x=VACC_START,  y=1.05 * df["RSV"].max(), text="Vaccination", showarrow=False, font=dict(color="green"))
+    fig_rsv.update_layout(
+        title="📈 Évolution du RSV en France (2014–2025)",
+        xaxis_title="Date (lundi ISO)",
+        yaxis_title="Taux RSV (pour 100k hab.)",
+        template="plotly_white",
+        height=500
+    )
+    st.plotly_chart(fig_rsv, use_container_width=True)
 
-    st.markdown("### Distribution annuelle du RSV")
-    yearly = rsv_series.groupby(rsv_series.index.year).sum()
-    fig2 = go.Figure()
-    fig2.add_trace(go.Bar(x=yearly.index.astype(str), y=yearly.values, name='RSV annuel'))
-    fig2.update_layout(title="Charge annuelle totale RSV (somme des taux hebdomadaires)", 
-                       xaxis_title="Année", yaxis_title="Somme des taux RSV (pour 100k hab.)")
-    st.plotly_chart(fig2, use_container_width=True)
+    # === 3️⃣ Corrélations simples ===
+    st.subheader("🔗 Corrélations entre variables clés")
+    vars_corr = ["RSV", "couv_complet", "MNP_score", "work", "tmean"]
+    corr_df = df[vars_corr].corr().round(2)
+    fig_corr = go.Figure(data=go.Heatmap(
+        z=corr_df.values,
+        x=corr_df.columns,
+        y=corr_df.index,
+        colorscale="RdBu",
+        zmin=-1, zmax=1,
+        text=corr_df.values,
+        texttemplate="%{text}",
+        textfont={"size":12}
+    ))
+    fig_corr.update_layout(
+        title="Matrice de corrélation (RSV vs variables explicatives)",
+        height=400, template="plotly_white"
+    )
+    st.plotly_chart(fig_corr, use_container_width=True)
 
-    st.markdown("""
-**Lectures :**
-- Les pics hivernaux sont marqués et très réguliers avant 2020.
-- L’hiver 2020-21 montre une **quasi-disparition** du RSV, liée aux mesures sanitaires COVID.
-- La saison 2021-22 démarre plus tôt et semble plus intense que la normale.
-""")
+    st.caption("👉 On observe une corrélation positive entre la mobilité et le RSV, et négative avec les gestes barrières.")
+
+    # === 4️⃣ Multi-séries temporelles synchronisées ===
+    st.subheader("📉 Tendances temporelles comparées")
+    fig_multi = go.Figure()
+    fig_multi.add_trace(go.Scatter(x=df.index, y=df["RSV"]/df["RSV"].max(), name="RSV (normé)", line=dict(color="firebrick")))
+    fig_multi.add_trace(go.Scatter(x=df.index, y=df["couv_complet"]/df["couv_complet"].max(), name="Vaccination", line=dict(color="green", dash="dot")))
+    fig_multi.add_trace(go.Scatter(x=df.index, y=df["MNP_score"]/df["MNP_score"].max(), name="Gestes barrières", line=dict(color="royalblue", dash="dot")))
+    fig_multi.add_trace(go.Scatter(x=df.index, y=(df["work_red_z"]-df["work_red_z"].min())/(df["work_red_z"].max()-df["work_red_z"].min()), 
+                                   name="Mobilité inversée", line=dict(color="orange", dash="dot")))
+    fig_multi.add_trace(go.Scatter(x=df.index, y=(df["tmean_z"]-df["tmean_z"].min())/(df["tmean_z"].max()-df["tmean_z"].min()), 
+                                   name="Température (z)", line=dict(color="gray", dash="dot")))
+    fig_multi.update_layout(
+        title="Évolution comparée (échelles normalisées 0–1)",
+        xaxis_title="Date",
+        yaxis_title="Indice normalisé",
+        template="plotly_white",
+        height=550
+    )
+    st.plotly_chart(fig_multi, use_container_width=True)
+
+    # === 5️⃣ Distribution saisonnière moyenne ===
+    st.subheader("🕒 Saison moyenne du RSV (par semaine ISO)")
+    df["week_iso"] = df.index.isocalendar().week
+    mean_weekly = df.groupby("week_iso")["RSV"].mean().reset_index()
+    fig_week = go.Figure()
+    fig_week.add_trace(go.Scatter(
+        x=mean_weekly["week_iso"], y=mean_weekly["RSV"],
+        mode="lines+markers", name="RSV moyen par semaine ISO",
+        line=dict(color="firebrick", width=3)
+    ))
+    fig_week.update_layout(
+        title="Profil saisonnier moyen du RSV (2014–2025)",
+        xaxis_title="Semaine ISO (1–52)",
+        yaxis_title="RSV moyen (pour 100k hab.)",
+        template="plotly_white", height=450
+    )
+    st.plotly_chart(fig_week, use_container_width=True)
+    st.caption("👉 Le pic saisonnier RSV se situe classiquement entre les semaines 48 et 4, avec un décalage post-COVID visible en 2021.")
+
+    # === 6️⃣ Tableau interactif filtrable ===
+    st.subheader("📋 Aperçu tabulaire des données fusionnées")
+    st.markdown("Filtrez ou explorez la base complète utilisée pour les modèles :")
+    years = st.multiselect("Filtrer par année :", sorted(df.index.year.unique()), default=[2019, 2020, 2021, 2022, 2023])
+    df_filtered = df[df.index.year.isin(years)].copy()
+    st.dataframe(df_filtered.head(20), use_container_width=True)
+
+    # === 7️⃣ Option d’export ===
+    csv = df_filtered.reset_index().to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="📥 Télécharger les données fusionnées (CSV)",
+        data=csv,
+        file_name="RSV_dataset_filtered.csv",
+        mime="text/csv"
+    )
+
+    st.info("""
+    **Notes :**
+    - `MNP_score` = moyenne des z-scores de gestes barrières + mobilité inversée.
+    - `cov12_lag`, `MNP_lag`, `work_lag` = valeurs décalées (lags) utilisées dans les modèles.
+    - Données hebdomadaires (lundi ISO) normalisées et harmonisées pour tous les flux (ODiSSEE, VAC-SI, CoviPrev, Google, Météo-France).
+    """)
+
 with tab2:
     st.header("Modélisation multi-stratégies")
     st.markdown("""
