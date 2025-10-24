@@ -14,7 +14,7 @@ st.title("Analyse du Virus RSV - Tableau de Bord Interactif")
 # Chargement et préparation des données (mise en cache)
 @st.cache
 def load_and_prepare_data():
-    data_dir = "./data_clean"
+    data_dir = "../data_clean"
     common   = pd.read_csv(f"{data_dir}/ODISSEE/common_FR_long.csv")
     vacsi    = pd.read_csv(f"{data_dir}/VACSI/vacsi_fr_extended.csv")
     mobility = pd.read_csv(f"{data_dir}/GOOGLE/google_mobility_fr_weekly.csv")
@@ -337,7 +337,7 @@ with tab8:
 with tab9:
     st.header("🗺️ Pics saisonniers par région/département")
     from pathlib import Path
-    DATA = Path("./data_clean/ODISSEE")
+    DATA = Path("../data_clean/ODISSEE")
     reg = pd.read_csv(DATA/"common_REG_long.csv")
     dep = pd.read_csv(DATA/"common_DEP_long.csv")
 
