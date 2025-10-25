@@ -1,0 +1,32 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    RSV   R-squared:                       0.511
+Model:                            OLS   Adj. R-squared:                  0.496
+Method:                 Least Squares   F-statistic:                     29.67
+Date:                Sat, 25 Oct 2025   Prob (F-statistic):           5.90e-16
+Time:                        20:15:05   Log-Likelihood:                -734.98
+No. Observations:                  98   AIC:                             1478.
+Df Residuals:                      94   BIC:                             1488.
+Df Model:                           3                                         
+Covariance Type:                  HAC                                         
+================================================================================
+                   coef    std err          z      P>|z|      [0.025      0.975]
+--------------------------------------------------------------------------------
+t                0.4853      1.413      0.343      0.731      -2.285       3.255
+sin52         -193.3585    135.506     -1.427      0.154    -458.945      72.228
+cos52          606.3374    161.077      3.764      0.000     290.632     922.043
+post_covid     393.5756     88.222      4.461      0.000     220.664     566.488
+t_post_covid     0.4853      1.413      0.343      0.731      -2.285       3.255
+post_vacc      393.5756     88.222      4.461      0.000     220.664     566.488
+t_post_vacc      0.4853      1.413      0.343      0.731      -2.285       3.255
+==============================================================================
+Omnibus:                        6.589   Durbin-Watson:                   0.092
+Prob(Omnibus):                  0.037   Jarque-Bera (JB):                6.205
+Skew:                           0.606   Prob(JB):                       0.0449
+Kurtosis:                       3.225   Cond. No.                     3.62e+32
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 12 lags and without small sample correction
+[2] The smallest eigenvalue is 7.06e-60. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

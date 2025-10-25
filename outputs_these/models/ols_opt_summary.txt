@@ -1,0 +1,35 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    RSV   R-squared:                       0.971
+Model:                            OLS   Adj. R-squared:                  0.968
+Method:                 Least Squares   F-statistic:                     168.1
+Date:                Sat, 25 Oct 2025   Prob (F-statistic):           1.03e-47
+Time:                        20:15:05   Log-Likelihood:                -524.70
+No. Observations:                  89   AIC:                             1069.
+Df Residuals:                      79   BIC:                             1094.
+Df Model:                           9                                         
+Covariance Type:                  HC3                                         
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const        127.5788     80.879      1.577      0.115     -30.940     286.098
+cov12_lag     -1.6370      3.019     -0.542      0.588      -7.554       4.280
+MNP_lag       43.5589     25.767      1.691      0.091      -6.943      94.060
+work_lag       0.5623      1.208      0.465      0.642      -1.806       2.930
+tmean_z       -3.3528     39.649     -0.085      0.933     -81.063      74.358
+vacc_x_mnp    -2.6270      1.698     -1.547      0.122      -5.955       0.701
+RSV_lag1       1.5888      0.114     13.926      0.000       1.365       1.812
+RSV_lag2      -0.7163      0.121     -5.909      0.000      -0.954      -0.479
+sin52        -44.9745     25.917     -1.735      0.083     -95.770       5.821
+cos52         58.0777     64.151      0.905      0.365     -67.657     183.812
+==============================================================================
+Omnibus:                        9.010   Durbin-Watson:                   1.960
+Prob(Omnibus):                  0.011   Jarque-Bera (JB):               14.712
+Skew:                           0.351   Prob(JB):                     0.000639
+Kurtosis:                       4.864   Cond. No.                     9.29e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)
+[2] The condition number is large, 9.29e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
