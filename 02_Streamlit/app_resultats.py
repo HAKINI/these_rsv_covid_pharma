@@ -1675,9 +1675,7 @@ with tab_behav:
         ("2021-06-15", "Levées majeures"),
     ]
 
-    st.write("Fichiers utilisés :")
-    for p in [F_COMMON_FR, F_COMMON_REG, F_COMMON_DEP, F_COVIPREV, F_MOB_FR, F_MOB_REG, F_MOB_DEP, F_DPPS_FR]:
-        st.write(" -", p)
+    
 
     # ----------------------------
     # 1) HELPERS
@@ -1776,11 +1774,6 @@ with tab_behav:
     mob_fr  = read_csv(F_MOB_FR)
     mob_reg = read_csv(F_MOB_REG)
     dpps    = read_csv(F_DPPS_FR) if F_DPPS_FR else pd.DataFrame()
-
-    quickpeek(fr,     "common_FR_long")
-    quickpeek(cov,    "coviprev_reg_weekly")
-    quickpeek(mob_fr, "google_mobility_fr_weekly")
-    if not dpps.empty: quickpeek(dpps, "dpps_fr_weekly")
 
     # RSV national (ISO)
     rsv_fr_iso = (fr.loc[fr["topic"]=="RSV", ["year_iso","week_iso_num","taux_passages_urgences"]]
