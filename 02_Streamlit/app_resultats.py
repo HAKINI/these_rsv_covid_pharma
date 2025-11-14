@@ -44,21 +44,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
-def describe_figure(title: str, reading: str, insight: str):
-    st.markdown(
-        f"""
-        <div class="viz-explain">
-            <h4>{title}</h4>
-            <ul>
-                <li><strong>Comment lire :</strong> {reading}</li>
-                <li><strong>Ce qu’on observe :</strong> {insight}</li>
-            </ul>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
 # Dossiers & chemins (robustes)
 BASE_DIR = Path(__file__).resolve().parent
 DATA_ROOTS = []
@@ -313,11 +298,7 @@ with tab_nat:
     )
     st.plotly_chart(fig1a, use_container_width=True)
 
-    describe_figure(
-        "Figure 1A — Séries nationales ODiSSEE",
-        "Chaque courbe suit une métrique hebdomadaire (urgences, SOS, hospitalisations) ; les jalons COVID en pointillé permettent de repérer les ruptures temporelles.",
-        "On voit le décalage de la saison 2020-21 et l’intensification marquée 2022-23, avec une reprise synchronisée des trois systèmes de surveillance à l’automne."
-    )
+
 
 
     # Cell 6
@@ -407,11 +388,7 @@ with tab_nat:
     )
     st.plotly_chart(fig1b_pos, use_container_width=True)
 
-    describe_figure(
-        "Figure 1B-1 — % positivité ERVISS",
-        "Observer la part de tests positifs semaine par semaine ; les pointillés indiquent les dates clés COVID pour contextualiser les variations.",
-        "La positivité reste faible jusque 2020 puis explose chaque automne à partir de 2021, avec un pic 2022-23 et un retour plus modéré 2024-25."
-    )
+
 
 
 
@@ -467,11 +444,6 @@ with tab_nat:
     )
     st.plotly_chart(fig1b_dual, use_container_width=True)
 
-    describe_figure(
-        "Figure 1B-2 — Positivité vs détections/tests",
-        "Comparer l’évolution de la positivité (axe gauche) avec les volumes de détection/tests normalisés (axe droit).",
-        "Les détections suivent la positivité, tandis que l’intensification des tests en 2021-22 n’explique pas seule la flambée RSV (corrélation partielle)."
-    )
 
 
 
@@ -515,11 +487,6 @@ with tab_nat:
             legend=dict(orientation="h", y=-0.3, x=0.5, xanchor="center")
         )
         st.plotly_chart(fig_encart, use_container_width=True)
-        describe_figure(
-            "Encart — Détections vs tests",
-            "Chaque point est une semaine ; lire la pente de la tendance pour estimer la relation entre volume de tests et détections.",
-            "La corrélation positive (~0.6) indique qu’une partie de la hausse des détections s’explique par davantage de tests, sans toutefois suffire à justifier les pics."
-        )
 
     # Courbes mini : positivity vs tests
     if enc is not None and "positivity" in enc.columns and "tests_norm" in enc.columns:
@@ -536,11 +503,6 @@ with tab_nat:
             legend=dict(orientation="h", y=-0.28, x=0.5, xanchor="center")
         )
         st.plotly_chart(fig_encart2, use_container_width=True)
-        describe_figure(
-            "Encart — Positivité vs tests",
-            "Positivité en ligne pleine (gauche) vs intensité des tests (droite) ; aligner les pics pour juger des artefacts potentiels.",
-            "Les vagues montrent que la positivité grimpe plus tôt que le volume de tests, suggérant une circulation réelle avant l’intensification du dépistage."
-        )
 
 
     # Cell 14
@@ -597,13 +559,6 @@ with tab_nat:
     )
     st.plotly_chart(fig2, use_container_width=True)
 
-    describe_figure(
-        "Figure 2 — Heatmaps saisonnières",
-        "Lire chaque ligne comme une saison (juillet→juin) et chaque colonne comme une semaine de saison ; les couleurs indiquent l’intensité normalisée.",
-        "Les pics RSV hospitaliers et ERVISS se synchronisent après 2021, avec un basculement précoce 2022-23 et une saison 2020-21 très tardive."
-    )
-
-
 
     # Cell 16
     assert FR_REG is not None, "Fichier régional ODiSSEE manquant"
@@ -644,11 +599,7 @@ with tab_nat:
         margin=dict(l=160, r=30, t=70, b=80), height=900
     )
     st.plotly_chart(fig_R3a, use_container_width=True)
-    describe_figure(
-        "Figure R3A — Pic RSV par région/saison",
-        "Chaque case indique la semaine ISO du pic pour une région donnée ; couleurs chaudes = pic tardif.",
-        "Les régions basculent toutes après 2021 vers des pics concentrés autour de la semaine 47, avec une dispersion marquée en 2020-21."
-    )
+
 
     # (B) Barres — saison exemple
     focus_season = "2021/2022"
@@ -660,11 +611,7 @@ with tab_nat:
     )
     fig_R3b.update_layout(xaxis_tickangle=-45, margin=dict(l=160, r=30, t=70, b=120), height=600)
     st.plotly_chart(fig_R3b, use_container_width=True)
-    describe_figure(
-        f"Figure R3B — Focus {focus_season}",
-        "Histogramme horizontal des semaines de pic pour la saison sélectionnée.",
-        f"Le focus {focus_season} montre un gradient nord-sud avec des régions franciliennes plus tardives que l’Auvergne-Rhône-Alpes."
-    )
+
 
 
 
@@ -695,11 +642,7 @@ with tab_nat:
     )
     fig3.add_hline(y=0, line_dash="dot", line_color="black")
     st.plotly_chart(fig3, use_container_width=True)
-    describe_figure(
-        "Figure 3 — Décalage du pic vs baseline",
-        "Colonnes = saisons ; lire la valeur Δ pour connaître l’avance/retard du pic par rapport à 2019-20.",
-        "Le pic 2020-21 est repoussé de 13 semaines tandis que 2022-23 reste 5 semaines plus tôt que la référence, confirmant la nouvelle saisonnalité."
-    )
+
 
 
 
@@ -769,11 +712,6 @@ with tab_nat:
         legend=dict(orientation="h", y=-0.28, x=0.5, xanchor="center")
     )
     st.plotly_chart(fig4, use_container_width=True)
-    describe_figure(
-        "Figure 4 — Détections ERVISS par âge",
-        "Tracer z-score par groupe d’âge ; comparer l’ordre d’apparition des pics colorés.",
-        "Les nourrissons (<1 an) montent en premier, suivis des 1-4 ans ; les adolescents et adultes montrent une circulation plus modérée mais synchronisée."
-    )
 
 
 
@@ -826,12 +764,6 @@ with tab_reg:
         legend=dict(orientation="h", y=-0.25, x=0.5, xanchor="center")
     )
     st.plotly_chart(figD5_ecdf, use_container_width=True)
-    describe_figure(
-        "Figure D5-ECDF — Pic départemental",
-        "Courbe cumulative : lire la valeur Y pour connaître la proportion de départements ayant atteint le pic avant la semaine X.",
-        "Les saisons post-COVID deviennent plus concentrées (courbe plus raide), signe d’une synchronisation nationale accrue."
-    )
-
 
 
     # Cell 23
@@ -853,11 +785,6 @@ with tab_reg:
     figD5_strip_slider.update_xaxes(range=[0.5, 53.5], dtick=2)
     figD5_strip_slider.update_layout(width=1100, height=950, margin=dict(l=180, r=40, t=70, b=60))
     st.plotly_chart(figD5_strip_slider, use_container_width=True)
-    describe_figure(
-        "Figure D5-Strip — Animation temporelle",
-        "Chaque point = un département, positionné sur la semaine de pic ; utiliser le slider annuel pour suivre la progression.",
-        "On observe une dispersion exceptionnelle en 2020-21, puis un retour à des pics groupés sur la semaine 46-48 dès 2021-22."
-    )
 
     focus = 2021
     figD5_2021 = px.strip(
@@ -870,11 +797,6 @@ with tab_reg:
     figD5_2021.update_layout(width=1100, height=max(600, 10*peaks_year[peaks_year["year_iso"]==focus]["geo_name"].nunique()+180),
                              margin=dict(l=180, r=40, t=70, b=60))
     st.plotly_chart(figD5_2021, use_container_width=True)
-    describe_figure(
-        f"Figure D5-Strip — Focus {focus}",
-        "Lecture horizontale : les départements listés de haut en bas, avec jitter minimal pour montrer l’ordre exactement.",
-        f"Dans {focus}, les départements d’Île-de-France et des DOM présentent les pics les plus tardifs, alors que l’Ouest bascule en premier."
-    )
 
 
 
@@ -935,11 +857,6 @@ with tab_tables:
 
     peaks = peaks.sort_values("season_label").reset_index(drop=True)
     st.dataframe(peaks, use_container_width=True)
-    describe_figure(
-        "Tableau — Chronologie des pics",
-        "Filtrer par saison pour repérer la date exacte du pic et la semaine relative.",
-        "Les saisons 2022-23 et 2023-24 concentrent les pics autour de fin novembre, confirmant la nouvelle dynamique post-pandémique."
-    )
 
     fig_tbl_A = table_plotly(
         peaks,
@@ -948,11 +865,7 @@ with tab_tables:
         col_widths=[90, 120, 110, 120, 110]
     )
     st.plotly_chart(fig_tbl_A, use_container_width=True)
-    describe_figure(
-        "Figure IV.1-A — Tableau interactif",
-        "Cliquer sur l’en-tête pour trier ; les colonnes formatées facilitent l’intégration dans le rapport.",
-        "On retrouve la même lecture : succession précoce depuis 2021-22 avec une atténuation de l’amplitude en 2024-25."
-    )
+
 
     stats = pd.DataFrame({
         "season_label": ["2019/2020","2020/2021","2021/2022","2022/2023","2023/2024","2024/2025"],
@@ -975,11 +888,6 @@ with tab_tables:
         col_widths=[90, 90, 100, 90, 120, 90, 120, 110, 110]
     )
     st.plotly_chart(fig_tbl_B, use_container_width=True)
-    describe_figure(
-        "Figure IV.1-B — Indicateurs de saison",
-        "Comparer n_weeks_epi et peak_value pour juger de la sévérité ; la colonne threshold rappelle la valeur d’alerte.",
-        "Les saisons 2022-23 et 2023-24 affichent à la fois une durée plus courte et une amplitude élevée, suggérant un démarrage explosif mais contenu."
-    )
 
 
     # Cell 31
@@ -1003,12 +911,6 @@ with tab_tables:
     fig_3A.update_layout(xaxis=dict(tickangle=-45), margin=dict(l=70,r=20,t=60,b=80),
                          legend=dict(orientation="h", y=-0.25, x=0.5, xanchor="center"))
     st.plotly_chart(fig_3A, use_container_width=True)
-    describe_figure(
-        "Figure 3A — Décalage saisonnier",
-        "Barres colorées selon le signe : vert = précoce, rouge = retard.",
-        "Les saisons post-pandémiques se situent toutes dans le négatif (précoce), sauf 2020-21, confirmant l’inversion durable du calendrier RSV."
-    )
-
 
 
     # Cell 32
@@ -1027,11 +929,7 @@ with tab_tables:
     )
     fig_3B.update_layout(margin=dict(l=70,r=20,t=60,b=80), xaxis=dict(tickangle=-45))
     st.plotly_chart(fig_3B, use_container_width=True)
-    describe_figure(
-        "Figure 3B — Durée épidémique",
-        "Hauteur = nombre de semaines au-dessus du seuil 20 % du pic.",
-        "La durée se contracte après 2021 (≈23 semaines), signe d’épisodes intenses mais plus courts, tandis que 2020-21 demeure très longue."
-    )
+
 
 
 
@@ -1057,11 +955,6 @@ with tab_tables:
 
     fig_3C.update_layout(margin=dict(l=70,r=20,t=60,b=80), xaxis=dict(tickangle=-45))
     st.plotly_chart(fig_3C, use_container_width=True)
-    describe_figure(
-        "Figure 3C — Amplitude du pic",
-        "Comparer saison par saison l’intensité maximale atteinte ; la ligne horizontale indique la valeur max pré-COVID.",
-        "Les saisons 2022-23 et 2023-24 dépassent largement la référence, illustrant la forte pression hospitalière post-pandémie."
-    )
 
 
 
@@ -1163,16 +1056,7 @@ with tab_vacc:
                            margin=dict(l=70,r=20,t=60,b=80))
         vlines(fig7, EVENTS)
         st.plotly_chart(fig7, use_container_width=True)
-        describe_figure(
-            "Figure 7 — Couverture vaccinale par classe d’âge",
-            "Les courbes sont segmentées par tranche d’âge ; les lignes en pointillé ajoutent les agrégats 12+ et 65+ pour référence.",
-            "Les plus de 65 ans atteignent rapidement une couverture élevée, alors que les plus jeunes progressent plus lentement et plafonnent plus tôt."
-        )
-        describe_figure(
-            "Figure 7 — Couverture vaccinale nationale",
-            "Deux courbes (12+ et 65+) illustrent la progression cumulée ; se référer aux jalons pour relier les ruptures aux décisions publiques.",
-            "La couverture 65+ dépasse 90 % mi-2021 tandis que les 12+ atteignent un plateau plus bas, montrant la priorisation des seniors."
-        )
+
 
 
         # Cell 37
@@ -1194,11 +1078,6 @@ with tab_vacc:
         )
         vlines(fig7b, EVENTS)
         st.plotly_chart(fig7b, use_container_width=True)
-        describe_figure(
-            "Figure 7bis — RSV vs vaccination 12+",
-            "Comparer l’axe gauche (RSV urgences) avec l’axe droit (couverture 12+).",
-            "La poussée vaccinale de l’été 2021 précède la chute de RSV, mais les vagues 2022-23 montrent un découplage : RSV repart malgré une couverture élevée."
-        )
 
 
         # Cell 38
@@ -1300,11 +1179,7 @@ with tab_vacc:
         fig7.update_layout(margin=dict(l=70,r=30,t=60,b=70), legend=dict(orientation="h", y=-0.25, x=0.5, xanchor="center"))
         vlines(fig7, EVENTS)
         st.plotly_chart(fig7, use_container_width=True)
-        describe_figure(
-            "Figure 7 — Couverture vaccinale par classe d’âge",
-            "Les courbes sont segmentées par tranche d’âge ; les lignes en pointillé ajoutent les agrégats 12+ et 65+ pour référence.",
-            "Les plus de 65 ans atteignent rapidement une couverture élevée, alors que les plus jeunes progressent plus lentement et plafonnent plus tôt."
-        )
+  
 
 
         # Cell 41
@@ -1350,11 +1225,7 @@ with tab_vacc:
         EVENTS = [("2020-12-27","Début vaccination"), ("2021-06-15","Levées majeures 2021")]
         vlines(fig7_0011, EVENTS)
         st.plotly_chart(fig7_0011, use_container_width=True)
-        describe_figure(
-            "Figure 7 (focus) — Couverture 0–11 vs RSV",
-            "La couverture pédiatrique (axe droit) est comparée au signal RSV national (axe gauche).",
-            "La vaccination 5-11 ans reste faible (<15 %) et décroît, confirmant que les vagues RSV ne sont pas influencées par ce levier durant 2021-22."
-        )
+    
 
 
         # Cell 42
@@ -1448,12 +1319,6 @@ with tab_vacc:
         fig6_0011.update_traces(marker=dict(size=9, opacity=0.9))
         fig6_0011.update_layout(margin=dict(l=70,r=30,t=80,b=70))
         st.plotly_chart(fig6_0011, use_container_width=True)
-        describe_figure(
-            "Figure 6 — Corrélation régionale",
-            "Chaque point = une région ; la tendance OLS suggère la relation entre couverture 0–11 et RSV.",
-            "ρ légèrement négatif (-0.28) signale que les régions les mieux vaccinées ont un RSV un peu moins élevé, mais la dispersion reste forte."
-        )
-
 
         # Cell 43
         # Colonnes disponibles (on garde l'essentiel + dep/region pour plus tard)
@@ -1529,11 +1394,7 @@ with tab_vacc:
         )
         vlines(fig7_focus, EVENTS)
         st.plotly_chart(fig7_focus, use_container_width=True)
-        describe_figure(
-            "Figure 7 focus — Synchronisation 0–11",
-            "Zoom sur la couverture 0–11 et RSV urgences ; lignes verticales = jalons COVID.",
-            "On observe une synchro nette fin 2021 où l’arrêt des restrictions (juin) précède la reprise RSV malgré une couverture modeste."
-        )
+
 
 
         # Cell 45
@@ -1608,11 +1469,6 @@ with tab_vacc:
         fig6_reg_0011.update_traces(marker=dict(size=9, opacity=0.9))
         fig6_reg_0011.update_layout(margin=dict(l=70,r=30,t=80,b=70))
         st.plotly_chart(fig6_reg_0011, use_container_width=True)
-        describe_figure(
-            "Figure 6 — Corrélation régionale",
-            "Chaque point = une région ; lire la pente/trendline et Spearman ρ pour quantifier la relation couverture 0–11 vs RSV.",
-            "ρ négatif suggère qu’une meilleure couverture 0–11 est associée à un RSV plus faible, mais la relation reste modérée (taille d’échantillon limitée)."
-        )
 
 
         # Cell 46
@@ -1662,11 +1518,7 @@ with tab_vacc:
         fig6_dep_0011.update_traces(marker=dict(size=6, opacity=0.75))
         fig6_dep_0011.update_layout(margin=dict(l=70,r=30,t=80,b=70))
         st.plotly_chart(fig6_dep_0011, use_container_width=True)
-        describe_figure(
-            "Figure 6bis — Corrélation départementale",
-            "Même lecture que la figure régionale, mais à granularité départementale.",
-            "La dispersion importante (corrélation faible) montre que la couverture vaccinale pédiatrique n’explique qu’une petite partie de l’hétérogénéité RSV locale."
-        )
+
 
 
         # Cell 47
@@ -1709,12 +1561,6 @@ with tab_vacc:
         fig6_scan.add_hline(y=0, line_dash="dot")
         fig6_scan.update_layout(margin=dict(l=70,r=30,t=60,b=60))
         st.plotly_chart(fig6_scan, use_container_width=True)
-        describe_figure(
-            "Figure 6-scan — Corrélation hebdomadaire",
-            "Tracer ρ semaine après semaine (septembre→décembre 2021) pour suivre l’évolution de la relation régionale RSV vs couverture 0–11.",
-            "La corrélation devient la plus négative fin novembre, période où la couverture atteint son plateau alors que RSV explose."
-        )
-
 
         # Cell 48
         # Séries FR alignées hebdo (lundi) : RSV vs couv 0–11
@@ -1770,11 +1616,6 @@ with tab_vacc:
             margin=dict(l=70,r=30,t=60,b=60)
         )
         st.plotly_chart(fig8, use_container_width=True)
-        describe_figure(
-            "Figure 8 — Corrélation croisée",
-            "Lire l’axe X (décalage en semaines) : valeurs positives = vaccination en avance sur RSV.",
-            "Le maximum de corrélation se situe autour de −3 à −4 semaines, suggérant que les hausses RSV précèdent la couverture vaccinale 0–11."
-        )
 
         # Lag optimal (max absolu)
         lag_star = ccf_vals.iloc[ccf_vals["ccf"].abs().argmax()]["lag"]
@@ -1975,11 +1816,7 @@ with tab_behav:
         fig13.update_layout(hovermode="x unified", margin=dict(l=70,r=30,t=60,b=70))
         vlines(fig13, EVENTS)
         st.plotly_chart(fig13, use_container_width=True)
-        describe_figure(
-            "Figure 13 — Port du masque (CoviPrev)",
-            "Lire l’évolution hebdomadaire du % déclarant porter « toujours » un masque ; les jalons indiquent les restrictions nationales.",
-            "L’adhésion chute dès l’été 2021 et reste basse, expliquant en partie la reprise RSV lorsque les gestes barrières s’estompent."
-        )
+
     else:
         st.write("[FIG13] Indicateur masque introuvable ou dates manquantes.")
 
@@ -2023,11 +1860,7 @@ with tab_behav:
         fig14.update_layout(hovermode="x unified", margin=dict(l=70,r=30,t=60,b=70))
         vlines(fig14, EVENTS)
         st.plotly_chart(fig14, use_container_width=True)
-        describe_figure(
-            "Figure 14 — Score MNP (Masques + mobilité travail)",
-            "Score normalisé (0-1) combinant port du masque et baisse de mobilité Google ; haute valeur = forte prévention.",
-            "Après un maximum en 2020, le score retombe sous 0.3 fin 2021, aligné avec la reprise des vagues RSV."
-        )
+
     else:
         st.write("[FIG14] Rien à tracer.")
 
@@ -2053,11 +1886,7 @@ with tab_behav:
     fig15.update_layout(hovermode="x unified", margin=dict(l=70,r=30,t=60,b=70))
     vlines(fig15, EVENTS)
     st.plotly_chart(fig15, use_container_width=True)
-    describe_figure(
-        "Figure 15 — Mobilité Google (FR)",
-        "Chaque ligne représente une catégorie de mobilité ; lire les écarts vs baseline (0).",
-        "La fréquentation des lieux de travail reste négative jusqu’en 2022, alors que les parcs et commerces rebondissent plus tôt."
-    )
+
 
     # ----------------------------
     # 6) FIG.16 — RSV vs Workplaces (ISO)
@@ -2080,11 +1909,7 @@ with tab_behav:
     )
     vlines(fig16, EVENTS)
     st.plotly_chart(fig16, use_container_width=True)
-    describe_figure(
-        "Figure 16 — RSV vs mobilité travail",
-        "Comparer RSV (axe gauche) et mobilité workplace (axe droit).",
-        "Les vagues RSV montent lorsque la mobilité travail se normalise (retour à 0), confirmant la perte de mesures barrières."
-    )
+
 
     # ----------------------------
     # 7) FIG.17 — CCF RSV ↔ MNP & Workplaces (ISO)
@@ -2115,11 +1940,7 @@ with tab_behav:
                                 xaxis_title="Décalage (semaines)", yaxis_title="CCF",
                                 margin=dict(l=70,r=30,t=60,b=70))
         st.plotly_chart(fig17, use_container_width=True)
-        describe_figure(
-            "Figure 17 — CCF RSV vs MNP / Workplaces",
-            "Deux courbes de corrélation croisée : positive = la série précède RSV.",
-            "Le score MNP montre une corrélation négative à +2 semaines (prévention élevée → RSV en baisse), tandis que la mobilité travail inversée suit une logique similaire."
-        )
+
 
     # ----------------------------
     # 8) FIG.18 — Scatter RSV vs MNP (lag 0)
@@ -2134,11 +1955,7 @@ with tab_behav:
             fig18.update_traces(marker=dict(size=7, opacity=0.7))
             fig18.update_layout(margin=dict(l=70,r=30,t=60,b=70))
         st.plotly_chart(fig18, use_container_width=True)
-        describe_figure(
-            "Figure 18 — Scatter RSV vs MNP (lag 0)",
-            "Chaque point = une semaine ; le trendline OLS aide à estimer l’élasticité.",
-            "Lorsque le score MNP chute sous 0.3, le taux RSV dépasse rapidement 1500/100k, confirmant l’importance des gestes préventifs."
-        )
+
     else:
         st.write("[FIG18] Trop peu de points.")
 
@@ -2171,11 +1988,7 @@ with tab_behav:
         fig19.update_traces(marker=dict(size=7, opacity=0.7))
         fig19.update_layout(margin=dict(l=70,r=30,t=60,b=70))
     st.plotly_chart(fig19, use_container_width=True)
-    describe_figure(
-        "Figure 19 — RSV vs workplaces (lag optimal)",
-        "La série workplaces est décalée du lag optimal issu de la CCF ; lire l’abscisse pour interpréter la relation.",
-        "Une mobilité encore réduite (−20 %) est associée à des niveaux RSV plus faibles, mais la relation reste modérée (trendline peu pentue)."
-    )
+
 
     # ----------------------------
     # 10) FIG.20/21 — Tous les indicateurs CoviPrev vs RSV
@@ -2200,11 +2013,7 @@ with tab_behav:
         fig20.update_layout(margin=dict(l=60,r=30,t=60,b=60))
         fig20.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
         st.plotly_chart(fig20, use_container_width=True)
-        describe_figure(
-            "Figure 20 — CoviPrev vs RSV (facettes)",
-            "Chaque facette illustre un indicateur CoviPrev ; lire la tendance (OLS) et la concentration des points.",
-            "Les indicateurs de gestes barrières (lavage mains, isolement) montrent les corrélations négatives les plus nettes avec le taux RSV."
-        )
+
 
         # FIG.21 — Spearman par indicateur (lag 0 et +2 semaines) — robuste (sans re-merge RSV)
         def corr_by_indicator_iso_no_remerge(dfl: pd.DataFrame, lag_weeks=0):
@@ -2237,11 +2046,7 @@ with tab_behav:
                            title="FIG.21 — Corrélation (Spearman) RSV × indicateurs CoviPrev — lag 0 vs +2 semaines (ISO)")
             fig21.update_layout(margin=dict(l=100,r=30,t=60,b=60))
             st.plotly_chart(fig21, use_container_width=True)
-            describe_figure(
-                "Figure 21 — Spearman (lag 0 vs +2 semaines)",
-                "Barres groupées par indicateur : comparer le rho à lag 0 (bleu) vs +2 semaines (orange).",
-                "La plupart des comportements sont négativement corrélés à RSV, avec un effet plus marqué lorsque l’on décale les comportements de deux semaines."
-            )
+  
         else:
             st.write("[FIG21] Aucune corrélation calculable (trop peu de points).")
 
@@ -2268,11 +2073,7 @@ with tab_behav:
             fig22.update_layout(margin=dict(l=60,r=30,t=60,b=60))
             fig22.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1]))
             st.plotly_chart(fig22, use_container_width=True)
-            describe_figure(
-                "Figure 22 — DPPS vs RSV",
-                "Facettes par indicateur DPPS (ex. taux de tests, dispositifs pédagogiques).",
-                "Les indicateurs liés à la fermeture des structures montrent les associations négatives les plus fortes avec l’intensité RSV."
-            )
+     
 
             def corr_by_indicator_iso_dpps_no_remerge(dfl: pd.DataFrame, lag_weeks=0):
                 d = dfl.copy()
@@ -2300,11 +2101,7 @@ with tab_behav:
                                title="FIG.23 — Corrélation (Spearman) RSV × indicateurs DPPS — lag 0 vs +2 semaines (ISO)")
                 fig23.update_layout(margin=dict(l=110,r=30,t=60,b=60))
                 st.plotly_chart(fig23, use_container_width=True)
-                describe_figure(
-                    "Figure 23 — Spearman DPPS",
-                    "Comparer les barres lag 0 vs +2 semaines ; différences notables indiquent des effets différés.",
-                    "Les dispositifs scolaires et restrictions d’accueil montrent un impact maximal à +2 semaines, suggérant un délai entre mesures DPPS et baisse RSV."
-                )
+         
             else:
                 st.write("[FIG23] Aucune corrélation calculable (DPPS).")
     else:
