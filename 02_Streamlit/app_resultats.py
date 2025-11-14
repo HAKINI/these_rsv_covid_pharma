@@ -97,7 +97,7 @@ TAB_LABELS = [
     'Vaccination & RSV',
     'Comportements & mobilités',
 ]
-tab_nat, tab_reg, tab_tables, tab_vacc = st.tabs(TAB_LABELS) #tab_behav 
+tab_nat, tab_reg, tab_tables, tab_vacc, tab_behav = st.tabs(TAB_LABELS)
 
 # Jalons COVID (France)
 COVID_EVENTS = [
