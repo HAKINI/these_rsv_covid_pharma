@@ -1,5 +1,3 @@
-"""Streamlit app version of 01_Notebooks/results.ipynb (all visualisations)."""
-
 # Cell 1
 # -*- coding: utf-8 -*-
 from pathlib import Path
@@ -99,7 +97,7 @@ TAB_LABELS = [
     'Vaccination & RSV',
     'Comportements & mobilités',
 ]
-tab_nat, tab_reg, tab_tables, tab_vacc, tab_behav = st.tabs(TAB_LABELS)
+tab_nat, tab_reg, tab_tables, tab_vacc = st.tabs(TAB_LABELS) #tab_behav 
 
 # Jalons COVID (France)
 COVID_EVENTS = [
